@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { Home } from './features/home/home';
 import { UtenteCreate } from './features/utente-create/utente-create';
+import { CameraCreate } from './features/camera-create/camera-create';
 
 
 
@@ -10,15 +11,8 @@ export const routes: Routes = [
     component: Home
 
   },
-  {
-    path: '',                    // URL: / (radice)
-    redirectTo: 'home',          // reindirizza a /home
 
-  },
-  {    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
+
   {
     path: 'home',
     component: Home
@@ -27,7 +21,17 @@ export const routes: Routes = [
   {
     path: 'utente-create',
     component: UtenteCreate
-  }
+  },
+{
+  path: 'camera-create',
+  component: CameraCreate
+},
+
+{
+  path: '**',
+  redirectTo: 'home'
+}
+
 ];
 
 

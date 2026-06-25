@@ -9,4 +9,11 @@ import { Router } from '@angular/router';
   styleUrl: './home.css',
 })
 export class Home {
+
+  constructor (private router: Router) {}
+  
+  goCamere() {
+    this.router.navigate (['/camera-create']);
+  }
+
 }
