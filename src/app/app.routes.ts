@@ -6,13 +6,11 @@ import { CameraCreate } from './features/camera-create/camera-create';
 
 
 export const routes: Routes = [
-  {
-    path: 'home',
-    component: Home
 
+  {    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
   },
-
-
   {
     path: 'home',
     component: Home
