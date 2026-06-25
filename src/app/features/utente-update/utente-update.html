@@ -1,1 +1,46 @@
-<p>utente-update works!</p>
+<div class="container">
+    <div class="row justify-content-md-center">CREA UTENTE </div>
+    <div class="row justify-content-md-center">
+        <form class="col-6">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">Nome Utente</span>
+                <input type="text" class="form-control" value="ValorePrecedente">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">Cognome Utente</span>
+                <input type="text" class="form-control" value="ValorePrecedente">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">Data di Nascita</span>
+                <input type="text" class="form-control" value="ValorePrecedente">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">Codice Fiscale</span>
+                <input type="text" class="form-control" value="ValorePrecedente">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">Livello Permessi</span>
+                <select class="form-select" aria-label="Disabled select example" disabled>
+                    <option selected>Mostra il livello dell'utente attuale</option>
+                    <option value="1">Utente</option>
+                    <option value="2">Gestore</option>
+                    <option value="3">Admin</option>
+                </select>
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <button type="button" (click)="VaiAHome()" class="btn btn-primary col-1" >
+                    Back
+                </button>
+                <button type="submit" class="btn btn-primary col-1">
+                    Crea
+                </button>
+                <span col>
+                    Codice Utente
+                </span>
+                <button type="button" class="btn btn-primary col-2">
+                    Cancella Utente
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

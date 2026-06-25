@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-utente-update',
@@ -6,4 +7,11 @@ import { Component } from '@angular/core';
   templateUrl: './utente-update.html',
   styleUrl: './utente-update.css',
 })
-export class UtenteUpdate {}
+export class UtenteUpdate {
+  constructor(private router: Router) { }
+
+  VaiAHome() {
+    this.router.navigate(['/home']);
+
+  }
+}
