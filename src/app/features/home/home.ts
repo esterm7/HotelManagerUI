@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-home',
   imports: [],
@@ -9,4 +8,9 @@ import { Router } from '@angular/router';
   styleUrl: './home.css',
 })
 export class Home {
+  constructor(private router: Router) { }
+
+  vaiAlCreaUtente() {
+    this.router.navigate(['/utente-create']);
+  }
 }
