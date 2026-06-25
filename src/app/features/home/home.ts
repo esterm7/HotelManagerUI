@@ -8,8 +8,5 @@ import { Router } from '@angular/router';
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home {constructor(private router: Router) {}
-
-  naviga(route: string) {
-    this.router.navigate([route]);
-  }}
+export class Home {
+}
