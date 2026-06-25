@@ -8,7 +8,6 @@ export const routes: Routes = [
         component: Home
 
     },
-
      {
     path: '',                    // URL: / (radice)
     redirectTo: 'home',          // reindirizza a /home
