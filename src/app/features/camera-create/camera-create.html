@@ -1,29 +1,64 @@
-<form>
-    <label for="numero">Posti letto</label>
-    <select  class="form-select" aria-label="Default select example" id="numero" name="numero">
-        <option value="">Seleziona opzione </option>
+<form #form="ngForm" (ngSubmit)="submitForm()">
+    <div class="form-row">
+        <div class="container">
+            <div class="row justify-content-md-center">CREA CAMERA </div>
+            <div class="row justify-content-md-center">
+                <div class="col-6">
+                    <span class="input-group-text">Posti letto</span>
+                    <div class="input-group input-group-sm mb-3">
+                        <select class="form-select" aria-label="Default select example" id="numero" name="numero"
+                            [(ngModel)]="camera.postiLetto" #postiLetto="ngModel" required min="1">
 
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-    </select>
-<br>
-    <label for="tipologia">Tipologia</label>
-    <select id="tipologia" name="tipologia">
-         <option value="">Seleziona opzione</option>
-        <option value="1">1 - singola</option>
-        <option value="2">2 - doppia </option>
-        <option value="3">3 - suite</option>
-    </select>
+                            
+                            @if (postiLetto.invalid && postiLetto.touched) {
+                            <p style="color:red">Inserisci almeno 1 posto letto</p>
+                            }
+                            <option value="">Seleziona opzione </option>
 
-    <br>
-    <label for="prezzo"> Prezzo</label>
-    <input type = text id="prezzo" name = "prezzo" placeholder = "Inserisci prezzo"/>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
 
-    <br>
+                    <br>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text">Tipologia</span><br>
+                        <select id="tipologia" name="tipologia" [(ngModel)]="camera.tipologia" #tipologia="ngModel"
+                            required>
+                            >
+                            <option value="">Seleziona opzione</option>
+                            <option value="1">1 - singola</option>
+                            <option value="2">2 - doppia </option>
+                            <option value="3">3 - suite</option>
+                        </select>
 
-    <input type = "submit" value = "Crea camera" />
+                        @if (tipologia.invalid && tipologia.touched) {
+                        <p style="color:red">Seleziona una tipologia</p>
+                        }
+                    </div>
+
+                    <br>
+                    <div class="input-group input-group-sm mb-3">
+
+                        <span class="input-group-text">Tarifa</span>
+                        <input type=text id="prezzo" name="prezzo" placeholder="Inserisci prezzo"
+                            [(ngModel)]="camera.tariffa" #tariffa="ngModel" required min="0">>
+                    </div>
+                    <br>
+
+                    <button type="submit" [disabled]="form.invalid">Salva camera</button>
+                    <button type="button" (click)="resetForm()">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 </form>
+
+
