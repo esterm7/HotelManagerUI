@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { cameraDTO } from '../../DTO/cameraDTO';
+import { CameraDto } from '../../DTO/cameraDTO';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { Service } from '../../services/service';
+
+
 
 
 @Component({
@@ -11,27 +14,34 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './camera-create.html',
   styleUrl: './camera-create.css',
 })
+
+
 export class CameraCreate {
 
-  camera: cameraDTO;
+  cameraDTO!: CameraDto;
 
   //fare i controlli di validazione dei campi,
   // se non sono validi non fare il submit del form, altrimenti fare il submit 
   // e stampare in console i dati della camera da salvare
 
-  constructor (private router: Router) {
-    this.camera = new cameraDTO();
+  constructor (private router: Router, private cameraService: Service) {
+    this.cameraDTO = new CameraDto();
   }
 
   
-  submitForm() {
-    console.log ('Camera da salvare:', this.camera);
+  salvaCamera() {
+    console.log ('Camera da salvare:', this.cameraDTO);
     this.router.navigate(['/camera-create']);
   }
 
   resetForm() {
-    this.camera = new cameraDTO();
+    this.cameraDTO = new CameraDto();
   }
+
+   VaiAHome() {
+    this.router.navigate(['/home']);
+  }
+
 }
 
 

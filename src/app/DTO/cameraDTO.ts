@@ -1,6 +1,6 @@
 
 
-export class cameraDTO {
+export class CameraDto {
    
     postiLetto!: number;
     postiLettoError!: boolean;
@@ -13,4 +13,8 @@ export class cameraDTO {
     constructor () {
 
     }
+
+
+
+
 }

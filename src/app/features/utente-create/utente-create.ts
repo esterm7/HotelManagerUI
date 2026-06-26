@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UtenteDto } from '../../DTO/utenteDTO';
 import { FormsModule } from '@angular/forms';
-import { UtenteService } from '../../services/service';
+import { Service } from '../../services/service';
 
 @Component({
   selector: 'app-utente-create',
@@ -20,7 +20,7 @@ export class UtenteCreate {
 
   utenteDTO!: UtenteDto;
 
-  constructor(private router: Router, private utenteService: UtenteService) {
+  constructor(private router: Router, private utenteService: Service) {
     this.utenteDTO = new UtenteDto();
     this.utenteDTO.livelloPermessi = 1; // Imposta il valore predefinito a 1 (Utente) 
   }
@@ -33,7 +33,7 @@ export class UtenteCreate {
       return;
     }
     this.utenteDTO.creaCodiceUtente();
-    this.utenteService.salva(this.utenteDTO);
+    this.utenteService.salvaUtente(this.utenteDTO);
   }
 
   VaiAHome() {
