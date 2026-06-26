@@ -3,41 +3,44 @@
     <div class="row justify-content-md-center">
         <form class="col-6">
             <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text">Nome Utente</span>
-                <input type="text" class="form-control">
+                <span class="input-group-text">Nome</span>
+                <input name="nome" [(ngModel)]="utenteDTO.nome" type="text" class="form-control">
             </div>
             <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text">Cognome Utente</span>
-                <input type="text" class="form-control">
+                <span class="input-group-text">Cognome</span>
+                <input name="cognome" [(ngModel)]="utenteDTO.cognome" type="text" class="form-control">
             </div>
             <div class="input-group input-group-sm mb-3">
                 <span class="input-group-text">Data di Nascita</span>
-                <input type="text" class="form-control">
+                <input name="dataNascita" [(ngModel)]="utenteDTO.dataNascita" type="text" class="form-control">
             </div>
             <div class="input-group input-group-sm mb-3">
                 <span class="input-group-text">Codice Fiscale</span>
-                <input type="text" class="form-control">
+                <input name="codiceFiscale" [(ngModel)]="utenteDTO.codiceFiscale" type="text" class="form-control">
             </div>
             <div class="input-group input-group-sm mb-3">
                 <span class="input-group-text">Livello Permessi</span>
-                <select class="form-select" aria-label="Disabled select example" disabled>
-                    <option selected>Mostra il livello dell'utente attuale</option>
+                <select name="livelloPermessi" [(ngModel)]="utenteDTO.livelloPermessi" class="form-select"
+                    aria-label="Disabled select example" disabled>
+                    <option selected><span>[(ngModel)]="utenteDTO.livelloPermessi"</span></option>
                     <option value="1">Utente</option>
                     <option value="2">Gestore</option>
                     <option value="3">Admin</option>
                 </select>
             </div>
-            <div class="row input-group input-group-sm mb-3">
-                <button type="button" (click)="VaiAHome()" class="btn btn-primary col-1" >
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <button type="button" (click)="VaiAHome()" class="btn btn-primary btn-sm">
                     Back
                 </button>
-                <button type="submit" class="btn btn-primary col-1">
+
+                <button type="submit" class="btn btn-primary btn-sm" (click)="salvaUtente()">
                     Crea
                 </button>
-                <span>
-                    Codice Utente
-                    <input type="text" class="form-control">
-                </span>
+
+                <div class="input-group input-group-sm flex-nowrap" style="width: 250px;">
+                    <span class="input-group-text">Codice Utente</span>
+                    <input id="codiceUtente" type="text" class="form-control">
+                </div>
             </div>
         </form>
     </div>
