@@ -14,6 +14,15 @@ export class Service {
   salvaUtente(dto: UtenteDto) {
     return this.http.post(this.baseUrlUtente, dto);
   }
+  
+  getUtenteByCode(code: string) {
+    return this.http.get(`${this.baseUrlUtente}/${code}`);
+  }
+  
+  aggiornaUtente(dto: UtenteDto) {
+    return this.http.put(this.baseUrlUtente, dto);
+  }
+  
 
   salvaCamera(dto: CameraDto) {
     return this.http.post(this.baseUrlCamera, dto);

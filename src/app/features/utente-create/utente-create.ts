@@ -26,18 +26,32 @@ export class UtenteCreate {
   }
 
   salvaUtente() {
-    console.log(this.utenteDTO.dataNascita);
     this.utenteDTO.inputValidate(this.utenteDTO);
-    if (this.utenteDTO.codiceUtenteError || this.utenteDTO.nomeError || this.utenteDTO.cognomeError || this.utenteDTO.dataNascitaError || this.utenteDTO.codiceFiscaleError || this.utenteDTO.livelloPermessiError) {
+    if (this.utenteDTO.nomeError || this.utenteDTO.cognomeError || this.utenteDTO.dataNascitaError || this.utenteDTO.codiceFiscaleError || this.utenteDTO.livelloPermessiError) {
       console.log('Errore di validazione dei campi');
       return;
     }
     this.utenteDTO.creaCodiceUtente();
-    this.utenteService.salvaUtente(this.utenteDTO);
+    this.utenteService.salvaUtente(this.utenteDTO).subscribe(response => {
+      console.log('Utente salvato con successo!', response);
+      this.VaiAHome();
+    });
+  }
+
+  creaCodiceUtente() {
+    this.utenteDTO.creaCodiceUtente();
   }
 
   VaiAHome() {
     this.router.navigate(['/home']);
   }
 
+resetForm() {
+    this.utenteDTO.nome = '';
+    this.utenteDTO.cognome = '';
+    this.utenteDTO.dataNascita = '';
+    this.utenteDTO.codiceFiscale = '';
+    this.utenteDTO.livelloPermessi = 1; // Imposta il valore predefinito a 1 (Utente)
+    this.utenteDTO.codiceUtente = '';
+  }
 }

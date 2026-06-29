@@ -8,7 +8,7 @@ export class UtenteDto {
     cognome!: string;
     cognomeError!: boolean;
 
-    dataNascita!: Date;
+    dataNascita!: string;
     dataNascitaError!: boolean;
 
     codiceFiscale!: string;
@@ -22,7 +22,7 @@ export class UtenteDto {
 
     inputValidate(utenteDTO: UtenteDto) {
         //gestione data
-    //    this.dataNascita = new Date(utenteDTO.dataNascita);
+        //    this.dataNascita = new Date(utenteDTO.dataNascita);
         // reset errors
         this.codiceUtenteError = false;
         this.nomeError = false;
@@ -53,7 +53,7 @@ export class UtenteDto {
         }
 
         // valida dataNascita
-        if (!utenteDTO.dataNascita || !(utenteDTO.dataNascita instanceof Date)) {
+        if (!utenteDTO.dataNascita) {
             this.dataNascitaError = true;
         } else {
             this.dataNascita = utenteDTO.dataNascita;
@@ -75,9 +75,10 @@ export class UtenteDto {
     }
 
     creaCodiceUtente() {
-        const nome = this.nome.trim().toLowerCase();
-        const cognome = this.cognome.trim().toLowerCase();
-        const dataNascita = this.dataNascita;
-        this.codiceUtente = `${nome.charAt(0)}${cognome}${dataNascita.getFullYear()}`.toLowerCase();
+        const nomeCode = this.nome.trim().substring(0, 2).toLowerCase();
+        const cognomeCode = this.cognome.trim().substring(0, 2).toLowerCase();
+        const dataNascitaCode = this.dataNascita.substring(0, 4);
+        
+        this.codiceUtente = `${nomeCode}${cognomeCode}${dataNascitaCode}`.toLowerCase();
     }
 }
