@@ -2,6 +2,7 @@
 
 export class CameraDto {
    
+
     postiLetto!: number;
     postiLettoError!: boolean;
     tipologia!: number;
@@ -9,15 +10,19 @@ export class CameraDto {
     tariffa!: number;
     tariffaError!: boolean;
 
+    codiceCamera!: string;
+    codiceCameraError!: boolean;
 
     constructor () {
 
     }
 
-    inputValidate(cameraDTO: CameraDto) {
+    validazioneInput(cameraDTO: CameraDto) {
+        
         this.postiLettoError = false;
         this.tipologiaError = false;
         this.tariffaError = false;  
+        this.codiceCameraError = false;
 
 
         if (!cameraDTO.postiLetto || cameraDTO.postiLetto < 1) {
@@ -27,17 +32,18 @@ export class CameraDto {
             this.tipologiaError = true;
         }         
         
-        if (!cameraDTO.tariffa || cameraDTO.tariffa < 50 || cameraDTO.tariffa > 50000) {
+        if (!cameraDTO.tariffa || cameraDTO.tariffa < 50 || cameraDTO.tariffa > 5000 || isNaN(cameraDTO.tariffa)) {
             this.tariffaError = true;
         }  
     } 
+   
 
         //genera un codice univoco per la camera basato sulla tipologia e sul numero di posti letto
         creaCodiceCamera() {
             const tipologia = this.tipologia;
             const postiLetto = this.postiLetto;
             const randomNum = Math.floor(Math.random() * 1000);
-            return `${tipologia}-${postiLetto}-${randomNum}`;
-        }
+            this.codiceCamera = `C${tipologia}${postiLetto}${randomNum}`;
 
+}
 }

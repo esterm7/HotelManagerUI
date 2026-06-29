@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+/* import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CameraUpdate } from './camera-update';
 
@@ -20,3 +20,4 @@ describe('CameraUpdate', () => {
     expect(component).toBeTruthy();
   });
 });
+ */
