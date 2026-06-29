@@ -19,6 +19,10 @@ export class Service {
     return this.http.post(this.baseUrlCamera, dto);
     
   } 
+
+  getCameraByCode(code: string) {
+    return this.http.get(`${this.baseUrlCamera}/${code}`);
   }
+}
 
 

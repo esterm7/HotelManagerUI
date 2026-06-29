@@ -30,8 +30,15 @@ export class CameraCreate {
 
   
   salvaCamera() {
-    console.log ('Camera da salvare:', this.cameraDTO);
-    this.router.navigate(['/camera-create']);
+    console.log (this.cameraDTO);
+    this.cameraDTO.inputValidate(this.cameraDTO);
+    if (this.cameraDTO.postiLettoError || this.cameraDTO.tipologiaError || this.cameraDTO.tariffaError) {
+      console.log('Errore di validazione dei campi');   
+      return;
+    }
+    this.cameraDTO.creaCodiceCamera();
+    this.cameraService.salvaCamera(this.cameraDTO);
+   // this.router.navigate(['/camera-create']);
   }
 
   resetForm() {
@@ -41,6 +48,11 @@ export class CameraCreate {
    VaiAHome() {
     this.router.navigate(['/home']);
   }
+
+  creaCodiceCamera() {
+    this.cameraDTO.creaCodiceCamera();
+
+}
 
 }
 

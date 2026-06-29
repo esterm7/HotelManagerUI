@@ -1,1 +1,68 @@
-<p>camera-update works!</p>
+<!-- <form #form="ngForm" (ngSubmit)="salvaCamera()">
+    <div class="form-row">
+        <div class="container">
+            <div class="row justify-content-md-center">CREA CAMERA </div>
+            <div class="row justify-content-md-center">
+                <div class="col-6">
+                    <span class="input-group-text">Posti letto</span>
+                    <div class="input-group input-group-sm mb-3">
+                        <select class="form-select" aria-label="Default select example" id="numero" name="numero"
+                            [(ngModel)]="cameraDTO.postiLetto" #postiLetto="ngModel" required min="1">
+
+                            
+                            @if (postiLetto.invalid && postiLetto.touched) {
+                            <p style="color:red">Inserisci almeno 1 posto letto</p>
+                            }
+                            <option value="">Seleziona opzione </option>
+
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+
+                    <br>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text">Tipologia</span><br>
+                        <select id="tipologia" name="tipologia" [(ngModel)]="cameraDTO.tipologia" #tipologia="ngModel"
+                            required>
+                            >
+                            <option value="">Seleziona opzione</option>
+                            <option value="1">1 - singola</option>
+                            <option value="2">2 - doppia </option>
+                            <option value="3">3 - suite</option>
+                        </select>
+
+                        @if (tipologia.invalid && tipologia.touched) {
+                        <p style="color:red">Seleziona una tipologia</p>
+                        }
+                    </div>
+
+                    <br>
+                    <div class="input-group input-group-sm mb-3">
+
+                        <span class="input-group-text">Tariffa</span>
+                        <input type=text id="prezzo" name="prezzo" placeholder="€"
+                            [(ngModel)]="cameraDTO.tariffa" #tariffa="ngModel" required min="0">
+                    </div>
+                    <br>
+
+                    <button type="submit" [disabled]="form.invalid" class ="btn btn-primary btn-sm">Salva camera</button>
+                    <button type="button" (click)="resetForm()" class = "btn btn-primary btn-sm">Reset</button>
+
+                    <button type="button" (click)="VaiAHome()" class="btn btn-danger btn-sm">
+                    Back
+                </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</form>
+
+ -->

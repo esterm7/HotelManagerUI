@@ -10,7 +10,7 @@
                             [(ngModel)]="cameraDTO.postiLetto" #postiLetto="ngModel" required min="1">
 
                             
-                            @if (postiLetto.invalid && postiLetto.touched) {
+                            @if (this.cameraDTO.postiLettoError) {
                             <p style="color:red">Inserisci almeno 1 posto letto</p>
                             }
                             <option value="">Seleziona opzione </option>
@@ -36,9 +36,7 @@
                             <option value="3">3 - suite</option>
                         </select>
 
-                        @if (tipologia.invalid && tipologia.touched) {
-                        <p style="color:red">Seleziona una tipologia</p>
-                        }
+                
                     </div>
 
                     <br>
@@ -47,6 +45,9 @@
                         <span class="input-group-text">Tariffa</span>
                         <input type=text id="prezzo" name="prezzo" placeholder="€"
                             [(ngModel)]="cameraDTO.tariffa" #tariffa="ngModel" required min="0">
+                              @if (this.cameraDTO.tariffaError) {
+                        <p style="color:red">Inserisci una tariffa valida</p>
+                        }
                     </div>
                     <br>
 
