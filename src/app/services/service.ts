@@ -6,8 +6,8 @@ import { CameraDto } from '../DTO/cameraDTO';
 @Injectable({ providedIn: 'root' })
 export class Service {
 
-  private baseUrlUtente = '/utente';
-  private baseUrlCamera = '/camera';
+  private baseUrlUtente = '/api/utente';
+  private baseUrlCamera = '/api/camera';
 
   constructor(private http: HttpClient) {}
 

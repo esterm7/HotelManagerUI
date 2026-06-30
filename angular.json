@@ -69,6 +69,7 @@
               "buildTarget": "HotelManagerUI:build:production"
             },
             "development": {
+              "proxyConfig": "proxy.config.json",
               "buildTarget": "HotelManagerUI:build:development"
             }
           },
