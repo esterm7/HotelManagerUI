@@ -12,8 +12,8 @@
 
 
                     @if (this.cameraDTO.postiLettoError) {
-                    <p style="color:red">Inserisci almeno 1 posto letto</p>
-                    }
+                    <p style="color:red">Inserisci almeno 1 posto letto</p>}
+
                     <option value="">Seleziona opzione </option>
 
                     <option value="1">1</option>
@@ -35,7 +35,7 @@
                     <option value="3">3 - suite</option>
                 </select>
 
-
+                
                 @if (this.cameraDTO.tipologiaError) {
                 <p style="color:red">Seleziona una tipologia</p>
                 }
@@ -44,6 +44,7 @@
 
 
             <div class="input-group input-group-sm mb-3">
+    
 
                 <span class="input-group-text">Tariffa</span>
                 <input type=text id="prezzo" name="prezzo" placeholder="€" [(ngModel)]="cameraDTO.tariffa"
@@ -55,7 +56,7 @@
                 @if (this.cameraDTO.tariffaError && this.cameraDTO.tariffa > 5000 ) {
                 <p style="color:red">Inserisci una tariffa inferiore a €5000</p>
                 }
-                  @if (this.cameraDTO.tariffaError && isNaN(this.cameraDTO.tariffa)) {
+                  @if (this.cameraDTO.tariffaError) {
                 <p style="color:red">Inserisci una tariffa valida!</p>
                 }
 
