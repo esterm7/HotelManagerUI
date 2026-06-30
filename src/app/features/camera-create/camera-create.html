@@ -1,69 +1,92 @@
-<form #form="ngForm" (ngSubmit)="salvaCamera()">
-    <div class="form-row">
-        <div class="container">
-            <div class="row justify-content-md-center">CREA CAMERA </div>
-            <div class="row justify-content-md-center">
-                <div class="col-6">
-                    <span class="input-group-text">Posti letto</span>
-                    <div class="input-group input-group-sm mb-3">
-                        <select class="form-select" aria-label="Default select example" id="numero" name="numero"
-                            [(ngModel)]="cameraDTO.postiLetto" #postiLetto="ngModel" required min="1">
+<div class="container">
 
-                            
-                            @if (this.cameraDTO.postiLettoError) {
-                            <p style="color:red">Inserisci almeno 1 posto letto</p>
-                            }
-                            <option value="">Seleziona opzione </option>
+    <div class="row justify-content-md-center">CREA CAMERA </div>
+    <div class="row justify-content-md-center">
+        <form #form="ngForm" (ngSubmit)="salvaCamera()" class="col-6">
 
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select>
-                    </div>
+            <div class="input-group input-group-sm mb-3">
+                <label class="input-group-text">Posti letto</label>
 
-                    <br>
-                    <div class="input-group input-group-sm mb-3">
-                        <span class="input-group-text">Tipologia</span><br>
-                        <select id="tipologia" name="tipologia" [(ngModel)]="cameraDTO.tipologia" #tipologia="ngModel"
-                            required>
-                            >
-                            <option value="">Seleziona opzione</option>
-                            <option value="1">1 - singola</option>
-                            <option value="2">2 - doppia </option>
-                            <option value="3">3 - suite</option>
-                        </select>
+                <select class="form-select" aria-label="Default select example" id="numero" name="numero"
+                    [(ngModel)]="cameraDTO.postiLetto" #postiLetto="ngModel" required min="1" class="form-control">
+
+
+                    @if (this.cameraDTO.postiLettoError) {
+                    <p style="color:red">Inserisci almeno 1 posto letto</p>}
+
+                    <option value="">Seleziona opzione </option>
+
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+            </div>
+
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">Tipologia</span><br>
+                <select id="tipologia" name="tipologia" [(ngModel)]="cameraDTO.tipologia" #tipologia="ngModel" required>
+                    >
+                    <option value="">Seleziona opzione</option>
+                    <option value="1">1 - singola</option>
+                    <option value="2">2 - doppia </option>
+                    <option value="3">3 - suite</option>
+                </select>
 
                 
-                    </div>
+                @if (this.cameraDTO.tipologiaError) {
+                <p style="color:red">Seleziona una tipologia</p>
+                }
 
-                    <br>
-                    <div class="input-group input-group-sm mb-3">
+            </div>
 
-                        <span class="input-group-text">Tariffa</span>
-                        <input type=text id="prezzo" name="prezzo" placeholder="€"
-                            [(ngModel)]="cameraDTO.tariffa" #tariffa="ngModel" required min="0">
-                              @if (this.cameraDTO.tariffaError) {
-                        <p style="color:red">Inserisci una tariffa valida</p>
-                        }
-                    </div>
-                    <br>
 
-                    <button type="submit" [disabled]="form.invalid" class ="btn btn-primary btn-sm">Salva camera</button>
-                    <button type="button" (click)="resetForm()" class = "btn btn-primary btn-sm">Reset</button>
+            <div class="input-group input-group-sm mb-3">
+    
 
-                    <button type="button" (click)="VaiAHome()" class="btn btn-danger btn-sm">
+                <span class="input-group-text">Tariffa</span>
+                <input type=text id="prezzo" name="prezzo" placeholder="€" [(ngModel)]="cameraDTO.tariffa"
+                    #tariffa="ngModel" required min="0" (mouseleave)="cameraDTO.creaCodiceCamera()">
+                    
+                @if (this.cameraDTO.tariffaError && this.cameraDTO.tariffa < 50 ) {
+                <p style="color:red"> Inserisci una tariffa maggioredi €50 </p>
+                }
+                @if (this.cameraDTO.tariffaError && this.cameraDTO.tariffa > 5000 ) {
+                <p style="color:red">Inserisci una tariffa inferiore a €5000</p>
+                }
+                  @if (this.cameraDTO.tariffaError) {
+                <p style="color:red">Inserisci una tariffa valida!</p>
+                }
+
+                
+            </div>
+
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <button type="submit" [disabled]="form.invalid" class="btn btn-primary btn-sm">Salva camera</button>
+                <button type="button" (click)="resetForm()" class="btn btn-primary btn-sm">Reset</button>
+
+                <button type="button" (click)="VaiAHome()" class="btn btn-danger btn-sm">
                     Back
                 </button>
+
+                <div class="input-group input-group-sm flex-nowrap" style="width: 250px">
+                    <span class="input-group-text">Codice Camera</span>
+                    <input class="form-control" id="codiceCamera" name="codiceCamera"
+                        [(ngModel)]="cameraDTO.codiceCamera" #codiceCamera="ngModel" readonly>
+
                 </div>
+
+
             </div>
-        </div>
+
+
+
+        </form>
+
     </div>
 
 
 
-</form>
-
-
+</div>

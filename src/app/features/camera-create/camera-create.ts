@@ -31,14 +31,14 @@ export class CameraCreate {
   
   salvaCamera() {
     console.log (this.cameraDTO);
-    this.cameraDTO.inputValidate(this.cameraDTO);
+    this.cameraDTO.validazioneInput(this.cameraDTO);
     if (this.cameraDTO.postiLettoError || this.cameraDTO.tipologiaError || this.cameraDTO.tariffaError) {
       console.log('Errore di validazione dei campi');   
       return;
     }
     this.cameraDTO.creaCodiceCamera();
     this.cameraService.salvaCamera(this.cameraDTO);
-   // this.router.navigate(['/camera-create']);
+    this.router.navigate(['/home']);
   }
 
   resetForm() {
@@ -48,11 +48,6 @@ export class CameraCreate {
    VaiAHome() {
     this.router.navigate(['/home']);
   }
-
-  creaCodiceCamera() {
-    this.cameraDTO.creaCodiceCamera();
-
-}
 
 }
 
