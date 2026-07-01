@@ -1,84 +1,95 @@
 export class UtenteDto {
-    codiceUtente!: string;
-    codiceUtenteError!: boolean;
+    codiceUtente!: string | null;
+    codiceUtenteError!: boolean | string;
 
     nome!: string;
-    nomeError!: boolean;
+    nomeError!: boolean | string;
 
     cognome!: string;
-    cognomeError!: boolean;
+    cognomeError!: boolean | string;
 
     dataNascita!: string;
-    dataNascitaError!: boolean;
+    dataNascitaError!: boolean | string;
 
     codiceFiscale!: string;
-    codiceFiscaleError!: boolean;
+    codiceFiscaleError!: boolean | string;
 
     livelloPermessi!: number;
-    livelloPermessiError!: boolean;
+    livelloPermessiError!: boolean | string;
 
     constructor() {
     }
 
+    // vanno sostituiti poi tutti i messaggi d'errore con l'acquisizione dell'errore da backend
     inputValidate(utenteDTO: UtenteDto) {
         //gestione data
         //    this.dataNascita = new Date(utenteDTO.dataNascita);
         // reset errors
-        this.codiceUtenteError = false;
         this.nomeError = false;
         this.cognomeError = false;
         this.dataNascitaError = false;
         this.codiceFiscaleError = false;
         this.livelloPermessiError = false;
 
-        // valida codiceUtente
-        if (!utenteDTO.codiceUtente || utenteDTO.codiceUtente.trim() === '' || utenteDTO.codiceUtente.trim().length > 12) {
-            this.codiceUtenteError = true;
-        } else {
-            this.codiceUtente = utenteDTO.codiceUtente.trim();
-        }
-
-        // valida nome
-        if (!utenteDTO.nome || utenteDTO.nome.trim() === '' || utenteDTO.nome.trim().length > 50) {
-            this.nomeError = true;
-        } else {
-            this.nome = utenteDTO.nome.trim();
-        }
-
-        // valida cognome
-        if (!utenteDTO.cognome || utenteDTO.cognome.trim() === '' || utenteDTO.cognome.trim().length > 50) {
-            this.cognomeError = true;
-        } else {
-            this.cognome = utenteDTO.cognome.trim();
-        }
-
-        // valida dataNascita
-        if (!utenteDTO.dataNascita) {
-            this.dataNascitaError = true;
-        } else {
-            this.dataNascita = utenteDTO.dataNascita;
-        }
-
-        // valida codiceFiscale
-        if (!utenteDTO.codiceFiscale || utenteDTO.codiceFiscale.trim() === '' || utenteDTO.codiceFiscale.trim().length !== 16) {
-            this.codiceFiscaleError = true;
-        } else {
-            this.codiceFiscale = utenteDTO.codiceFiscale.trim();
-        }
-
-        // valida livelloPermessi
-        if (utenteDTO.livelloPermessi == null || isNaN(Number(utenteDTO.livelloPermessi))) {
-            this.livelloPermessiError = true;
-        } else {
-            this.livelloPermessi = Number(utenteDTO.livelloPermessi);
-        }
+        this.codiceUtenteValidate();
+        this.nomeUtenteValidate();
+        this.cognomeUtenteValidate();
+        this.dataNascitaUtenteValidate();
+        this.codiceFiscaleUtenteValidate();
+        this.livelloPermessiUtenteValidate();
     }
 
-    creaCodiceUtente() {
-        const nomeCode = this.nome.trim().substring(0, 2).toLowerCase();
-        const cognomeCode = this.cognome.trim().substring(0, 2).toLowerCase();
-        const dataNascitaCode = this.dataNascita.substring(0, 4);
-        
-        this.codiceUtente = `${nomeCode}${cognomeCode}${dataNascitaCode}`.toLowerCase();
+    codiceUtenteValidate() {
+        this.codiceUtenteError = false;
+
+        if (!this.codiceUtente || this.codiceUtente.trim() === '' || this.codiceUtente.trim().length > 12) {
+            this.codiceUtenteError = 'Codice utente non valido';
+        } else if (this.codiceUtenteError = 'esma2026') {
+            this.codiceUtenteError = 'Codice già presente';
+        } else {
+            this.codiceUtente = this.codiceUtente.trim();
+        }
+    }
+    nomeUtenteValidate() {
+        this.nomeError = false;
+        if (!this.nome || this.nome.trim() === '' || this.nome.trim().length > 50) {
+            this.nomeError = 'Nome non valido';
+        } else {
+            this.nome = this.nome.trim();
+        }
+    }
+    cognomeUtenteValidate() {
+        this.cognomeError = false;
+        if (!this.cognome || this.cognome.trim() === '' || this.cognome.trim().length > 50) {
+            this.cognomeError = 'Cognome non valido';
+        } else {
+            this.cognome = this.cognome.trim();
+        }
+    }
+    dataNascitaUtenteValidate() {
+        this.dataNascitaError = false;
+        if (!this.dataNascita) {
+            this.dataNascitaError = 'Data di nascita non valida';
+        } else {
+            this.dataNascita = this.dataNascita;
+        }
+    }
+    codiceFiscaleUtenteValidate() {
+        this.codiceFiscaleError = false;
+        if (!this.codiceFiscale || this.codiceFiscale.trim() === '' || this.codiceFiscale.trim().length !== 16) {
+            this.codiceFiscaleError = 'Codice fiscale non valido';
+        } else if (String(this.codiceFiscale) === "1234567890123456") {
+            this.codiceFiscaleError = 'Codice già presente';
+        } else {
+            this.codiceFiscale = this.codiceFiscale.trim();
+        }
+    }
+    livelloPermessiUtenteValidate() {
+        this.livelloPermessiError = false;
+        if (this.livelloPermessi == null || isNaN(Number(this.livelloPermessi))) {
+            this.livelloPermessiError = true;
+        } else {
+            this.livelloPermessi = Number(this.livelloPermessi);
+        }
     }
 }
