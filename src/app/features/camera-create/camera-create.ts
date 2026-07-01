@@ -37,8 +37,10 @@ export class CameraCreate {
       return;
     }
     this.cameraDTO.creaCodiceCamera();
-    this.cameraService.salvaCamera(this.cameraDTO);
-    this.router.navigate(['/home']);
+    this.cameraService.salvaCamera(this.cameraDTO).subscribe(response => {
+      console.log('Camera salvata con successo!', response);
+       this.VaiAHome();
+    });
   }
 
   resetForm() {

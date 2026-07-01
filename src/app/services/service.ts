@@ -32,6 +32,7 @@ export class Service {
   getCameraByCode(code: string) {
     return this.http.get(`${this.baseUrlCamera}/${code}`);
   }
+  
 }
 
 

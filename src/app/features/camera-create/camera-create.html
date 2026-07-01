@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container d-flex justify-content-center flex-column min-vh-100">
 
     <div class="row justify-content-md-center">CREA CAMERA </div>
     <div class="row justify-content-md-center">
@@ -27,7 +27,7 @@
 
             <div class="input-group input-group-sm mb-3">
                 <span class="input-group-text">Tipologia</span><br>
-                <select id="tipologia" name="tipologia" [(ngModel)]="cameraDTO.tipologia" #tipologia="ngModel" required>
+                <select id="tipologia" name="tipologia" [(ngModel)]="cameraDTO.tipologia" #tipologia="ngModel"  class = "form-control" required>
                     >
                     <option value="">Seleziona opzione</option>
                     <option value="1">1 - singola</option>
@@ -48,10 +48,10 @@
 
                 <span class="input-group-text">Tariffa</span>
                 <input type=text id="prezzo" name="prezzo" placeholder="€" [(ngModel)]="cameraDTO.tariffa"
-                    #tariffa="ngModel" required min="0" (mouseleave)="cameraDTO.creaCodiceCamera()">
+                    #tariffa="ngModel" class = "form-control" required min="0" (mouseleave)="cameraDTO.creaCodiceCamera()">
                     
                 @if (this.cameraDTO.tariffaError && this.cameraDTO.tariffa < 50 ) {
-                <p style="color:red"> Inserisci una tariffa maggioredi €50 </p>
+                <p style="color:red" > Inserisci una tariffa maggioredi €50 </p>
                 }
                 @if (this.cameraDTO.tariffaError && this.cameraDTO.tariffa > 5000 ) {
                 <p style="color:red">Inserisci una tariffa inferiore a €5000</p>
@@ -71,13 +71,7 @@
                     Back
                 </button>
 
-                <div class="input-group input-group-sm flex-nowrap" style="width: 250px">
-                    <span class="input-group-text">Codice Camera</span>
-                    <input class="form-control" id="codiceCamera" name="codiceCamera"
-                        [(ngModel)]="cameraDTO.codiceCamera" #codiceCamera="ngModel" readonly>
-
-                </div>
-
+            
 
             </div>
 
