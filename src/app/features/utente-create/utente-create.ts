@@ -31,28 +31,41 @@ export class UtenteCreate {
       console.log('Errore di validazione dei campi');
       return;
     }
-    this.utenteDTO.creaCodiceUtente();
-    this.utenteService.salvaUtente(this.utenteDTO).subscribe(response => {
-      console.log('Utente salvato con successo!', response);
-      this.VaiAHome();
+    this.utenteService.salvaUtente(this.utenteDTO).subscribe({
+      next: (response) => {
+        this.utenteDTO.codiceUtente = response as string; // Assuming the response is the codiceUtente
+        alert('Utente salvato con successo! \nCodice utente: ' + this.utenteDTO.codiceUtente);
+        this.VaiAHome();
+      },
+      error: (err) => {
+        console.error('Errore durante il salvataggio dell\'utente', err);
+      },
+      complete: () => {
+        console.log('Richiesta completata');
+      }
     });
-  }
+  };
 
-  creaCodiceUtente() {
-    this.utenteDTO.creaCodiceUtente();
-  }
 
   VaiAHome() {
     this.router.navigate(['/home']);
   }
 
-resetForm() {
+  resetForm() {
     this.utenteDTO.nome = '';
     this.utenteDTO.cognome = '';
     this.utenteDTO.dataNascita = '';
     this.utenteDTO.codiceFiscale = '';
     this.utenteDTO.livelloPermessi = 1; // Imposta il valore predefinito a 1 (Utente)
     this.utenteDTO.codiceUtente = '';
+
+    //resetto gli errori
+    this.utenteDTO.codiceUtenteError = false;
+    this.utenteDTO.nomeError = false;
+    this.utenteDTO.cognomeError = false;
+    this.utenteDTO.dataNascitaError = false;
+    this.utenteDTO.codiceFiscaleError = false;
+    this.utenteDTO.livelloPermessiError = false;
   }
   
 }
