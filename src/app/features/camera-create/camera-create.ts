@@ -3,6 +3,7 @@ import { CameraDto } from '../../DTO/cameraDTO';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Service } from '../../services/service';
+import { error } from 'console';
 
 
 
@@ -36,10 +37,23 @@ export class CameraCreate {
       console.log('Errore di validazione dei campi');   
       return;
     }
-    this.cameraDTO.creaCodiceCamera();
-    this.cameraService.salvaCamera(this.cameraDTO);
-    this.router.navigate(['/home']);
-  }
+    this.cameraService.salvaCamera(this.cameraDTO).subscribe({
+      next:response => {
+        this.cameraDTO.codiceCamera = response as string; 
+      alert('Camera salvata con successo!' + '\nCodice camera: ' + this.cameraDTO.codiceCamera);
+       this.VaiAHome();
+        },
+        error: (err) => {
+          console.error('Errore durante l\'inserimento della camera', err);
+          },
+          complete: () => {
+            console.log('Richiesta completata');
+
+          }
+        });
+      };
+    
+   
 
   resetForm() {
     this.cameraDTO = new CameraDto();
@@ -48,8 +62,8 @@ export class CameraCreate {
    VaiAHome() {
     this.router.navigate(['/home']);
   }
-
 }
+
 
 
 

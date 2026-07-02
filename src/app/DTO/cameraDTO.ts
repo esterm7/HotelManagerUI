@@ -47,3 +47,6 @@ export class CameraDto {
 
 }
 }
+// spostare metodo per creare codici univoci camere a be, fare verifica che il codice non esista già nel db,
+//  se esiste generare un nuovo codice univoco, altrimenti salvare la camera con il codice univoco generato
+
