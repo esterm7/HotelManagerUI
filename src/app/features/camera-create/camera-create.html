@@ -1,21 +1,18 @@
-<div class="container d-flex justify-content-center flex-column min-vh-100">
+<div class="container d-flex justify-content-center flex-column min-vh-100" style="font-family:'Roboto', sans-serif">
 
-    <div class="row justify-content-md-center">CREA CAMERA </div>
+    <h1 class=" display-1 row justify-content-md-center mb-5"> CREA CAMERA </h1>
     <div class="row justify-content-md-center">
         <form #form="ngForm" (ngSubmit)="salvaCamera()" class="col-6">
 
-            <div class="input-group input-group-sm mb-3">
-                <label class="input-group-text">Posti letto</label>
+            <div class="input-group input-group-sm mb-4">
+                <label class="input-group-text fw-semibold fs-5">Posti letto</label>
 
-                <select class="form-select" aria-label="Default select example" id="numero" name="numero"
+                <select class="form-select" aria-label="Default select example" id="numero" placeholder="Seleziona opzione" name="numero" 
                     [(ngModel)]="cameraDTO.postiLetto" #postiLetto="ngModel" required min="1" class="form-control">
 
 
-                    @if (this.cameraDTO.postiLettoError) {
-                    <p style="color:red">Inserisci almeno 1 posto letto</p>}
-
-                    <option value="">Seleziona opzione </option>
-
+                    <option selected>Seleziona</option>
+                    
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -25,11 +22,10 @@
                 </select>
             </div>
 
-            <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text">Tipologia</span><br>
-                <select id="tipologia" name="tipologia" [(ngModel)]="cameraDTO.tipologia" #tipologia="ngModel"  class = "form-control" required>
+            <div class="input-group input-group-sm mb-4">
+                <span class="input-group-text fw-semibold fs-5">Tipologia</span><br>
+                <select id="tipologia" placeholder="Seleziona opzione" name="tipologia"  [(ngModel)]="cameraDTO.tipologia" #tipologia="ngModel"  class = "form-control" required>
                     >
-                    <option value="">Seleziona opzione</option>
                     <option value="1">1 - singola</option>
                     <option value="2">2 - doppia </option>
                     <option value="3">3 - suite</option>
@@ -43,12 +39,13 @@
             </div>
 
 
-            <div class="input-group input-group-sm mb-3">
+            <div class="input-group input-group-sm mb-4">
     
 
-                <span class="input-group-text">Tariffa</span>
-                <input type=text id="prezzo" name="prezzo" placeholder="€" [(ngModel)]="cameraDTO.tariffa"
-                    #tariffa="ngModel" class = "form-control" required min="0" (mouseleave)="cameraDTO.creaCodiceCamera()">
+                 <div class="input-group has-validation">
+                <span class="input-group-text fw-semibold fs-5" id="inputGroupPrepend">Tariffa  &nbsp; &nbsp; €</span>
+                <input type=text id="validationtariffa" name="prezzo" [(ngModel)]="cameraDTO.tariffa"
+                    #tariffa="ngModel" class = "form-control"  aria-describedby="inputGroupPrepend" (mouseleave)="cameraDTO.creaCodiceCamera()">
                     
                 @if (this.cameraDTO.tariffaError && this.cameraDTO.tariffa < 50 ) {
                 <p style="color:red" > Inserisci una tariffa maggioredi €50 </p>
@@ -57,14 +54,16 @@
                 <p style="color:red">Inserisci una tariffa inferiore a €5000</p>
                 }
                   @if (this.cameraDTO.tariffaError) {
-                <p style="color:red">Inserisci una tariffa valida!</p>
+                 <div class="invalid-feedback"> Devi inserire una tariffa! </div>
+
                 }
 
+                </div>
                 
             </div>
 
-            <div class="d-flex align-items-center gap-3 mb-3">
-                <button type="submit" [disabled]="form.invalid" class="btn btn-primary btn-sm">Salva camera</button>
+            <div class="d-flex justify-content-md-center gap-3 mb-4 mt-5">
+                <button type="submit" [disabled]="form.invalid" class="btn btn-primary btn-sm">Crea</button>
                 <button type="button" (click)="resetForm()" class="btn btn-primary btn-sm">Reset</button>
 
                 <button type="button" (click)="VaiAHome()" class="btn btn-danger btn-sm">
