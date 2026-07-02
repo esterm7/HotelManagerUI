@@ -27,10 +27,13 @@ export class Service {
   }
   
 
-  salvaCamera(dto: CameraDto) {
-    return this.http.post(this.baseUrlCamera, dto);
-    
-  } 
+  salvaCamera(dto: CameraDto): Observable <String> {
+    return this.http.post(this.baseUrlCamera, dto, {
+      responseType: 'text'
+    });
+  }
+
+ 
 
   getCameraByCode(code: string) {
     return this.http.get(`${this.baseUrlCamera}/${code}`);
