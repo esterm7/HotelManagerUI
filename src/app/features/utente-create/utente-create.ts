@@ -33,12 +33,15 @@ export class UtenteCreate {
     }
     this.utenteService.salvaUtente(this.utenteDTO).subscribe({
       next: (response) => {
-        this.utenteDTO.codiceUtente = response as string; // Assuming the response is the codiceUtente
+        console.log(response);
+        this.utenteDTO.codiceUtente = response as string; // Assegna il codice utente restituito dal backend
         alert('Utente salvato con successo! \nCodice utente: ' + this.utenteDTO.codiceUtente);
         this.VaiAHome();
       },
       error: (err) => {
-        console.error('Errore durante il salvataggio dell\'utente', err);
+        console.log(err);
+        this.utenteDTO.codiceFiscaleUtenteValidate(err.error);
+        console.error('Errore durante il salvataggio dell\'utente: ', err.error);
       },
       complete: () => {
         console.log('Richiesta completata');

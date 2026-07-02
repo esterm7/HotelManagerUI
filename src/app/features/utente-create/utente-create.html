@@ -32,7 +32,7 @@
             <div class="input-group input-group-sm mb-4">
                 <label class="input-group-text">Codice Fiscale</label>
                 <input name="codiceFiscale" [(ngModel)]="utenteDTO.codiceFiscale" type="text" class="form-control"
-                    (blur)="utenteDTO.codiceFiscaleUtenteValidate()">
+                    (blur)="utenteDTO.codiceFiscaleUtenteValidate('')">
                 @if (!!this.utenteDTO.codiceFiscaleError) {
                 <p style="color:red">{{utenteDTO.codiceFiscaleError}}</p>
                 }
