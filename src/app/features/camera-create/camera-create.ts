@@ -29,8 +29,14 @@ export class CameraCreate {
     this.cameraDTO = new CameraDto();
   }
 
+
+  isSaving = false;
   
   salvaCamera() {
+
+   if (this.isSaving) return;
+   this.isSaving = true;
+    
     console.log (this.cameraDTO);
     this.cameraDTO.validazioneInput(this.cameraDTO);
     if (this.cameraDTO.postiLettoError || this.cameraDTO.tipologiaError || this.cameraDTO.tariffaError) {
@@ -41,10 +47,12 @@ export class CameraCreate {
       next:response => {
         this.cameraDTO.codiceCamera = response as string; 
       alert('Camera salvata con successo!' + '\nCodice camera: ' + this.cameraDTO.codiceCamera);
+        this.isSaving = false;
        this.VaiAHome();
         },
         error: (err) => {
-          console.error('Errore durante l\'inserimento della camera', err);
+          console.error('Errore durante l\'inserimento della camera', err.error);
+           this.isSaving = false;
           },
           complete: () => {
             console.log('Richiesta completata');
