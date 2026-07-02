@@ -23,11 +23,20 @@ export class CameraDto {
         this.tipologiaError = false;
         this.tariffaError = false;  
         this.codiceCameraError = false;
+        
+        this.validazionePostiLetto();
+        this.validazioneTipologia();
+        this.validazioneTariffa();
+
+    }
 
 
-        if (!cameraDTO.postiLetto || cameraDTO.postiLetto < 1) {
+
+validazionePostiLetto() {
+        if (!this.postiLetto || !this.postiLetto < 1) {
             this.postiLettoError = true;
         } 
+    }
         if (!cameraDTO.tipologia || cameraDTO.tipologia < 1 || cameraDTO.tipologia > 3) {
             this.tipologiaError = true;
         }         
