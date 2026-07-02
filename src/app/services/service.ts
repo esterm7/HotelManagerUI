@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UtenteDto } from '../DTO/utenteDTO';
 import { CameraDto } from '../DTO/cameraDTO';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class Service {
@@ -11,14 +12,16 @@ export class Service {
 
   constructor(private http: HttpClient) {}
 
-  salvaUtente(dto: UtenteDto) {
-    return this.http.post(this.baseUrlUtente, dto);
-  }
+  salvaUtente(dto: UtenteDto): Observable<string> {
+  return this.http.post(this.baseUrlUtente, dto, {
+    responseType: 'text'
+  });
+}
   
   getUtenteByCode(code: string) {
     return this.http.get(`${this.baseUrlUtente}/${code}`);
   }
-  
+   
   aggiornaUtente(dto: UtenteDto) {
     return this.http.put(this.baseUrlUtente, dto);
   }
