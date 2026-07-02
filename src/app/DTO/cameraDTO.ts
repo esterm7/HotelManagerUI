@@ -33,29 +33,38 @@ export class CameraDto {
 
 
 validazionePostiLetto() {
-        if (!this.postiLetto || !this.postiLetto < 1) {
-            this.postiLettoError = true;
-        } 
+        if (!this.postiLetto) { // non mi serve fare altre verifiche tanto ho il dropdown
+            this.postiLettoError = 'Inserire posti letto';
+        }
+}
+
+
+validazioneTipologia() {
+    if (!this.tipologia) {
+        this.tipologiaError = 'Inserire tipologia della camera';
     }
-        if (!cameraDTO.tipologia || cameraDTO.tipologia < 1 || cameraDTO.tipologia > 3) {
-            this.tipologiaError = true;
-        }         
-        
-        if (isNaN(this.tariffa) || this.tariffa  < 0) {
-            this.tariffaError = 'Inserisci un valore numerico valido';
-        }  
-    } 
+}
+
+
+validazioneTariffa() {
+      const valore = Number(this.tariffa)
+    if (!this.tariffa) {
+        this.tariffaError = 'Inserire tariffa';
+    } else if (isNaN(valore)) {
+        this.tariffaError = 'Inserire un valore numerico valido';
+    } else if (valore < 200) {
+        this.tariffaError = 'La tariffa minima consentita è 200€ a notte';
+    } else if (valore > 5500) {
+        this.tariffaError = 'La tariffa massima consentita è 5500€ a notte';
+    }
+}
+
+}
    
 
         //genera un codice univoco per la camera basato sulla tipologia e sul numero di posti letto
-        creaCodiceCamera() {
-            const tipologia = this.tipologia;
-            const postiLetto = this.postiLetto;
-            const randomNum = Math.floor(Math.random() * 1000);
-            this.codiceCamera = `C${tipologia}${postiLetto}${randomNum}`;
-
-}
-}
+      
 // spostare metodo per creare codici univoci camere a be, fare verifica che il codice non esista già nel db,
 //  se esiste generare un nuovo codice univoco, altrimenti salvare la camera con il codice univoco generato
+
 
