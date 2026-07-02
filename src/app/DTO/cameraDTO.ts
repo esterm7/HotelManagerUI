@@ -4,14 +4,14 @@ export class CameraDto {
    
 
     postiLetto!: number;
-    postiLettoError!: boolean;
+    postiLettoError!: boolean | string;
     tipologia!: number;
-    tipologiaError!: boolean;
+    tipologiaError!: boolean | string;
     tariffa!: number;
-    tariffaError!: boolean;
+    tariffaError!: boolean | string;
 
     codiceCamera!: string;
-    codiceCameraError!: boolean;
+    codiceCameraError!: boolean | string;
 
     constructor () {
 
@@ -23,17 +23,26 @@ export class CameraDto {
         this.tipologiaError = false;
         this.tariffaError = false;  
         this.codiceCameraError = false;
+        
+        this.validazionePostiLetto();
+        this.validazioneTipologia();
+        this.validazioneTariffa();
+
+    }
 
 
-        if (!cameraDTO.postiLetto || cameraDTO.postiLetto < 1) {
+
+validazionePostiLetto() {
+        if (!this.postiLetto || !this.postiLetto < 1) {
             this.postiLettoError = true;
         } 
+    }
         if (!cameraDTO.tipologia || cameraDTO.tipologia < 1 || cameraDTO.tipologia > 3) {
             this.tipologiaError = true;
         }         
         
-        if (!cameraDTO.tariffa || cameraDTO.tariffa < 50 || cameraDTO.tariffa > 5000 || isNaN(cameraDTO.tariffa)) {
-            this.tariffaError = true;
+        if (isNaN(this.tariffa) || this.tariffa  < 0) {
+            this.tariffaError = 'Inserisci un valore numerico valido';
         }  
     } 
    
