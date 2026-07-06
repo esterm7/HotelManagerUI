@@ -18,7 +18,7 @@
                 <td>{{permissionLabels[utente.livelloPermessi]}}</td>
                 <td>
                     <button class="btn btn-primary btn-sm" (click)="vaiUpdateUtente(utente)"> Modifica </button>
-                    <button class="btn btn-danger btn-sm">Elimina</button>
+                    <button class="btn btn-danger btn-sm" (click)="deleteUtente(utente)">Elimina</button>
                 </td>
             </tr>
             }

@@ -29,7 +29,7 @@ export class UtenteUpdate implements OnInit {
         console.error('Errore: ', err.error);
       }
     });
-  }
+  };
 
   updateUtente() {
     this.utenteDTO.inputValidate();
