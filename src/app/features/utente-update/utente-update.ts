@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UtenteDto } from '../../DTO/utenteDTO';
 import { Service } from '../../services/service';
 import { FormsModule } from '@angular/forms';
@@ -10,28 +10,59 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './utente-update.html',
   styleUrl: './utente-update.css',
 })
-export class UtenteUpdate {
+export class UtenteUpdate implements OnInit {
 
   utenteDTO!: UtenteDto;
 
-  constructor(private router: Router, private Service: Service) {
-    // if (this.Service.getUtenteByCode() !== null) {
-    //   this.utenteDTO = this.Service.getUtenteByCode('');
-    // }
-    this.utenteDTO = new UtenteDto();
+  constructor(private router: Router, private utenteService: Service, private route: ActivatedRoute) {
   }
 
-  aggiornaUtente() {
-    this.utenteDTO.inputValidate(this.utenteDTO);
-    if (this.utenteDTO.codiceUtenteError || this.utenteDTO.nomeError || this.utenteDTO.cognomeError || this.utenteDTO.dataNascitaError || this.utenteDTO.codiceFiscaleError || this.utenteDTO.livelloPermessiError) {
+  ngOnInit() {
+    const codice = this.route.snapshot.params['codiceUtente'];
+    this.utenteService.getUtenteByCode(codice).subscribe({
+      next: (response) => {
+        this.utenteDTO = Object.assign(new UtenteDto(), response);
+        console.log('Utente caricato:', this.utenteDTO);
+      },
+      error: (err) => {
+        console.log(err);
+        console.error('Errore: ', err.error);
+      }
+    });
+  }
+
+  updateUtente() {
+    this.utenteDTO.inputValidate();
+    if (this.utenteDTO.nomeError || this.utenteDTO.cognomeError || this.utenteDTO.dataNascitaError || this.utenteDTO.codiceFiscaleError || this.utenteDTO.livelloPermessiError) {
       console.log('Errore di validazione dei campi');
       return;
     }
-    this.Service.aggiornaUtente(this.utenteDTO);
-  }
+    console.log(this.utenteDTO);
+    this.utenteService.aggiornaUtente(this.utenteDTO).subscribe({
+      next: (response) => {
+        console.log(response);
+        alert('Utente aggiornato con successo!');
+        this.VaiAListaUtenti();
+      },
+      error: (err) => {
+        console.log(err);
+        alert(err.error);
+        console.error('Errore durante il salvataggio dell\'utente: ', err.error);
+      },
+      complete: () => {
+        console.log('Richiesta completata');
+      }
+    });
+  };
+
 
   VaiAHome() {
     this.router.navigate(['/home']);
 
-  }
+  };
+
+  VaiAListaUtenti() {
+    this.router.navigate(['/utenti-list']);
+  };
 }
+

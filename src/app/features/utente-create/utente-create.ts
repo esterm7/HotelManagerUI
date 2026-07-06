@@ -26,7 +26,7 @@ export class UtenteCreate {
   }
 
   salvaUtente() {
-    this.utenteDTO.inputValidate(this.utenteDTO);
+    this.utenteDTO.inputValidate();
     if (this.utenteDTO.nomeError || this.utenteDTO.cognomeError || this.utenteDTO.dataNascitaError || this.utenteDTO.codiceFiscaleError || this.utenteDTO.livelloPermessiError) {
       console.log('Errore di validazione dei campi');
       return;
