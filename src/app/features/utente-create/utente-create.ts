@@ -40,7 +40,8 @@ export class UtenteCreate {
       },
       error: (err) => {
         console.log(err);
-        this.utenteDTO.codiceFiscaleUtenteValidate(err.error);
+        this.utenteDTO.codiceFiscaleError = err.error;
+        alert(err.error);
         console.error('Errore durante il salvataggio dell\'utente: ', err.error);
       },
       complete: () => {
