@@ -21,7 +21,7 @@ export class UtenteDto {
     }
 
     // vanno sostituiti poi tutti i messaggi d'errore con l'acquisizione dell'errore da backend
-    inputValidate(utenteDTO: UtenteDto) {
+    inputValidate() {
         //gestione data
         //    this.dataNascita = new Date(utenteDTO.dataNascita);
         // reset errors
