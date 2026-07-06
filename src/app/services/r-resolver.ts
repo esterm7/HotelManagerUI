@@ -5,5 +5,8 @@ import {Service} from '../services/service';
 export const cameraListResolve: ResolveFn<any> = () => {
   return inject (Service).getAllCamere();
 };
+export const utenteListResolve: ResolveFn<any> = () => {
+  return inject (Service).getAllUtenti();
+};
 
 
