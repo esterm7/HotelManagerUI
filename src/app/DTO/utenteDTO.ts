@@ -1,5 +1,5 @@
 export class UtenteDto {
-    codiceUtente!: string | null;
+    codiceUtente!: string;
     codiceUtenteError!: boolean | string;
 
     nome!: string;
