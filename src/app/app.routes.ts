@@ -1,10 +1,9 @@
 import { Routes } from '@angular/router';
 import { Home } from './features/home/home';
 import { UtenteCreate } from './features/utente-create/utente-create';
-import { UtenteUpdate } from './features/utente-update/utente-update';
-import { UtentiList } from './features/utenti-list/utenti-list';
 import { CameraCreate } from './features/camera-create/camera-create';
-import { cameraListResolve, utenteListResolve } from './services/r-resolver';
+import { UtenteUpdate } from './features/utente-update/utente-update';
+import {cameraListResolve} from './services/r-resolver';
 import { CameraUpdate } from './features/camera-update/camera-update';
 
 
@@ -21,7 +20,7 @@ export const routes: Routes = [
     component: UtenteCreate
   },
   {
-    path: 'utente-update/:codiceUtente',
+    path: 'utente-update',
     component: UtenteUpdate
   },
   {
@@ -30,21 +29,12 @@ export const routes: Routes = [
   },
   {
     path: 'camera-update/:codiceCamera',
-<<<<<<< HEAD
-    component: CameraCreate
-=======
     component: CameraUpdate
->>>>>>> b384282214b0db09944d935150014c3e3f8d3e1c
   },
   {
     path: 'home',
     component: Home,
-    resolve: { camere: cameraListResolve }
-  },
-  {
-    path: 'utenti-list',
-    component: UtentiList,
-    resolve: { utenti: utenteListResolve }
+    resolve: { camere: cameraListResolve}
   },
   {
     path: '**',
