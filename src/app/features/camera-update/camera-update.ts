@@ -37,11 +37,7 @@ export class CameraUpdate implements OnInit {
   }
 
   updateCamera() {
-    this.cameraDTO.validazioneInput(this.cameraDTO);
-    if (this.cameraDTO.postiLettoError || this.cameraDTO.tipologiaError || this.cameraDTO.tariffaError) {
-      console.log('Errore di validazione dei campi');
-      return;
-    }
+   
     this.cameraService.aggiornaCamera(this.cameraDTO).subscribe({
       next: () => {
         console.log('Camera aggiornata:', this.cameraDTO);
