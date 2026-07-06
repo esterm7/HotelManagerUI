@@ -27,8 +27,13 @@ export class Service {
   }
 
 
-  aggiornaCamera(code:string, dto: CameraDto) {
-    return this.http.put(`${this.baseUrlCamera}/${code}`, dto);
+  aggiornaCamera(dto: CameraDto) {
+    return this.http.put(`${this.baseUrlCamera}/${dto.codiceCamera}`, dto);
+  }
+
+
+  cancellaCamera(codice: String) {
+    return this.http.delete(`${this.baseUrlCamera}/${codice}`);
   }
 
 
@@ -49,6 +54,8 @@ export class Service {
   aggiornaUtente(dto: UtenteDto) {
     return this.http.put(`${this.baseUrlUtente}/${dto.codiceUtente}`, dto);
   }
+
+  
 
 }
 

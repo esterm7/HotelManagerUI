@@ -18,7 +18,7 @@ export class CameraDto {
 
     }
 
-    validazioneInput(cameraDTO: CameraDto) {
+    validazioneInput() {
         
         this.postiLettoError = false;
         this.tipologiaError = false;

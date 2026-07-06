@@ -11,7 +11,7 @@
                     [(ngModel)]="cameraDTO.postiLetto" class="form-control">
 
 
-                    <option [value]= "null" selected disabled>Posti letto</option>
+                    <option value = "" disabled>Posti letto</option>
                     <option value = "1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -28,7 +28,7 @@
             </div>
 
             <div class="input-group mb-4">
-                <select id="tipologia" name = "tipologia"  aria-label="Tipologia" aria-describedby="addon-wrapping" [(ngModel)]="cameraDTO.tipologia" #tipologia="ngModel" placeholder="Tipologia"  class = "form-control" required>
+                <select id="tipologia" name = "tipologia"  aria-label="Tipologia" aria-describedby="addon-wrapping" [(ngModel)]="cameraDTO.tipologia"  placeholder="Tipologia"  class = "form-control" required>
                      <option [value] = "null" selected disabled>Tipologia</option>
                     <option value="1">1 - singola</option>
                     <option value="2">2 - doppia </option>

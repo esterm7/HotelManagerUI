@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router';
 import { CommonModule } from '@angular/common'; 
 import { CameraDto } from '../../DTO/cameraDTO';
-
-
+import { Service } from '../../services/service';
 
 @Component({
   selector: 'app-camere-list',
@@ -18,7 +16,7 @@ export class CamereList implements OnInit {
 
 
      camere: CameraDto[] = [];
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute, private service: Service) { }
 
  ngOnInit() {
     this.camere = this.route.snapshot.data['camere']; 
@@ -35,5 +33,17 @@ export class CamereList implements OnInit {
   VaiAHome() {
   this.router.navigate(['/home']);
 }
+
+ deleteCamera(camera: CameraDto) {
+      
+    this.service.cancellaCamera(camera.codiceCamera).subscribe({
+      next: (response) => {
+        console.log(response);
+        alert("Camera eliminata");
+        window.location.reload();
+      }
+    });
+  }
+
 
 }

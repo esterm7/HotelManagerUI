@@ -28,7 +28,7 @@ export class CameraCreate {
 
   salvaCamera() {
     console.log (this.cameraDTO);
-    this.cameraDTO.validazioneInput(this.cameraDTO);
+    this.cameraDTO.validazioneInput();
     if (this.cameraDTO.postiLettoError || this.cameraDTO.tipologiaError || this.cameraDTO.tariffaError) {
       console.log('Errore di validazione dei campi');   
       return;

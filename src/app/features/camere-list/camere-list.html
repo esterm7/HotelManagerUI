@@ -18,7 +18,7 @@
       <td> € {{camera.tariffa}} </td>
       <td>
         <button class = "btn btn-primary btn-sm" (click)="vaiAllUpdateCamera(camera)" > Modifica </button>
-        <button class = "btn btn-danger btn-sm"> Elimina</button>
+        <button class = "btn btn-danger btn-sm" (click) ="deleteCamera(camera)"> Elimina</button>
       </td>
     </tr>
   }

@@ -11,6 +11,8 @@ import { CamereList } from './features/camere-list/camere-list';
 
 
 
+
+
 export const routes: Routes = [
   {
     path: '',
@@ -39,7 +41,6 @@ export const routes: Routes = [
       resolve: { camere: cameraListResolve}
 
   },
-  
   {
     path: 'home',
     component: Home,

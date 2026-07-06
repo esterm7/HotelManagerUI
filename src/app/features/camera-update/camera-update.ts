@@ -8,7 +8,6 @@ import { ActivatedRoute } from '@angular/router'
 //deve prendere il codice della stanza 
 @Component({
   selector: 'app-camera-update',
-  standalone: true,
   imports: [FormsModule],
   templateUrl: './camera-update.html',
   styleUrl: './camera-update.css',
@@ -26,8 +25,8 @@ export class CameraUpdate implements OnInit {
     const codice = this.route.snapshot.params['codiceCamera'];
     this.cameraService.getCameraByCode(codice).subscribe({
       next: (response) => {
+        this.cameraDTO = Object.assign(new CameraDto(), response);
         console.log(response);
-        this.cameraDTO = response as CameraDto;
         console.log('Camera caricata:', this.cameraDTO);
       },
       error: (err) => {
@@ -38,17 +37,26 @@ export class CameraUpdate implements OnInit {
   }
 
   updateCamera() {
-
-        const codice = this.route.snapshot.params['codiceCamera'];
-    this.cameraService.aggiornaCamera(codice, this.cameraDTO).subscribe({
-      next: () => {
-        console.log('Camera aggiornata:', this.cameraDTO);
+ this.cameraDTO.validazioneInput();
+    if (this.cameraDTO.postiLettoError || this.cameraDTO.tipologiaError || this.cameraDTO.tariffaError) {
+      console.log('Errore di validazione dei campi');   
+      return;
+    }
+    console.log(this.cameraDTO);
+        
+    this.cameraService.aggiornaCamera(this.cameraDTO).subscribe({
+      next: (response) => {
+        console.log(response);
         alert("Modifiche apportate con successo!");
-        this.VaiAHome();
+        this.vaiAListaCamere();
       },
     });
   }
 
+
+   vaiAListaCamere() {
+    this.router.navigate(['/camere-list'])
+  }
 
 
 
