@@ -31,7 +31,7 @@ export class Home implements OnInit {
   }
 
   vaiAllUpdateCamera(camera: CameraDto) {
-    this.router.navigate(['camera-update', camera.codiceCamera]);
+    this.router.navigate(['/camera-update', camera.codiceCamera]);
   }
 
 }
