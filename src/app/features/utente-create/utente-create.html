@@ -3,16 +3,16 @@
     <div class="row justify-content-md-center">
         <form class="col-6">
             <div class="input-group input-group-sm mb-4">
-                <label class="input-group-text">Nome</label>
-                <input name="nome" [(ngModel)]="utenteDTO.nome" type="text" class="form-control"
+               
+                <input name="nome" [(ngModel)]="utenteDTO.nome" type="text" class="form-control" placeholder="Nome"
                     (blur)="utenteDTO.nomeUtenteValidate()">
                 @if (!!this.utenteDTO.nomeError) {
                 <p style="color:red" class="invalid-feedback d-block">{{utenteDTO.nomeError}}</p>
                 }
             </div>
             <div class="input-group input-group-sm mb-4">
-                <label class="input-group-text">Cognome</label>
-                <input name="cognome" [(ngModel)]="utenteDTO.cognome" type="text" class="form-control"
+                
+                <input name="cognome" [(ngModel)]="utenteDTO.cognome" type="text" class="form-control" placeholder="Cognome"
                     (blur)="utenteDTO.cognomeUtenteValidate()">
                 @if (!!this.utenteDTO.cognomeError) {
                 <p style="color:red" class="invalid-feedback d-block">{{utenteDTO.cognomeError}}</p>
@@ -26,9 +26,9 @@
                 <p style="color:red" class="invalid-feedback d-block">{{utenteDTO.dataNascitaError}}</p>
                 }
             </div>
+
             <div class="input-group input-group-sm mb-4">
-                <label class="input-group-text">Codice Fiscale</label>
-                <input name="codiceFiscale" [(ngModel)]="utenteDTO.codiceFiscale" type="text" class="form-control"
+                <input name="codiceFiscale" [(ngModel)]="utenteDTO.codiceFiscale" type="text" class="form-control" placeholder="Codice Fiscale"
                     (blur)="utenteDTO.codiceFiscaleUtenteValidate('')">
                 @if (!!this.utenteDTO.codiceFiscaleError) {
                 <p style="color:red" class="invalid-feedback d-block">{{utenteDTO.codiceFiscaleError}}</p>

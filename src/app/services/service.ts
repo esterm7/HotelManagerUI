@@ -17,6 +17,10 @@ export class Service {
     responseType: 'text'
   });
 }
+
+   getAllCamere() {
+  return this.http.get<CameraDto[]>(`${this.baseUrlCamera}/all`);
+}
   
   getUtenteByCode(code: string) {
     return this.http.get(`${this.baseUrlUtente}/${code}`);

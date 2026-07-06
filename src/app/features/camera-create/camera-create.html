@@ -2,17 +2,16 @@
 
     <h1 class=" display-1 row justify-content-md-center mb-5"> CREA CAMERA </h1>
     <div class="row justify-content-md-center">
-        <form #form="ngForm" (ngSubmit)="salvaCamera()" class="col-6">
+        <form #form="ngForm" class="col-6">
 
             <div class="input-group mb-4">
-                <label class="input-group-text fs-5">Posti letto</label>
+          
 
-                <select class="form-select" aria-label="Default select example" id="numero" placeholder="Seleziona opzione" name="numero" 
-                    [(ngModel)]="cameraDTO.postiLetto" #postiLetto="ngModel" required min="1" class="form-control">
+                <select class="form-select" aria-label="Default select example" id="numero" name="numero" 
+                    [(ngModel)]="cameraDTO.postiLetto" #postiLetto="ngModel" class="form-control">
 
-                    <option selected>Posti letto</option>
-
-                    <option value="1">1</option>
+                    <option [value] = "null" selected disabled>Posti letto</option>
+                    <option value = "1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
@@ -22,35 +21,33 @@
                 </select>
 
                    @if (!!this.cameraDTO.postiLettoError) {
-                <p style="color:red">{{cameraDTO.postiLettoError}}</p>
+                <p style="color:red" class="invalid-feedback d-block">{{cameraDTO.postiLettoError}}</p>
                 }
             </div>
 
-            <div class="input-group flex-nowrap mb-4">
-                <select id="tipologia" placeholder="Tipologia" aria-label="Tipologia" aria-describedby="addon-wrapping" [(ngModel)]="cameraDTO.tipologia" #tipologia="ngModel"  class = "form-control" required>
-                    >
+            <div class="input-group mb-4">
+                <select id="tipologia" name = "tipologia"  aria-label="Tipologia" aria-describedby="addon-wrapping" [(ngModel)]="cameraDTO.tipologia" #tipologia="ngModel" placeholder="Tipologia"  class = "form-control" required>
+                     <option [value] = "null" selected disabled>Tipologia</option>
                     <option value="1">1 - singola</option>
                     <option value="2">2 - doppia </option>
                     <option value="3">3 - suite</option>
                 </select>
-
                 
                 @if (!!this.cameraDTO.tipologiaError) {
-                <p style="color:red">{{cameraDTO.tipologiaError}}</p>
+                <p style="color:red" class="invalid-feedback d-block">{{cameraDTO.tipologiaError}}</p>
                 }
 
             </div>
 
 
             <div class="input-group mb-4">
-        
                 <span class="input-group-text fs-5" id="inputGroupPrepend">€</span>
-                <input type=text  class = "form-control"  aria-label="Amount (to the nearest dollar)" [(ngModel)]="cameraDTO.tariffa"
+                <input type=text name = "tariffa"  class = "form-control"  aria-label="Amount (to the nearest dollar)" [(ngModel)]="cameraDTO.tariffa"
                     #tariffa="ngModel" placeholder="Tariffa">
-                    <span class="input-group-text">.00</span>
+        
 
                 @if (!!this.cameraDTO.tariffaError) {
-                <p style="color:red" >{{cameraDTO.tariffaError}}</p>
+                <p style="color:red"class="invalid-feedback d-block" >{{cameraDTO.tariffaError}}</p>
                 }
             
             </div>

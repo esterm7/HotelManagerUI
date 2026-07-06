@@ -21,22 +21,12 @@ export class CameraCreate {
 
   cameraDTO!: CameraDto;
 
-  //fare i controlli di validazione dei campi,
-  // se non sono validi non fare il submit del form, altrimenti fare il submit 
-  // e stampare in console i dati della camera da salvare
-
   constructor (private router: Router, private cameraService: Service) {
     this.cameraDTO = new CameraDto();
   }
 
 
-  isSaving = false;
-  
   salvaCamera() {
-
-   if (this.isSaving) return;
-   this.isSaving = true;
-    
     console.log (this.cameraDTO);
     this.cameraDTO.validazioneInput(this.cameraDTO);
     if (this.cameraDTO.postiLettoError || this.cameraDTO.tipologiaError || this.cameraDTO.tariffaError) {
@@ -45,23 +35,20 @@ export class CameraCreate {
     }
     this.cameraService.salvaCamera(this.cameraDTO).subscribe({
       next:response => {
+        console.log(response);
         this.cameraDTO.codiceCamera = response as string; 
-      alert('Camera salvata con successo!' + '\nCodice camera: ' + this.cameraDTO.codiceCamera);
-        this.isSaving = false;
+      alert('Camera salvata con successo!' + '\nCodice camera: ' + response);
        this.VaiAHome();
         },
-        error: (err) => {
-          console.error('Errore durante l\'inserimento della camera', err.error);
-           this.isSaving = false;
+        error: ()=> {
+          console.error('Errore durante l\'inserimento della camera');
+        
           },
-          complete: () => {
-            console.log('Richiesta completata');
-
-          }
         });
       };
     
-   
+
+    
 
   resetForm() {
     this.cameraDTO = new CameraDto();

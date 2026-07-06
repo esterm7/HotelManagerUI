@@ -3,9 +3,9 @@
 export class CameraDto {
    
 
-    postiLetto!: number;
+    postiLetto: number | null = null;
     postiLettoError!: boolean | string;
-    tipologia!: number;
+    tipologia: number |null = null;
     tipologiaError!: boolean | string;
     tariffa!: number;
     tariffaError!: boolean | string;
@@ -14,6 +14,7 @@ export class CameraDto {
     codiceCameraError!: boolean | string;
 
     constructor () {
+      
 
     }
 
@@ -22,7 +23,7 @@ export class CameraDto {
         this.postiLettoError = false;
         this.tipologiaError = false;
         this.tariffaError = false;  
-        this.codiceCameraError = false;
+    
         
         this.validazionePostiLetto();
         this.validazioneTipologia();
@@ -47,6 +48,7 @@ validazioneTipologia() {
 
 
 validazioneTariffa() {
+
       const valore = Number(this.tariffa)
     if (!this.tariffa) {
         this.tariffaError = 'Inserire tariffa';
