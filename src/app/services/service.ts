@@ -19,7 +19,7 @@ export class Service {
   }
 
   getCameraByCode(code: string) {
-    return this.http.get(`${this.baseUrlCamera}/${code}`);
+    return this.http.get<CameraDto>(`${this.baseUrlCamera}/${code}`);
   }
 
   getAllCamere() {
@@ -27,8 +27,8 @@ export class Service {
   }
 
 
-  aggiornaCamera(dto: CameraDto) {
-    return this.http.put(this.baseUrlCamera, dto);
+  aggiornaCamera(code:string, dto: CameraDto) {
+    return this.http.put(`${this.baseUrlCamera}/${code}`, dto);
   }
 
 

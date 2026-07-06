@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router';
 import { CommonModule } from '@angular/common'; 
 import { CameraDto } from '../../DTO/cameraDTO';
@@ -10,28 +10,24 @@ import { CameraDto } from '../../DTO/cameraDTO';
   styleUrl: './home.css',
 })
 
-export class Home implements OnInit {
-   camere: CameraDto[] = [];
+export class Home {
+
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   
-  ngOnInit() {
-    this.camere = this.route.snapshot.data['camere']; 
-    console.log('Camere:', this.camere); 
-  }
-
+ 
   vaiAlCreaUtente() {
     this.router.navigate(['/utente-create']);
   }
 
+  vaiAListaCamere() {
+    this.router.navigate(['/camere-list'])
+  }
 
 
   vaiAlCreaCamera() {
     this.router.navigate (['/camera-create']);
   }
 
-  vaiAllUpdateCamera(camera: CameraDto) {
-    this.router.navigate(['/camera-update', camera.codiceCamera]);
-  }
-
+  
 }
