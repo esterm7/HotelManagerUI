@@ -39,7 +39,7 @@ export class Service {
   }
 
   getUtenteByCode(code: string) {
-    return this.http.get(`${this.baseUrlUtente}/${code}`);
+    return this.http.get<UtenteDto>(`${this.baseUrlUtente}/${code}`);
   }
 
   getAllUtenti() {
@@ -47,7 +47,7 @@ export class Service {
   }
 
   aggiornaUtente(dto: UtenteDto) {
-    return this.http.put(this.baseUrlUtente, dto);
+    return this.http.put(`${this.baseUrlUtente}/${dto.codiceUtente}`, dto);
   }
 
 }
