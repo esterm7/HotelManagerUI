@@ -17,7 +17,7 @@ import { ActivatedRoute } from '@angular/router'
 
 export class CameraUpdate implements OnInit {
 
-  cameraDTO!: CameraDto;
+ cameraDTO!: CameraDto;
 
   constructor(private router: Router, private cameraService: Service, private route: ActivatedRoute) {
   }
@@ -26,6 +26,7 @@ export class CameraUpdate implements OnInit {
     const codice = this.route.snapshot.params['codiceCamera'];
     this.cameraService.getCameraByCode(codice).subscribe({
       next: (response) => {
+        console.log(response);
         this.cameraDTO = response as CameraDto;
         console.log('Camera caricata:', this.cameraDTO);
       },
@@ -37,8 +38,9 @@ export class CameraUpdate implements OnInit {
   }
 
   updateCamera() {
-   
-    this.cameraService.aggiornaCamera(this.cameraDTO).subscribe({
+
+        const codice = this.route.snapshot.params['codiceCamera'];
+    this.cameraService.aggiornaCamera(codice, this.cameraDTO).subscribe({
       next: () => {
         console.log('Camera aggiornata:', this.cameraDTO);
         alert("Modifiche apportate con successo!");
@@ -49,9 +51,6 @@ export class CameraUpdate implements OnInit {
 
 
 
-resetForm() {
-  this.cameraDTO = new CameraDto();
-}
 
 VaiAHome() {
   this.router.navigate(['/home']);

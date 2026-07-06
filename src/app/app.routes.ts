@@ -5,6 +5,7 @@ import { CameraCreate } from './features/camera-create/camera-create';
 import { UtenteUpdate } from './features/utente-update/utente-update';
 import {cameraListResolve} from './services/r-resolver';
 import { CameraUpdate } from './features/camera-update/camera-update';
+import { CamereList } from './features/camere-list/camere-list';
 
 
 
@@ -32,9 +33,16 @@ export const routes: Routes = [
     component: CameraUpdate
   },
   {
+    path: 'camere-list',
+    component: CamereList,
+      resolve: { camere: cameraListResolve}
+
+  },
+  
+  {
     path: 'home',
     component: Home,
-    resolve: { camere: cameraListResolve}
+  
   },
   {
     path: '**',
