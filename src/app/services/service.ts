@@ -55,8 +55,9 @@ export class Service {
     return this.http.put(`${this.baseUrlUtente}/${dto.codiceUtente}`, dto);
   }
 
-  
-
+  deleteUtente(code: string) {
+    return this.http.delete(`${this.baseUrlUtente}/${code}`)
+  }
 }
 
 
