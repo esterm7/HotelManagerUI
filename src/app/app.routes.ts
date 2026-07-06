@@ -27,6 +27,10 @@ export const routes: Routes = [
     component: CameraCreate
   },
   {
+    path: 'camera-update/:codiceCamera',
+    component: CameraCreate
+  },
+  {
     path: 'home',
     component: Home,
     resolve: { camere: cameraListResolve}

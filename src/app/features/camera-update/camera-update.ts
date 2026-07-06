@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CameraDto } from '../../DTO/cameraDTO';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Service } from '../../services/service';
+import { ActivatedRoute } from '@angular/router'
 
 //deve prendere il codice della stanza 
 @Component({
@@ -14,26 +15,27 @@ import { Service } from '../../services/service';
 })
 
 
-export class CameraUpdate {
+export class CameraUpdate{
     
     cameraDTO!: CameraDto;
   
-    constructor(private router: Router, private cameraService: Service) {
-      const Camera : CameraDto = this.cameraDTO;
+    constructor(private router: Router, private cameraService: Service, private route: ActivatedRoute) {
       }
 
 
     updateCamera() {
-      if (this.cameraDTO.codiceCamera) {
+       const codice = this.route.snapshot.params['codiceCamera']
+     
         this.cameraService.getCameraByCode(this.cameraDTO.codiceCamera).subscribe({
           next: (response) => {
             this.cameraDTO = response as CameraDto;
+            this.cameraDTO.aggiornaCamera(this.cameraDTO)
             console.log('Camera trovata:', this.cameraDTO);
             alert("Modifiche apportate con successo!");
             this.VaiAHome();
           }
         });
-      }
+      
     }
 
   

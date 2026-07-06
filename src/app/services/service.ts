@@ -22,6 +22,10 @@ export class Service {
   return this.http.get<CameraDto[]>(`${this.baseUrlCamera}/all`);
 }
   
+aggiornaCamera(dto: CameraDto) {
+  return this.http.put(this.baseUrlCamera, dto);
+}
+
   getUtenteByCode(code: string) {
     return this.http.get(`${this.baseUrlUtente}/${code}`);
   }
