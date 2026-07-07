@@ -1,8 +1,9 @@
-import { Component} from '@angular/core';
-import { Router, ActivatedRoute} from '@angular/router';
-import { CommonModule } from '@angular/common'; 
-import { CameraDto } from '../../DTO/cameraDTO';
-
+import { Component, inject } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Dialog } from '@angular/cdk/dialog';
+import {UtenteLogin} from '../../features/utente-login/utente-login'
+ 
 @Component({
   selector: 'app-home',
   imports: [CommonModule],
@@ -11,11 +12,20 @@ import { CameraDto } from '../../DTO/cameraDTO';
 })
 
 export class Home {
+  private dialog = inject(Dialog);
 
   constructor(private router: Router, private route: ActivatedRoute) { }
 
-  
- 
+  openLogin() {
+    const ref = this.dialog.open(UtenteLogin, {
+      panelClass: 'login-dialog-panel'
+    });
+
+    ref.closed.subscribe(result => {
+      console.log('Login chiuso, risultato:', result);
+    });
+  }
+
   vaiAlCreaUtente() {
     this.router.navigate(['/utente-create']);
   };
@@ -30,8 +40,8 @@ export class Home {
 
 
   vaiAlCreaCamera() {
-    this.router.navigate (['/camera-create']);
+    this.router.navigate(['/camera-create']);
   };
 
-  
+
 }

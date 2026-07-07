@@ -1,17 +1,29 @@
-<div class="container container d-flex justify-content-center flex-column min-vh-100">
-    <h1 class=" display-1 row justify-content-md-center mb-5"> LOGIN </h1>
-    <div class="row justify-content-md-center">
-        <form class="col-6">
-            <div class="input-group input-group-sm mb-4">
+<div class="container min-vh-100 d-flex justify-content-center align-items-center">
 
-                <input name="codiceUtente" [(ngModel)] = "authDTO.codiceUtente" type="text" class="form-control"
-                    placeholder="codiceUtente">
+    <div class="card shadow p-4 rounded-4" style="width: 400px;">
 
-                <div class="input-group input-group-sm mb-4">
-                    <input type="password" [(ngModel)]="authDTO.password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
+        <h1 class="display-5 text-center mb-4">
+            LOGIN
+        </h1>
+
+        <form>
+
+            <div class="mb-3">
+                <input name="codiceUtente" [(ngModel)]="authDTO.codiceUtente" type="text" class="form-control"
+                    placeholder="Codice utente">
             </div>
 
+            <div class="mb-3">
+                <input name="password" type="password" [(ngModel)]="authDTO.password" class="form-control"
+                    placeholder="Password">
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100" (click)="autenticazioneUtente()">
+                Accedi
+            </button>
+
         </form>
+
     </div>
+
 </div>
