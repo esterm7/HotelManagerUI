@@ -15,9 +15,23 @@ import { CamereList } from './features/camere-list/camere-list';
 
 export const routes: Routes = [
   {
+    path: '**',
+    redirectTo: 'home'
+  },
+  {
+    path: 'home',
+    component: Home,
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },
+  {
+    path: 'utenti-list',
+    component: UtentiList,
+      resolve: { utenti: utenteListResolve}
+
   },
   {
     path: 'utente-create',
@@ -28,27 +42,18 @@ export const routes: Routes = [
     component: UtenteUpdate
   },
   {
-    path: 'camera-create',
-    component: CameraCreate
-  },
-  {
-    path: 'camera-update/:codiceCamera',
-    component: CameraUpdate
-  },
-  {
     path: 'camere-list',
     component: CamereList,
       resolve: { camere: cameraListResolve}
 
   },
   {
-    path: 'home',
-    component: Home,
-    resolve: { camere: cameraListResolve}
+    path: 'camera-create',
+    component: CameraCreate
   },
   {
-    path: '**',
-    redirectTo: 'home'
+    path: 'camera-update/:codiceCamera',
+    component: CameraUpdate
   }
 
 

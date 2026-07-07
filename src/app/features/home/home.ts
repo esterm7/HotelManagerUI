@@ -23,6 +23,9 @@ export class Home {
   vaiAListaCamere() {
     this.router.navigate(['/camere-list'])
   }
+  vaiAListaUtenti() {
+    this.router.navigate(['/utenti-list'])
+  }
 
 
   vaiAlCreaCamera() {
