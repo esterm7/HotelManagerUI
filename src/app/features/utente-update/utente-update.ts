@@ -14,6 +14,10 @@ export class UtenteUpdate implements OnInit {
 
   utenteDTO!: UtenteDto;
 
+  
+  confermaPassword!: string;
+  confermaPasswordError!: boolean | string;
+
   constructor(private router: Router, private utenteService: Service, private route: ActivatedRoute) {
   }
 

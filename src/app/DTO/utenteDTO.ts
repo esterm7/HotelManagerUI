@@ -14,6 +14,9 @@ export class UtenteDto {
     codiceFiscale!: string;
     codiceFiscaleError!: boolean | string;
 
+    password!: string;
+    passwordError!: boolean | string;
+
     livelloPermessi!: number;
     livelloPermessiError!: boolean | string;
 
@@ -37,6 +40,7 @@ export class UtenteDto {
         this.dataNascitaUtenteValidate();
         this.codiceFiscaleUtenteValidate('');
         this.livelloPermessiUtenteValidate();
+        this.passwordUtenteValidate()
     }
 
     codiceUtenteValidate() {
@@ -50,6 +54,16 @@ export class UtenteDto {
             this.codiceUtente = this.codiceUtente.trim();
         }
     }
+    passwordUtenteValidate() {
+
+        if (!this.password || this.password.trim() === '' || this.password.trim().length < 6) {
+            this.passwordError = 'Password troppo corta';
+        } else {
+            this.passwordError = false;
+            this.password = this.password.trim();
+        }
+    }
+
     nomeUtenteValidate() {
         if (!this.nome || this.nome.trim() === '' || this.nome.trim().length > 50) {
             this.nomeError = 'Nome non valido';

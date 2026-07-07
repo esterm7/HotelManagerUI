@@ -3,7 +3,7 @@
     <div class="row justify-content-md-center">
         <form class="col-6">
             <div class="input-group input-group-sm mb-4">
-               
+
                 <input name="nome" [(ngModel)]="utenteDTO.nome" type="text" class="form-control" placeholder="Nome"
                     (blur)="utenteDTO.nomeUtenteValidate()">
                 @if (!!this.utenteDTO.nomeError) {
@@ -11,9 +11,9 @@
                 }
             </div>
             <div class="input-group input-group-sm mb-4">
-                
-                <input name="cognome" [(ngModel)]="utenteDTO.cognome" type="text" class="form-control" placeholder="Cognome"
-                    (blur)="utenteDTO.cognomeUtenteValidate()">
+
+                <input name="cognome" [(ngModel)]="utenteDTO.cognome" type="text" class="form-control"
+                    placeholder="Cognome" (blur)="utenteDTO.cognomeUtenteValidate()">
                 @if (!!this.utenteDTO.cognomeError) {
                 <p style="color:red" class="invalid-feedback d-block">{{utenteDTO.cognomeError}}</p>
                 }
@@ -28,12 +28,30 @@
             </div>
 
             <div class="input-group input-group-sm mb-4">
-                <input name="codiceFiscale" [(ngModel)]="utenteDTO.codiceFiscale" type="text" class="form-control" placeholder="Codice Fiscale"
-                    (blur)="utenteDTO.codiceFiscaleUtenteValidate('')">
+                <input name="codiceFiscale" [(ngModel)]="utenteDTO.codiceFiscale" type="text" class="form-control"
+                    placeholder="Codice Fiscale" (blur)="utenteDTO.codiceFiscaleUtenteValidate('')">
                 @if (!!this.utenteDTO.codiceFiscaleError) {
                 <p style="color:red" class="invalid-feedback d-block">{{utenteDTO.codiceFiscaleError}}</p>
                 }
             </div>
+
+
+            <div class="input-group input-group-sm mb-4">
+                <input name="password" [(ngModel)]="utenteDTO.password" type="password" class="form-control"
+                    placeholder="Password" (blur)="utenteDTO.passwordUtenteValidate()">
+                @if (!!this.utenteDTO.passwordError) {
+                <p style="color:red" class="invalid-feedback d-block">{{utenteDTO.passwordError}}</p>
+                }
+            </div>
+            <div class="input-group input-group-sm mb-4">
+                <input name="confermaPassword" [(ngModel)]="confermaPassword" type="password" class="form-control"
+                    placeholder="Conferma Password">
+                @if (confermaPassword !== utenteDTO.password) {
+                <p style="color:red" class="invalid-feedback d-block">Le password non coincidono</p>
+                }
+            </div>
+
+
             <div class="input-group input-group-sm mb-4">
                 <label class="input-group-text">Livello Permessi</label>
                 <select name="livelloPermessi" [(ngModel)]="utenteDTO.livelloPermessi" class="form-select" disabled>
