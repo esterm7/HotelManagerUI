@@ -30,6 +30,22 @@
                         <p style="color:red">Codice fiscale non valido</p>
                 }
             </div>
+
+            <div class="input-group input-group-sm mb-4">
+                <input name="password" [(ngModel)]="utenteDTO.password" type="password" class="form-control"
+                    placeholder="Password" (blur)="utenteDTO.passwordUtenteValidate()">
+                @if (!!this.utenteDTO.passwordError) {
+                <p style="color:red" class="invalid-feedback d-block">{{utenteDTO.passwordError}}</p>
+                }
+            </div>
+            <div class="input-group input-group-sm mb-4">
+                <input name="confermaPassword" [(ngModel)]="confermaPassword" type="password" class="form-control"
+                    placeholder="Conferma Password">
+                @if (confermaPassword !== utenteDTO.password) {
+                <p style="color:red" class="invalid-feedback d-block">Le password non coincidono</p>
+                }
+            </div>
+
             <div class="input-group input-group-sm mb-3">
                 <label class="input-group-text">Livello Permessi</label>
                 <select name="livelloPermessi" [(ngModel)]="utenteDTO.livelloPermessi" class="form-select">

@@ -20,6 +20,9 @@ export class UtenteCreate {
 
   utenteDTO!: UtenteDto;
 
+  confermaPassword!: string;
+  confermaPasswordError!: boolean | string;
+
   constructor(private router: Router, private utenteService: Service) {
     this.utenteDTO = new UtenteDto();
     this.utenteDTO.livelloPermessi = 1; // Imposta il valore predefinito a 1 (Utente) 
