@@ -7,10 +7,7 @@ import { CameraCreate } from './features/camera-create/camera-create';
 import { CameraUpdate } from './features/camera-update/camera-update';
 import {cameraListResolve, utenteListResolve} from './services/r-resolver';
 import { CamereList } from './features/camere-list/camere-list';
-
-
-
-
+import { UtenteLogin } from './features/utente-login/utente-login';
 
 
 export const routes: Routes = [
@@ -32,6 +29,12 @@ export const routes: Routes = [
   {
     path: 'utente-create',
     component: UtenteCreate
+  },
+
+  {
+
+    path: 'utente-login',
+    component: UtenteLogin
   },
   {
     path: 'utente-update/:codiceUtente',
