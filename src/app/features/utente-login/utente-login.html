@@ -1,0 +1,17 @@
+<div class="container container d-flex justify-content-center flex-column min-vh-100">
+    <h1 class=" display-1 row justify-content-md-center mb-5"> LOGIN </h1>
+    <div class="row justify-content-md-center">
+        <form class="col-6">
+            <div class="input-group input-group-sm mb-4">
+
+                <input name="codiceUtente" [(ngModel)] = "authDTO.codiceUtente" type="text" class="form-control"
+                    placeholder="codiceUtente">
+
+                <div class="input-group input-group-sm mb-4">
+                    <input type="password" [(ngModel)]="authDTO.password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

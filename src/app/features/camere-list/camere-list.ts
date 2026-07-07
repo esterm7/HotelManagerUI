@@ -1,6 +1,6 @@
-import { Component, OnInit} from '@angular/core';
-import { Router, ActivatedRoute} from '@angular/router';
-import { CommonModule } from '@angular/common'; 
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { CameraDto } from '../../DTO/cameraDTO';
 import { Service } from '../../services/service';
 
@@ -15,12 +15,12 @@ import { Service } from '../../services/service';
 export class CamereList implements OnInit {
 
 
-     camere: CameraDto[] = [];
+  camere: CameraDto[] = [];
   constructor(private router: Router, private route: ActivatedRoute, private service: Service) { }
 
- ngOnInit() {
-    this.camere = this.route.snapshot.data['camere']; 
-    console.log('Camere:', this.camere); 
+  ngOnInit() {
+    this.camere = this.route.snapshot.data['camere'];
+    console.log('Camere:', this.camere);
   }
 
 
@@ -31,18 +31,20 @@ export class CamereList implements OnInit {
 
 
   VaiAHome() {
-  this.router.navigate(['/home']);
-}
+    this.router.navigate(['/home']);
+  }
 
- deleteCamera(camera: CameraDto) {
-      
-    this.service.cancellaCamera(camera.codiceCamera).subscribe({
-      next: (response) => {
-        console.log(response);
-        alert("Camera eliminata");
-        window.location.reload();
-      }
-    });
+  deleteCamera(camera: CameraDto) {
+
+    if (confirm(`Sei sicuro di voler eliminare la camera ${camera.codiceCamera} ? `)) {
+      this.service.cancellaCamera(camera.codiceCamera).subscribe({
+        next: (response) => {
+          console.log(response);
+          alert("Camera eliminata");
+          window.location.reload();
+        }
+      });
+    }
   }
 
 
