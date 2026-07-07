@@ -18,19 +18,20 @@ export class Home {
  
   vaiAlCreaUtente() {
     this.router.navigate(['/utente-create']);
-  }
+  };
 
   vaiAListaCamere() {
     this.router.navigate(['/camere-list'])
-  }
+  };
+
   vaiAListaUtenti() {
     this.router.navigate(['/utenti-list'])
-  }
+  };
 
 
   vaiAlCreaCamera() {
     this.router.navigate (['/camera-create']);
-  }
+  };
 
   
 }

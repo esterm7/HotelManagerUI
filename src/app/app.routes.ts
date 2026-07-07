@@ -15,10 +15,6 @@ import { CamereList } from './features/camere-list/camere-list';
 
 export const routes: Routes = [
   {
-    path: '**',
-    redirectTo: 'home'
-  },
-  {
     path: 'home',
     component: Home,
   },
@@ -45,7 +41,6 @@ export const routes: Routes = [
     path: 'camere-list',
     component: CamereList,
       resolve: { camere: cameraListResolve}
-
   },
   {
     path: 'camera-create',
@@ -54,6 +49,10 @@ export const routes: Routes = [
   {
     path: 'camera-update/:codiceCamera',
     component: CameraUpdate
+  },
+  {
+    path: '**',
+    redirectTo: 'home'
   }
 
 
