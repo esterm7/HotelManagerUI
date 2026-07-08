@@ -8,6 +8,7 @@ import { CameraUpdate } from './features/camera-update/camera-update';
 import {cameraListResolve, utenteListResolve} from './services/r-resolver';
 import { CamereList } from './features/camere-list/camere-list';
 import { UtenteLogin } from './features/utente-login/utente-login';
+import { authGuard } from './core/guards/auth-guard';
 
 
 export const routes: Routes = [
@@ -34,7 +35,8 @@ export const routes: Routes = [
   {
 
     path: 'utente-login',
-    component: UtenteLogin
+    component: UtenteLogin,
+    canActivate: [authGuard]
   },
   {
     path: 'utente-update/:codiceUtente',
