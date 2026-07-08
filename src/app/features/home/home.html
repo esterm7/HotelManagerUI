@@ -1,5 +1,3 @@
-
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">HOMEPAGE</a>
@@ -7,19 +5,47 @@
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item me-2">
-          <button
-            class="btn btn-outline-light"
-            (click)="vaiAlCreaUtente()">
+          <button class="btn btn-outline-light" (click)="vaiAlCreaUtente()">
             Crea Utenti
           </button>
         </li>
 
         <li class="nav-item">
-          <button
-            class="btn btn-primary"
-            (click)="vaiAlCreaCamera()">
+          <button class="btn btn-primary" (click)="vaiAlCreaCamera()">
             Crea Camere
           </button>
+        </li>
+        <li>
+          <ul class="menu">
+            <li>
+              <ul class="navbar-nav ms-auto">
+
+                <!-- Utente NON loggato -->
+                @if (!auth.isLoggedIn()) {
+                <li class="nav-item">
+                  <a class="nav-link" (click)="openLogin()">Login</a>
+                </li>
+                }
+
+                <!-- Utente loggato -->
+                @if (auth.isLoggedIn()) {
+                <li class="nav-item dropdown" (mouseenter)="openDropdown()" (mouseleave)="closeDropdown()">
+                  <a class="nav-link dropdown-toggle" role="button">
+                    {{ auth.currentUser() }}
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end" [class.show]="dropdownOpen()">
+                    <li><a class="dropdown-item" (click)="vaiUpdateUtente()">Modifica</a></li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" (click)="auth.logout()">Logout</a></li>
+                  </ul>
+                </li>
+                }
+
+              </ul>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>
@@ -27,19 +53,16 @@
 </nav>
 
 
-    <div class="d-flex justify-content-md-center gap-3 mb-4 mt-5">
-    
-                <button type="button" (click)="vaiAListaCamere()" class="btn btn-danger btn-sm">
-                    Lista Camere
-                </button>
-                <button type="button" (click)="openLogin()" class="btn btn-danger btn-sm">
-                    LOGGINN
-                </button>
-                <button type="button" (click)="vaiAListaUtenti()" class="btn btn-danger btn-sm">
-                    Lista Utenti
-                </button>
+<div class="d-flex justify-content-md-center gap-3 mb-4 mt-5">
 
-            </div>
+  <button type="button" (click)="vaiAListaCamere()" class="btn btn-danger btn-sm">
+    Lista Camere
+  </button>
+  <button type="button" (click)="openLogin()" class="btn btn-danger btn-sm">
+    LOGGINN
+  </button>
+  <button type="button" (click)="vaiAListaUtenti()" class="btn btn-danger btn-sm">
+    Lista Utenti
+  </button>
 
-  
-
+</div>

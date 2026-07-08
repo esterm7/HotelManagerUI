@@ -1,9 +1,12 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Dialog } from '@angular/cdk/dialog';
-import {UtenteLogin} from '../../features/utente-login/utente-login'
- 
+import { UtenteLogin } from '../../features/utente-login/utente-login'
+import { AuthService } from '../../services/AuthService';
+import { UtenteDto } from '../../DTO/utenteDTO';
+import { Service } from '../../services/service';
+
 @Component({
   selector: 'app-home',
   imports: [CommonModule],
@@ -14,7 +17,19 @@ import {UtenteLogin} from '../../features/utente-login/utente-login'
 export class Home {
   private dialog = inject(Dialog);
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute, public auth: AuthService, private service: Service) { }
+  dropdownOpen = signal(false);
+
+
+  openDropdown() {
+    this.dropdownOpen.set(true);
+  }
+
+  closeDropdown() {
+    this.dropdownOpen.set(false);
+  }
+
+
 
   openLogin() {
     const ref = this.dialog.open(UtenteLogin, {
@@ -43,5 +58,9 @@ export class Home {
     this.router.navigate(['/camera-create']);
   };
 
+  vaiUpdateUtente() {
+    console.log('modmodmod'+this.service.getUtenteByCode(String(this.auth.currentUser)));
+      this.router.navigate(['/utente-update', this.service.getUtenteByCode(String(this.auth.currentUser))]);
+    };
 
 }
