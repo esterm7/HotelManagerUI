@@ -40,7 +40,6 @@ export class Home {
 
     ref.closed.subscribe(result => {
       console.log('Login chiuso, risultato:', result);
-      this.utenteDto =
     });
   }
 
