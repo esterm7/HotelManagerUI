@@ -10,7 +10,6 @@ export class Service {
 
   private baseUrlUtente = '/api/utente';
   private baseUrlCamera = '/api/camera';
-  private baseUrlAuth = '/api/auth';
 
   constructor(private http: HttpClient) { }
 
@@ -59,12 +58,6 @@ export class Service {
 
   deleteUtente(code: string) {
     return this.http.delete(`${this.baseUrlUtente}/${code}`)
-  }
-
-  verificaUtente(dto: AuthDto) {
-    return this.http.post(this.baseUrlAuth, dto, {
-      responseType: 'text'
-    });
   }
 
 }

@@ -4,6 +4,7 @@ import {Router}  from '@angular/router';
 import {Service} from '../../services/service';
 import { AuthDto } from '../../DTO/authDTO';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../services/AuthService';
 
 
 @Component({
@@ -16,13 +17,13 @@ export class UtenteLogin {
 
     authDTO!: AuthDto;
 
-    constructor(private router: Router, private service: Service) {
+    constructor(private router: Router, private service: Service, private AuthService: AuthService) {
     this.authDTO = new AuthDto();
   }
 
   autenticazioneUtente() {
-
-    this.service.verificaUtente(this.authDTO).subscribe({
+    console.log(this.authDTO)
+    this.AuthService.login(this.authDTO.codiceUtente, this.authDTO.password).subscribe({
       next: (response) => {
         console.log('Login effettuato:', response);
         this.router.navigate(['/home']);
