@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 import { Dialog } from '@angular/cdk/dialog';
 import { UtenteLogin } from '../../features/utente-login/utente-login'
 import { AuthService } from '../../services/AuthService';
-import { UtenteDto } from '../../DTO/utenteDTO';
 import { Service } from '../../services/service';
+import { UtenteDto } from '../../DTO/utenteDTO';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +16,8 @@ import { Service } from '../../services/service';
 
 export class Home {
   private dialog = inject(Dialog);
+
+  utenteDto!: UtenteDto | null;
 
   constructor(private router: Router, private route: ActivatedRoute, public auth: AuthService, private service: Service) { }
   dropdownOpen = signal(false);
@@ -38,6 +40,7 @@ export class Home {
 
     ref.closed.subscribe(result => {
       console.log('Login chiuso, risultato:', result);
+      this.utenteDto =
     });
   }
 

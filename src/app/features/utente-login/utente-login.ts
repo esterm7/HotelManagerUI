@@ -24,7 +24,6 @@ export class UtenteLogin {
   autenticazioneUtente() {
     console.log(this.authDTO)
     this.AuthService.login(this.authDTO).subscribe({
-    // this.service.verificaUtente(this.authDTO).subscribe({
       next: (response) => {
         console.log('Login effettuato:', response);
         this.router.navigate(['/home']);
