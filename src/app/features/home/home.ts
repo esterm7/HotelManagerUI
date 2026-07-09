@@ -5,7 +5,6 @@ import { Dialog } from '@angular/cdk/dialog';
 import { UtenteLogin } from '../../features/utente-login/utente-login'
 import { AuthService } from '../../services/AuthService';
 import { Service } from '../../services/service';
-import { UtenteDto } from '../../DTO/utenteDTO';
 
 @Component({
   selector: 'app-home',
@@ -17,14 +16,13 @@ import { UtenteDto } from '../../DTO/utenteDTO';
 export class Home {
   private dialog = inject(Dialog);
 
-  utenteDto!: UtenteDto | null;
-
   constructor(private router: Router, private route: ActivatedRoute, public auth: AuthService, private service: Service) { }
   dropdownOpen = signal(false);
 
 
   openDropdown() {
     this.dropdownOpen.set(true);
+    // console.log(this.auth.currentUser());
   }
 
   closeDropdown() {
@@ -40,6 +38,8 @@ export class Home {
 
     ref.closed.subscribe(result => {
       console.log('Login chiuso, risultato:', result);
+      window.location.reload();
+      
     });
   }
 
@@ -61,8 +61,7 @@ export class Home {
   };
 
   vaiUpdateUtente() {
-    console.log('modmodmod'+this.service.getUtenteByCode(String(this.auth.currentUser)));
-      this.router.navigate(['/utente-update', this.service.getUtenteByCode(String(this.auth.currentUser))]);
-    };
+    this.router.navigate(['/utente-update']);
+  };
 
 }
