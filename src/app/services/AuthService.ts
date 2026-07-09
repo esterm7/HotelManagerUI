@@ -39,6 +39,26 @@ export class AuthService {
         }
     }
 
+    getCodiceUtente(): string | null {
+        const token = this.getToken();
+        if (!token) return null;
+
+        if (!this.isTokenValid(token)) {
+            return this.decodeToken(token).sub
+        }
+        return null;
+    }
+
+    getLivelloPermessi(): string | null {
+        const token = this.getToken();
+        if (!token) return null;
+
+        if (!this.isTokenValid(token)) {
+            return this.decodeToken(token).livelloPermessi
+        }
+        return null;
+    }
+
     private isTokenValid(token: string): boolean {
         const payload = this.decodeToken(token);
         return !!payload && payload.exp * 1000 > Date.now();
@@ -77,6 +97,22 @@ export class AuthService {
 
         return payload.exp * 1000 > Date.now();
     }
+
+
+    isAdmin(): boolean {
+        return this.getLivelloPermessi() === 'ROLE_ADMIN';
+    }
+
+
+    isGestore(): boolean {
+        return this.getLivelloPermessi() === 'ROLE_GESTORE';
+    }
+
+
+    isUtente(): boolean {
+        return this.getLivelloPermessi() === 'ROLE_USER';
+    }
+
 
 
 
