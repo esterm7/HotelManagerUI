@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { UtenteDto } from '../../DTO/utenteDTO';
 import {Router}  from '@angular/router';
-import {Service} from '../../services/service';
+import {Service} from '../../core/services/service';
 import { AuthDto } from '../../DTO/authDTO';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../../services/AuthService';
+import { AuthService } from '../../core/services/AuthService';
 
 
 @Component({

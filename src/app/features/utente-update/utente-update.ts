@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UtenteDto } from '../../DTO/utenteDTO';
-import { Service } from '../../services/service';
+import { Service } from '../../core/services/service';
 import { FormsModule } from '@angular/forms';
 
 @Component({

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CameraDto } from '../../DTO/cameraDTO';
-import { Service } from '../../services/service';
+import { Service } from '../../core/services/service';
 
 @Component({
   selector: 'app-camere-list',

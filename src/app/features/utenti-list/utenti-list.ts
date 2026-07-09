@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { UtenteDto } from '../../DTO/utenteDTO';
-import { Service } from '../../services/service';
+import { Service } from '../../core/services/service';
 
 @Component({
   selector: 'app-utenti-list',

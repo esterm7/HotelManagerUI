@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CameraDto } from '../../DTO/cameraDTO';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { Service } from '../../services/service';
+import { Service } from '../../core/services/service';
 import { error } from 'console';
 
 

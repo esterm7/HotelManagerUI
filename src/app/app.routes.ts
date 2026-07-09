@@ -5,7 +5,7 @@ import { UtenteCreate } from './features/utente-create/utente-create';
 import { UtenteUpdate } from './features/utente-update/utente-update';
 import { CameraCreate } from './features/camera-create/camera-create';
 import { CameraUpdate } from './features/camera-update/camera-update';
-import {cameraListResolve, utenteListResolve} from './services/r-resolver';
+import {cameraListResolve, utenteListResolve} from './core/services/r-resolver';
 import { CamereList } from './features/camere-list/camere-list';
 import { UtenteLogin } from './features/utente-login/utente-login';
 import { authGuard } from './core/guards/auth-guard';

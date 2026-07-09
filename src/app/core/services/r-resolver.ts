@@ -1,6 +1,6 @@
 import {inject} from '@angular/core';
 import { ResolveFn } from '@angular/router';
-import {Service} from '../services/service';
+import {Service} from './service';
 
 export const cameraListResolve: ResolveFn<any> = () => {
   return inject (Service).getAllCamere();

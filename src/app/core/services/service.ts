@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UtenteDto } from '../DTO/utenteDTO';
-import { CameraDto } from '../DTO/cameraDTO';
+import { UtenteDto } from '../../DTO/utenteDTO';
+import { CameraDto } from '../../DTO/cameraDTO';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })

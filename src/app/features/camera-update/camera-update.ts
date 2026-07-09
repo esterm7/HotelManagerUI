@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CameraDto } from '../../DTO/cameraDTO';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Service } from '../../services/service';
+import { Service } from '../../core/services/service';
 import { ActivatedRoute } from '@angular/router'
 
 //deve prendere il codice della stanza 

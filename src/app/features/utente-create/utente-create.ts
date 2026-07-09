@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UtenteDto } from '../../DTO/utenteDTO';
 import { FormsModule } from '@angular/forms';
-import { Service } from '../../services/service';
+import { Service } from '../../core/services/service';
 
 @Component({
   selector: 'app-utente-create',

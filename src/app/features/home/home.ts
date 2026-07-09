@@ -3,8 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Dialog } from '@angular/cdk/dialog';
 import { UtenteLogin } from '../../features/utente-login/utente-login'
-import { AuthService } from '../../services/AuthService';
-import { Service } from '../../services/service';
+import { AuthService } from '../../core/services/AuthService';
+import { Service } from '../../core/services/service';
 
 @Component({
   selector: 'app-home',

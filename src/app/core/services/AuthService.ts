@@ -2,7 +2,10 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable, signal } from "@angular/core";
 import { Router } from '@angular/router';
 import { Observable, tap } from "rxjs";
-import { AuthDto } from "../DTO/authDTO";
+import { AuthDto } from "../../DTO/authDTO";
+
+import { HttpContext } from '@angular/common/http';
+import { SKIP_GLOBAL_ERROR_ALERT } from '../../core/tokens/http-context.tokens';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -65,7 +68,7 @@ export class AuthService {
     }
 
     login(authDTO: AuthDto): Observable<any> {
-        return this.http.post('/api/auth/login', authDTO)
+        return this.http.post('/api/auth/login', authDTO, { context: new HttpContext().set(SKIP_GLOBAL_ERROR_ALERT, true)})
             .pipe(tap((res: any) => {
                 console.log('dentro pipe: ' + res.token);
                 if (typeof localStorage !== 'undefined') {
@@ -112,8 +115,5 @@ export class AuthService {
     isUtente(): boolean {
         return this.getLivelloPermessi() === 'ROLE_USER';
     }
-
-
-
 
 }
