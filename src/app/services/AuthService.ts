@@ -47,6 +47,33 @@ export class AuthService {
         return payload.exp * 1000 > Date.now();
     }
 
+    getLivelloPermessi(): string | null {
+        const token = this.getToken();
+        if (!token) return null;
+
+        try {
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            return payload.livelloPeressi
+        } catch {
+            return null;
+        }
+    }
+
+    isAdmin(): boolean {
+        return this.getLivelloPermessi() === 'ROLE_ADMIN';
+    }
+
+
+    isGestore(): boolean {
+        return this.getLivelloPermessi() === 'ROLE_GESTORE';
+    }
+
+
+    isUtente(): boolean {
+        return this.getLivelloPermessi() ===  'ROLE_USER';
+    }
+
+
     currentUser = this._currentUser.asReadonly();
 
 

@@ -12,6 +12,8 @@ import { Service } from '../../services/service';
 })
 
 
+
+
 export class CamereList implements OnInit {
 
 
