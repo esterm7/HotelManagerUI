@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import {Router}  from '@angular/router';
-import {Service} from '../../core/services/service';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { Service } from '../../core/services/service';
 import { AuthDto } from '../../DTO/authDTO';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/services/AuthService';
+import { DialogRef } from '@angular/cdk/dialog';
 
 
 @Component({
@@ -14,9 +15,12 @@ import { AuthService } from '../../core/services/AuthService';
 })
 export class UtenteLogin {
 
-    authDTO!: AuthDto;
+  private dialogRef = inject(DialogRef<Boolean>);
 
-    constructor(private router: Router, private service: Service, private AuthService: AuthService) {
+
+  authDTO!: AuthDto;
+
+  constructor(private router: Router, private service: Service, private AuthService: AuthService) {
     this.authDTO = new AuthDto();
   }
 
@@ -25,7 +29,7 @@ export class UtenteLogin {
     this.AuthService.login(this.authDTO).subscribe({
       next: (response) => {
         console.log('Login effettuato:', response);
-        this.router.navigate(['/home']);
+        this.dialogRef.close(true);
       },
       error: (err) => {
         console.error('Errore login:', err);
