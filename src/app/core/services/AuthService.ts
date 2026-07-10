@@ -103,17 +103,17 @@ export class AuthService {
 
 
     isAdmin(): boolean {
-        return this.getLivelloPermessi() === 'ROLE_ADMIN';
+        return this.getLivelloPermessi() === 'ROLE_1';
     }
 
 
     isGestore(): boolean {
-        return this.getLivelloPermessi() === 'ROLE_GESTORE';
+        return this.getLivelloPermessi() === 'ROLE_2';
     }
 
 
     isUtente(): boolean {
-        return this.getLivelloPermessi() === 'ROLE_USER';
+        return this.getLivelloPermessi() === 'ROLE_3';
     }
 
 }

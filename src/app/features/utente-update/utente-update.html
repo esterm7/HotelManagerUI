@@ -43,7 +43,7 @@
             <div class="input-group input-group-sm mb-4">
                 <input name="confermaPassword" [(ngModel)]="confermaPassword" type="password" class="form-control"
                     placeholder="Conferma Password">
-                @if (confermaPassword !== utenteDTO.password) {
+                @if (!!confermaPassword && confermaPassword !== utenteDTO.password) {
                 <p style="color:red" class="invalid-feedback d-block">Le password non coincidono</p>
                 }
             </div>
