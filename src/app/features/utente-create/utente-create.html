@@ -54,10 +54,10 @@
 
             <div class="input-group input-group-sm mb-4">
                 <label class="input-group-text">Livello Permessi</label>
-                <select name="livelloPermessi" [(ngModel)]="utenteDTO.livelloPermessi" class="form-select" disabled>
-                    <option value="1">Utente</option>
+                <select name="livelloPermessi" [(ngModel)]="utenteDTO.livelloPermessi" class="form-select">
+                    <option value="3">Utente</option>
                     <option value="2">Gestore</option>
-                    <option value="3">Admin</option>
+                    <option value="1">Admin</option>
                 </select>
                 @if (!!this.utenteDTO.livelloPermessiError) {
                 <p style="color:red" class="invalid-feedback d-block">{{utenteDTO.livelloPermessiError}}</p>
