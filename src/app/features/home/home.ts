@@ -22,7 +22,7 @@ export class Home {
 
   openDropdown() {
     this.dropdownOpen.set(true);
-    // console.log(this.auth.currentUser());
+    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermessi());
   }
 
   closeDropdown() {

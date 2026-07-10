@@ -45,9 +45,9 @@ export class UtentiList {
 
 
   permissionLabels: Record<number, string> = {
-    1: 'Utente',
+    3: 'Utente',
     2: 'Gestore',
-    3: 'Admin'
+    1: 'Admin'
   };
 
 }

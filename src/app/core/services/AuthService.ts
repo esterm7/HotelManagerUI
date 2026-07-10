@@ -56,7 +56,7 @@ export class AuthService {
         const token = this.getToken();
         if (!token) return null;
 
-        if (!this.isTokenValid(token)) {
+        if (this.isTokenValid(token)) {
             return this.decodeToken(token).livelloPermessi
         }
         return null;
