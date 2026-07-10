@@ -1,10 +1,11 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Dialog } from '@angular/cdk/dialog';
 import { UtenteLogin } from '../../features/utente-login/utente-login'
 import { AuthService } from '../../core/services/AuthService';
 import { Service } from '../../core/services/service';
+
 
 @Component({
   selector: 'app-home',
@@ -13,12 +14,14 @@ import { Service } from '../../core/services/service';
   styleUrl: './home.css',
 })
 
-export class Home {
+export class Home implements OnInit{
   private dialog = inject(Dialog);
+
 
   constructor(private router: Router, private route: ActivatedRoute, public auth: AuthService, private service: Service) { }
   dropdownOpen = signal(false);
 
+  livelloPermessi!: string | null;
 
   openDropdown() {
     this.dropdownOpen.set(true);
@@ -28,7 +31,6 @@ export class Home {
   closeDropdown() {
     this.dropdownOpen.set(false);
   }
-
 
 
   openLogin() {
@@ -63,5 +65,22 @@ export class Home {
   vaiUpdateUtente() {
     this.router.navigate(['/utente-update']);
   };
+
+  ngOnInit(): void {  
+      this.livelloPermessi = this.auth.getLivelloPermessi();
+  }
+
+  get isAdmin(){
+    return this.auth.isAdmin();
+  }
+
+  get isGestore() {
+    return this.auth.isGestore();
+  }
+
+  get isUtente() {
+    return this.auth.isUtente();
+  }
+
 
 }
