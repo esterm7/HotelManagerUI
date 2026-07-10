@@ -36,6 +36,7 @@ export class AuthService {
 
     private decodeToken(token: string): any {
         try {
+            console.log("json: ", JSON.parse(atob(token)[1]));
             return JSON.parse(atob(token.split('.')[1]));
         } catch {
             return null;
@@ -46,17 +47,20 @@ export class AuthService {
         const token = this.getToken();
         if (!token) return null;
 
-        if (!this.isTokenValid(token)) {
+        if (this.isTokenValid(token)) {
             return this.decodeToken(token).sub
         }
         return null;
     }
 
-    getLivelloPermessi(): string | null {
+    getLivelloPermessi(): number | null {
         const token = this.getToken();
         if (!token) return null;
 
-        if (!this.isTokenValid(token)) {
+        console.log("token ricevuto: ", this.decodeToken(token));
+
+        if (this.isTokenValid(token)) {
+            console.log("permesso generato: ", this.decodeToken(token).livelloPermessi);
             return this.decodeToken(token).livelloPermessi
         }
         return null;
@@ -103,17 +107,20 @@ export class AuthService {
 
 
     isAdmin(): boolean {
-        return this.getLivelloPermessi() === 'ROLE_ADMIN';
+        console.log('AAAAA');
+        return this.getLivelloPermessi() === 1;
     }
 
 
     isGestore(): boolean {
-        return this.getLivelloPermessi() === 'ROLE_GESTORE';
+        console.log('merda')
+        return this.getLivelloPermessi() === 2;
     }
 
 
     isUtente(): boolean {
-        return this.getLivelloPermessi() === 'ROLE_USER';
+        console.log('UUUUU');
+        return this.getLivelloPermessi() === 3;
     }
 
 }
