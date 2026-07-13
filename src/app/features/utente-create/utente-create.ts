@@ -4,6 +4,7 @@ import { UtenteDto } from '../../DTO/utenteDTO';
 import { FormsModule } from '@angular/forms';
 import { Service } from '../../core/services/service';
 import { Location } from '@angular/common';
+import { AuthService } from '../../core/services/AuthService';
 
 @Component({
   selector: 'app-utente-create',
@@ -24,7 +25,7 @@ export class UtenteCreate {
   confermaPassword!: string;
   confermaPasswordError!: boolean | string;
 
-  constructor(private router: Router, private utenteService: Service, private location: Location) {
+  constructor(private router: Router, private utenteService: Service, private location: Location, public auth: AuthService) {
     this.utenteDTO = new UtenteDto();
     this.utenteDTO.livelloPermessi = 1; // Imposta il valore predefinito a 1 (Utente) 
   }
