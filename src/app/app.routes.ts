@@ -5,11 +5,12 @@ import { UtenteCreate } from './features/utente-create/utente-create';
 import { UtenteUpdate } from './features/utente-update/utente-update';
 import { CameraCreate } from './features/camera-create/camera-create';
 import { CameraUpdate } from './features/camera-update/camera-update';
-import {cameraListResolve, utenteListResolve} from './core/services/r-resolver';
+import { cameraListResolve, prenotazioneListResolve, utenteListResolve } from './core/services/r-resolver';
 import { CamereList } from './features/camere-list/camere-list';
 import { UtenteLogin } from './features/utente-login/utente-login';
 import { authGuard } from './core/guards/auth-guard';
-
+import { PrenotazioneCreate } from './features/prenotazione-create/prenotazione-create';
+import { PrenotazioneList } from './features/prenotazione-list/prenotazione-list';
 
 export const routes: Routes = [
   {
@@ -24,14 +25,13 @@ export const routes: Routes = [
   {
     path: 'utenti-list',
     component: UtentiList,
-      resolve: { utenti: utenteListResolve}
+    resolve: { utenti: utenteListResolve }
 
   },
   {
     path: 'utente-create',
     component: UtenteCreate
   },
-
   {
 
     path: 'utente-login',
@@ -45,7 +45,7 @@ export const routes: Routes = [
   {
     path: 'camere-list',
     component: CamereList,
-      resolve: { camere: cameraListResolve}
+    resolve: { camere: cameraListResolve }
   },
   {
     path: 'camera-create',
@@ -54,6 +54,15 @@ export const routes: Routes = [
   {
     path: 'camera-update/:codiceCamera',
     component: CameraUpdate
+  },
+  {
+    path: 'prenotazioni-list',
+    component: PrenotazioneList,
+    resolve: { prenotazioni: prenotazioneListResolve }
+  },
+  {
+    path: 'prenotazione-create',
+    component: PrenotazioneCreate
   },
   {
     path: '**',
