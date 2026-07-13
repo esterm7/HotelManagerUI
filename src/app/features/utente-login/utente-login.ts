@@ -38,6 +38,17 @@ export class UtenteLogin {
     });
   }
 
+  vaiAlCreaUtente() {
+    this.router.navigate(['/utente-create']);
+  };
+
+  
+
+
+
+
+
+
 }
 
 

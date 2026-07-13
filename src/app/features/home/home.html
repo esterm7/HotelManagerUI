@@ -4,70 +4,94 @@
 
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item me-2">
-          <button class="btn btn-outline-light" (click)="vaiAlCreaUtente()">
-            Crea Utenti
-          </button>
-        </li>
 
-        <li class="nav-item">
-          <button class="btn btn-primary" (click)="vaiAlCreaCamera()">
-            Crea Camere
-          </button>
-        </li>
-        <li>
-          <ul class="menu">
-            <li>
-              <ul class="navbar-nav ms-auto">
 
-                <!-- Utente NON loggato -->
-                @if (!auth.isLoggedIn()) {
-                <li class="nav-item">
-                  <a class="nav-link" (click)="openLogin()">Login</a>
+
+        <ul class="menu">
+
+          <ul class="navbar-nav ms-auto">
+
+            <!-- Utente NON loggato -->
+            @if (!auth.isLoggedIn()) {
+            <li class="nav-item">
+              <a class="nav-link" (click)="openLogin()">Login</a>
+            </li>
+            }
+
+            <!-- Utente loggato -->
+            @if (auth.isLoggedIn()) {
+            <li class="nav-item dropdown" (mouseenter)="openDropdown()" (mouseleave)="closeDropdown()">
+              <a class="nav-link dropdown-toggle" role="button">
+                {{ auth.currentUser() }}
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" [class.show]="dropdownOpen()">
+                <li><a class="dropdown-item" (click)="vaiUpdateUtente()">Modifica</a></li>
+                <li>
+                  <hr class="dropdown-divider">
                 </li>
-                }
-
-                <!-- Utente loggato -->
-                @if (auth.isLoggedIn()) {
-                <li class="nav-item dropdown" (mouseenter)="openDropdown()" (mouseleave)="closeDropdown()">
-                  <a class="nav-link dropdown-toggle" role="button">
-                    {{ auth.currentUser() }}
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-end" [class.show]="dropdownOpen()">
-                    <li><a class="dropdown-item" (click)="vaiUpdateUtente()">Modifica</a></li>
-                    <li>
-                      <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" (click)="auth.logout()">Logout</a></li>
-                  </ul>
-                </li>
-                }
-
+                <li><a class="dropdown-item" (click)="auth.logout()">Logout</a></li>
               </ul>
             </li>
+            }
+
           </ul>
-        </li>
+
+        </ul>
       </ul>
     </div>
   </div>
 </nav>
 
+<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+
+  <div class="carousel-inner mh-75">
+    <div class="carousel-item active">
+      <img src="https://i.pinimg.com/736x/62/98/a2/6298a2186ad0e6133ceb9c8bd457b175.jpg" class="d-block vw-100 vh-100"
+        alt="Foto 1">
+    </div>
+    <div class="carousel-item">
+      <img src="https://i.pinimg.com/1200x/28/af/b1/28afb1f24d9f50182b17d592e25f72bd.jpg" class="d-block vw-100 vh-100"
+        alt="Foto 2">
+    </div>
+    <div class="carousel-item">
+      <img src="https://i.pinimg.com/1200x/b0/57/75/b05775e934068be0f50b44bbaa789b0a.jpg" class="d-block vw-100 vh-100"
+        alt="Foto 3">
+    </div>
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+
+  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+
+
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2"></button>
+  </div>
+
+</div>
+
+
 <div class="container mt-5">
   <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
-  
-    @if (!auth.isLoggedIn()) {
-    <div class="col-md-3">
-      <div class="card text-center h-100 border-primary">
-        <img src="https://i.pinimg.com/736x/43/14/0a/43140a3803e5f1b39c1ffac1a35a3ec7.jpg" class="card-img-top"
-          style="height: 200px; object-fit: cover;" alt="utente">
-        <div class="card-body">
-          <h5 class="card-title">LOGIN</h5>
-          <p class="card-text"></p>
-          <button type="button" (click)="openLogin()" class="btn btn-primary ">ACCEDI</button>
-        </div>
+
+    <!-- <div class="col-md-3">
+    <div class="card text-center h-100 border-primary">
+      <img src="https://i.pinimg.com/736x/43/14/0a/43140a3803e5f1b39c1ffac1a35a3ec7.jpg" class="card-img-top"
+        style="height: 200px; object-fit: cover;" alt="utente">
+      <div class="card-body">
+        <h5 class="card-title">LOGIN</h5>
+        <p class="card-text"></p>
+        <button type="button" (click)="openLogin()" class="btn btn-primary ">ACCEDI</button>
       </div>
     </div>
-    }
+  </div> -->
+
 
     @if (isGestore){
     <div class="col-md-3">
