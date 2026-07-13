@@ -39,7 +39,7 @@ export class UtenteCreate {
         console.log(response);
         this.utenteDTO.codiceUtente = response as string; // Assegna il codice utente restituito dal backend
         alert('Utente salvato con successo! \nCodice utente: ' + this.utenteDTO.codiceUtente);
-        this.VaiAHome();
+        this.VaiAUtentiList();
       },
       error: (err) => {
         console.log(err);
@@ -54,8 +54,8 @@ export class UtenteCreate {
   };
 
 
-  VaiAHome() {
-    this.router.navigate(['/home']);
+  VaiAUtentiList() {
+    this.router.navigate(['/utenti-list']);
   }
 
   resetForm() {

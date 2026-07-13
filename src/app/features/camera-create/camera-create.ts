@@ -38,7 +38,7 @@ export class CameraCreate {
         console.log(response);
         this.cameraDTO.codiceCamera = response as string; 
       alert('Camera salvata con successo!' + '\nCodice camera: ' + response);
-       this.VaiAHome();
+       this.VaiAListaCamere();
         },
         error: ()=> {
           console.error('Errore durante l\'inserimento della camera');
@@ -54,8 +54,8 @@ export class CameraCreate {
     this.cameraDTO = new CameraDto();
   }
 
-   VaiAHome() {
-    this.router.navigate(['/home']);
+   VaiAListaCamere() {
+    this.router.navigate(['/camere-list']);
   }
 }
 

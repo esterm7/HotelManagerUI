@@ -43,6 +43,9 @@ export class UtentiList {
     }
   };
 
+  vaiAlCreaUtente() {
+    this.router.navigate(['/utente-create']);
+  };
 
   permissionLabels: Record<number, string> = {
     3: 'Utente',

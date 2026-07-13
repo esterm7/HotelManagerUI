@@ -49,5 +49,7 @@ export class CamereList implements OnInit {
     }
   }
 
-
+ vaiAlCreaCamera() {
+    this.router.navigate(['/camera-create']);
+  };
 }
