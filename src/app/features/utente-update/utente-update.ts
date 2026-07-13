@@ -4,6 +4,7 @@ import { UtenteDto } from '../../DTO/utenteDTO';
 import { Service } from '../../core/services/service';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/services/AuthService';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-utente-update',
@@ -19,14 +20,14 @@ export class UtenteUpdate implements OnInit {
   confermaPassword!: string;
   confermaPasswordError!: boolean | string;
 
-  constructor(private router: Router, private utenteService: Service, private route: ActivatedRoute, public auth: AuthService, private cdr: ChangeDetectorRef) {
+  constructor(private router: Router, private utenteService: Service, private route: ActivatedRoute, public auth: AuthService, private cdr: ChangeDetectorRef, private location: Location) {
   }
 
   ngOnInit() {
     const codice = this.route.snapshot.params['codiceUtente'];
     this.utenteService.getUtenteByCode(codice).subscribe({
       next: (response) => {
-        this.utenteDTO = response;
+        this.utenteDTO = Object.assign(new UtenteDto(), response);
         console.log('Utente caricato:', this.utenteDTO);
         // console.log(this.auth.currentUser + '\n' +this.auth.getLivelloPermessi())
         this.cdr.detectChanges();
@@ -50,7 +51,7 @@ export class UtenteUpdate implements OnInit {
       next: (response) => {
         console.log(response);
         alert('Utente aggiornato con successo!');
-        this.VaiAListaUtenti();
+        this.VaiAPaginaPrecedente();
       },
       error: (err) => {
         console.log(err);
@@ -72,5 +73,9 @@ export class UtenteUpdate implements OnInit {
   VaiAListaUtenti() {
     this.router.navigate(['/utenti-list']);
   };
+
+  VaiAPaginaPrecedente() {
+    this.location.back();
+  }
 }
 
