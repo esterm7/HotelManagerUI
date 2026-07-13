@@ -51,7 +51,7 @@
                 }
             </div>
 
-
+            @if (auth.getLivelloPermessi() === 'ROLE_1'){
             <div class="input-group input-group-sm mb-4">
                 <label class="input-group-text">Livello Permessi</label>
                 <select name="livelloPermessi" [(ngModel)]="utenteDTO.livelloPermessi" class="form-select">
@@ -63,6 +63,7 @@
                 <p style="color:red" class="invalid-feedback d-block">{{utenteDTO.livelloPermessiError}}</p>
                 }
             </div>
+            }
             <div class="d-flex justify-content-md-center gap-3 mb-4 mt-5">
                 <button type="submit" (click)="salvaUtente()" class="btn btn-primary btn-sm">Crea</button>
                 <button type="button" (click)="resetForm()" class="btn btn-primary btn-sm">Reset</button>
