@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UtenteDto } from '../../DTO/utenteDTO';
 import { FormsModule } from '@angular/forms';
 import { Service } from '../../core/services/service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-utente-create',
@@ -23,7 +24,7 @@ export class UtenteCreate {
   confermaPassword!: string;
   confermaPasswordError!: boolean | string;
 
-  constructor(private router: Router, private utenteService: Service) {
+  constructor(private router: Router, private utenteService: Service, private location: Location) {
     this.utenteDTO = new UtenteDto();
     this.utenteDTO.livelloPermessi = 1; // Imposta il valore predefinito a 1 (Utente) 
   }
@@ -39,7 +40,7 @@ export class UtenteCreate {
         console.log(response);
         this.utenteDTO.codiceUtente = response as string; // Assegna il codice utente restituito dal backend
         alert('Utente salvato con successo! \nCodice utente: ' + this.utenteDTO.codiceUtente);
-        this.VaiAUtentiList();
+        this.VaiAPaginaPrecedente();
       },
       error: (err) => {
         console.log(err);
@@ -54,8 +55,8 @@ export class UtenteCreate {
   };
 
 
-  VaiAUtentiList() {
-    this.router.navigate(['/utenti-list']);
+  VaiAPaginaPrecedente() {
+    this.location.back();
   }
 
   resetForm() {
