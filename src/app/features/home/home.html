@@ -1,71 +1,36 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">HOMEPAGE @if (isGestore){ • GESTORE}  @if(isAdmin){ • Admin} </a>
-    
 
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav ms-auto">
-
-        <ul class="menu">
-
-
-          <ul class="navbar-nav ms-auto">
-
-            <div class="collapse navbar-collapse">
-              <ul class="navbar-nav ms-auto">
-                
-                <!-- @if(isGestore) {
-                <li class="nav-item me-2">
-                  <button class="btn btn-outline-light" (click)="vaiAlCreaUtente()">
-                    Crea Utenti
-                  </button>
-                </li>
-
-                <li class="nav-item">
-                  <button class="btn btn-primary" (click)="vaiAlCreaCamera()">
-                    Crea Camere
-                  </button>
-                </li>
-                <li>
-                } -->
-                  <ul class="menu">
-                    <li>
-                      <ul class="navbar-nav ms-auto">
-                    
-                        <!-- Utente NON loggato -->
-                        @if (!auth.isLoggedIn()) {
-                        <li class="nav-item">
-                          <a class="nav-link" (click)="openLogin()">Login</a>
-                        </li>
-                        }
-
-                        <!-- Utente loggato -->
-                        @if (auth.isLoggedIn()) {
-                        <li class="nav-item dropdown" (mouseenter)="openDropdown()" (mouseleave)="closeDropdown()">
-                          <a class="nav-link dropdown-toggle" role="button dropstart">
-                            {{ auth.currentUser() }}
-                          </a>
-                          <ul class="dropdown-menu dropdown-menu-end" [class.show]="dropdownOpen()">
-                            <li><a class="dropdown-item" (click)="vaiUpdateUtente()">Modifica</a></li>
-                            <li>
-                              <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" (click)="auth.logout()">Logout</a></li>
-                          </ul>
-                        </li>
-                        }
-
-                      </ul>
-
-                  </ul>
-              </ul>
-            </div>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">HOMEPAGE @if (isGestore){ • GESTORE} @if(isAdmin){ •
+            Admin} </a>
+        </li>
+        @if (!auth.isLoggedIn()) {
+        <li class="nav-item">
+          <a class="nav-link" (click)="openLogin()">Effettua Login</a>
+        </li>
+        }
+        @if (auth.isLoggedIn()) {
+        <li class="nav-item dropdown" (mouseenter)="openDropdown()" (mouseleave)="closeDropdown()">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ auth.currentUser()}}
+          </a>
+          <ul class="dropdown-menu" [class.show]="dropdownOpen()">
+            <li><a class="dropdown-item" (click)="vaiUpdateUtente()">Modifica</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" (click)="auth.logout()">Logout</a></li>
           </ul>
-        </ul>
+        </li>
+        }
       </ul>
     </div>
   </div>
 </nav>
+
 
 <div id="myCarousel" class="position-relative carousel slide" style="z-index: 1;" data-bs-ride="true">
 
@@ -81,6 +46,10 @@
     <div class="carousel-item" data-bs-interval="2000">
       <img src="https://i.pinimg.com/1200x/b0/57/75/b05775e934068be0f50b44bbaa789b0a.jpg" class="d-block w-100 h-100"
         alt="Foto 3">
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="https://i.pinimg.com/1200x/4d/a3/5c/4da35c0d84177bb057c09599fd2509a3.jpg" class="d-block w-100 h-100"
+        alt="Foto 4">
     </div>
   </div>
 
@@ -102,27 +71,16 @@
 </div>
 
 
-<div class="container-fluid position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center"   style="z-index: 10; pointer-events: none">
+<div
+  class="container-fluid position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center"
+  style="z-index: 10; pointer-events: none">
   <div class="row row-cols-1 w-100 row-cols-md-2 g-4 justify-content-center">
-
-    <!-- <div class="col-md-3">
-    <div class="card text-center h-100 border-primary">
-      <img src="https://i.pinimg.com/736x/43/14/0a/43140a3803e5f1b39c1ffac1a35a3ec7.jpg" class="card-img-top"
-        style="height: 200px; object-fit: cover;" alt="utente">
-      <div class="card-body">
-        <h5 class="card-title">LOGIN</h5>
-        <p class="card-text"></p>
-        <button type="button" (click)="openLogin()" class="btn btn-primary ">ACCEDI</button>
-      </div>
-    </div>
-  </div> -->
-
 
     @if (isGestore){
     <div class="col-md-3">
-      <div class="card text-center w-100 border-black " style= "pointer-events: auto;">
-        <img src="https://i.pinimg.com/736x/df/e3/bb/dfe3bbbd4ebcfc75605b57a8ebc2776e.jpg" class="card-img-top"
-          style="height: 200px; object-fit: cover;">
+      <div class="card text-center w-100 border-black " style="pointer-events: auto;">
+        <img src="https://i.pinimg.com/736x/df/e3/bb/dfe3bbbd4ebcfc75605b57a8ebc2776e.jpg"
+          class="card-img-top  w-50 mx-auto" style="height: 150px; object-fit: cover;">
         <div class="card-body">
           <h5 class="card-title">Lista Camere</h5>
           <p class="card-text"></p>
@@ -136,9 +94,9 @@
 
     @if (isAdmin || isGestore) {
     <div class="col-md-3">
-      <div class="card text-center w-100 border-black " style= "pointer-events: auto;">
-        <img src="https://i.pinimg.com/736x/71/26/7e/71267e196665cb6a2e48310bcf87f2c7.jpg" class="card-img-top"
-          alt="utenti" style="height: 200px; object-fit: cover;">
+      <div class="card text-center w-100 border-black " style="pointer-events: auto;">
+        <img src="https://i.pinimg.com/736x/71/26/7e/71267e196665cb6a2e48310bcf87f2c7.jpg"
+          class="card-img-top  w-50 mx-auto" alt="utenti" style="height: 150 px; object-fit: cover;">
         <div class="card-body">
           <h5 class="card-title">Lista Utenti</h5>
           <p class="card-text"></p>
@@ -148,7 +106,54 @@
     </div>
     }
 
+    @if (isUtente) {
+
+    <div class="col-md-4">
+      <div class="card text-center border-black " style=" height: 350px; pointer-events: auto;">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs">
+
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <img src="https://i.pinimg.com/1200x/70/4b/80/704b80d62581026f6d132e19aef883b9.jpg"
+              class="card-img-top  w-50 mx-auto" style=" height: 150 px;  object-fit: cover;">
+            <div class="card-body">
+              <button type="button" class="btn btn-danger">Inserisci una prenotazione</button>
+            </div>
+
+            <a class="icon-link icon-link-hoverd-block mt-3"
+              style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" href="#" (click)="vaiAListaCamere()">
+              <svg xmlns="http://www.w3.org/2000/svg" class="bi" viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+                <path
+                  d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+              </svg>
+              Lista prenotazioni
+            </a>
+        </div>
+      </div>
+      }
+
+
+      @if (isUtente|| isGestore) {
+      <div class="col-md-3">
+        <div class="card text-center w-100 border-black " style="pointer-events: auto;">
+          <img src="https://i.pinimg.com/736x/a5/75/9b/a5759b919bef0f324df083f4acd92cda.jpg"
+            class="card-img-top  w-50 mx-auto" style="height: 150 px;  object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title">Crea una prenotazione</h5>
+            <p class="card-text"></p>
+            <button type="button" class="btn btn-danger">Visualizza</button>
+          </div>
+        </div>
+      </div>
+      }
+
+
+
+
+    </div>
 
   </div>
-
-</div>
