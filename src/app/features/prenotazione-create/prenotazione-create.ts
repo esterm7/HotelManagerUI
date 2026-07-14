@@ -16,6 +16,7 @@ import { CameraDto } from '../../DTO/cameraDTO';
 export class PrenotazioneCreate {
 
   prenotazioneDTO!: PrenotazioneDTO;
+  costoCamera!: number;
 
   constructor(private router: Router, private service: Service, private location: Location, public auth: AuthService, private cdr: ChangeDetectorRef) {
     this.prenotazioneDTO = new PrenotazioneDTO();
@@ -34,12 +35,13 @@ export class PrenotazioneCreate {
       console.log('Errore di validazione dei campi');
       return;
     }
+    this.calcoloCostoComplessivo();
     this.service.salvaPrenotazione(this.prenotazioneDTO).subscribe({
       next: (response) => {
         console.log(response);
         this.prenotazioneDTO = Object.assign(new PrenotazioneDTO(), response); // Assegna il codice prenotazione restituito dal backend
         console.log(this.prenotazioneDTO);
-        alert('Prenotazione salvata con successo! \nCodice prenotazione: ' + this.prenotazioneDTO.codicePrenotazione);
+        alert('Prenotazione salvata con successo! \nCodice prenotazione: ' + this.prenotazioneDTO.codicePrenotazione + '\nCosto Totale: €' + this.prenotazioneDTO.costoComplessivo);
         this.VaiAPaginaPrecedente();
       },
       error: (err) => {
@@ -75,6 +77,7 @@ export class PrenotazioneCreate {
       next: (response) => {
         this.prenotazioneDTO.codiceCameraError = false;
         this.prenotazioneDTO.codiceCamera = Object.assign(new CameraDto(), response).codiceCamera;
+        this.costoCamera = Object.assign(new CameraDto(), response).tariffa;
         console.log('Camera caricata:', this.prenotazioneDTO.codiceCamera);
         this.cdr?.detectChanges();
       },
@@ -83,6 +86,16 @@ export class PrenotazioneCreate {
         console.error('Errore: ', err);
       }
     });
+  }
+
+  calcoloCostoComplessivo() {
+    if (this.prenotazioneDTO.dataInizio && this.prenotazioneDTO.dataFine) {
+      const dataInizio = new Date(this.prenotazioneDTO.dataInizio);
+      const dataFine = new Date(this.prenotazioneDTO.dataFine);
+      const differenzaGiorni = (dataFine.getTime() - dataInizio.getTime()) / (1000 * 60 * 60 * 24);
+      this.prenotazioneDTO.costoComplessivo = differenzaGiorni * this.costoCamera;
+
+    }
   }
 
 }
