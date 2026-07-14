@@ -64,8 +64,6 @@ export class CameraCreate implements OnInit {
       };
     
 
-    
-
   resetForm() {
     this.cameraDTO = new CameraDto();
   }
@@ -73,7 +71,6 @@ export class CameraCreate implements OnInit {
    VaiAListaCamere() {
     this.router.navigate(['/camere-list']);
   }
-
   
    ngOnInit(): void {  
       this.livelloPermessi = this.auth.getLivelloPermessi();
