@@ -62,7 +62,7 @@ export class UtenteCreate implements OnInit {
 
   constructor(private router: Router, private utenteService: Service, private location: Location, public auth: AuthService) {
     this.utenteDTO = new UtenteDto();
-    this.utenteDTO.livelloPermessi = 1; // Imposta il valore predefinito a 1 (Utente) 
+    this.utenteDTO.livelloPermessi = 3; // Imposta il valore predefinito a 3 (Utente) 
   }
 
   salvaUtente() {
