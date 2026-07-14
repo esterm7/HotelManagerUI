@@ -56,7 +56,14 @@ export class Home implements OnInit{
   vaiAListaUtenti() {
     this.router.navigate(['/utenti-list'])
   };
+  
+  vaiAListaPrenotazioni() {
+    this.router.navigate(['/prenotazioni-list']);
+  }
 
+  vaiAlCreaPrenotazione() {
+    this.router.navigate(['prenotazione-create']);
+  }
 
   vaiAlCreaCamera() {
     this.router.navigate(['/camera-create']);
