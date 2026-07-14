@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { UtenteDto } from '../../DTO/utenteDTO';
 import { FormsModule } from '@angular/forms';
@@ -18,9 +18,44 @@ import { AuthService } from '../../core/services/AuthService';
 // se non sono validi non fare il submit del form, altrimenti fare il submit 
 // e stampare in console i dati della camera da salvare
 
-export class UtenteCreate {
+export class UtenteCreate implements OnInit {
+  
+  
+  dropdownOpen = signal(false);
 
   utenteDTO!: UtenteDto;
+
+  livelloPermessi!: string | null;
+  
+
+  openDropdown() {
+    this.dropdownOpen.set(true);
+    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermessi());
+  }
+
+  closeDropdown() {
+    this.dropdownOpen.set(false);
+  }
+
+
+   ngOnInit(): void {  
+      this.livelloPermessi = this.auth.getLivelloPermessi();
+  }
+
+  get isAdmin(){
+    return this.auth.isAdmin();
+  }
+
+  get isGestore() {
+    return this.auth.isGestore();
+  }
+
+  get isUtente() {
+    return this.auth.isUtente();
+  }
+
+
+  
 
   confermaPassword!: string;
   confermaPasswordError!: boolean | string;
