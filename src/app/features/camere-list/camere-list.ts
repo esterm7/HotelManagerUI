@@ -12,10 +12,7 @@ import { Service } from '../../core/services/service';
 })
 
 
-
-
 export class CamereList implements OnInit {
-
 
   camere: CameraDto[] = [];
   constructor(private router: Router, private route: ActivatedRoute, private service: Service) { }
@@ -25,12 +22,9 @@ export class CamereList implements OnInit {
     console.log('Camere:', this.camere);
   }
 
-
   vaiAllUpdateCamera(camera: CameraDto) {
     this.router.navigate(['/camera-update', camera.codiceCamera]);
   }
-
-
 
   VaiAHome() {
     this.router.navigate(['/home']);
