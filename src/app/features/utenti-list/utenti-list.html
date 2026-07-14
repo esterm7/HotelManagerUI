@@ -1,5 +1,7 @@
+<head> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
 <div style="width: 100%; margin-left: 20px;">
-    <table class="table table-striped table-hover table-sm ">
+    <table class="table table table-hover ">
         <thead>
             <tr>
                 <th scope="col-sm-5">CODICE UTENTE</th>
@@ -7,14 +9,9 @@
                 <th scope="col">COGNOME</th>
                 <th scope="col">Livello Permessi</th>
                 <th scope="col">AZIONI</th>
-                <th>
-                    <button class="btn btn-primary" (click)="vaiAlCreaUtente()">
-                        Crea Utenti
-                    </button>
-                </th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class = " margin-left: 5px; table-group-divider">
             @for (utente of utenti; track utente.codiceUtente) {
             <tr>
                 <td>{{utente.codiceUtente}}</td>
@@ -22,8 +19,8 @@
                 <td>{{utente.cognome}}</td>
                 <td>{{permissionLabels[utente.livelloPermessi]}}</td>
                 <td>
-                    <button class="btn btn-primary btn-sm" (click)="vaiUpdateUtente(utente)"> Modifica </button>
-                    <button class="btn btn-danger btn-sm" (click)="deleteUtente(utente)">Elimina</button>
+                    <button class="btn btn-primary btn-sm me-2" (click)="vaiUpdateUtente(utente)"> <i class="bi bi-pencil-square"></i>  </button>
+                    <button class="btn btn-danger btn-sm" (click)="deleteUtente(utente)"><i class="bi bi-trash"></i></button>
                 </td>
                 <td> </td>
             </tr>
@@ -31,8 +28,15 @@
         </tbody>
     </table>
 </div>
+
+  <div class="d-flex justify-content-md-center gap-3 mb-4 mt-5">
 <button
-    class="btn btn-primary rounded-circle position-fixed bottom-0 end-0 m-4 d-flex justify-content-center align-items-center"
-    style="width: 60px; height: 60px;" (click)="VaiAHome()">
-    HOME
+    class="btn btn-danger me-2" (click)="VaiAHome()">
+    <i class="bi bi-house"></i>
 </button>
+ <button class="btn btn-primary" (click)="vaiAlCreaUtente()">
+                        Aggiungi un utente
+                    </button>
+
+  </div>
+
