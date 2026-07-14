@@ -1,11 +1,14 @@
+<head> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
 <div class="container d-flex justify-content-center flex-column min-vh-100" style="font-family:'Roboto', sans-serif">
 
-    <h1 class=" display-1 row justify-content-md-center mb-5"> MODIFICA CAMERA </h1>
+    <h1 class="row justify-content-md-center mb-5"> MODIFICA CAMERA </h1>
 
     <div class="row justify-content-md-center">
         @if (cameraDTO) {
 
-        <form #form="ngForm" class="col-6">
+        <form #form="ngForm" class="col-6 border p-3 rounded">
 
             <div class="input-group mb-4">
 
@@ -61,14 +64,14 @@
 
 
             <div class="d-flex justify-content-md-center gap-3 mb-4 mt-5">
+
                 <button type="submit" (click)="updateCamera()" class="btn btn-primary btn-sm">Aggiorna</button>
-
-
-                <button type="button" (click)="VaiAPaginaPrecedente()" class="btn btn-danger btn-sm">
-                    Home
-                </button>
-
+                
             </div>
+
+             <button type="button" (click)="VaiAPaginaPrecedente()" class="btn btn-danger btn-bg">
+               <i class="bi bi-reply"></i>
+                </button>
 
 
 
