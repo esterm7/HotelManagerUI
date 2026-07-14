@@ -66,10 +66,8 @@ export class Service {
     return this.http.delete(`${this.baseUrlPrenotazione}/${codice}`);
   }
 
-  salvaPrenotazione(dto: PrenotazioneDTO): Observable<string> {
-    return this.http.post(this.baseUrlPrenotazione, dto, {
-      responseType: 'text'
-    });
+  salvaPrenotazione(dto: PrenotazioneDTO): Observable<PrenotazioneDTO> {
+    return this.http.post<PrenotazioneDTO>(this.baseUrlPrenotazione, dto);
   }
 
   getPrenotazioneByCode(code: string) {

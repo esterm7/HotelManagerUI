@@ -8,7 +8,7 @@ export class UtenteDto {
     cognome!: string;
     cognomeError!: boolean | string;
 
-    dataNascita!: string;
+    dataNascita!: Date | null;
     dataNascitaError!: boolean | string;
 
     codiceFiscale!: string;

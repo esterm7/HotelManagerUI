@@ -98,7 +98,7 @@ export class UtenteCreate implements OnInit {
   resetForm() {
     this.utenteDTO.nome = '';
     this.utenteDTO.cognome = '';
-    this.utenteDTO.dataNascita = '';
+    this.utenteDTO.dataNascita = null;
     this.utenteDTO.codiceFiscale = '';
     this.utenteDTO.livelloPermessi = 1; // Imposta il valore predefinito a 1 (Utente)
     this.utenteDTO.codiceUtente = '';
