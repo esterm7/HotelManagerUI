@@ -40,9 +40,11 @@ export class UtenteLogin {
 
   vaiAlCreaUtente() {
     this.router.navigate(['/utente-create']);
+    this.dialogRef.close(true);
+
   };
 
-  
+
 
 
 

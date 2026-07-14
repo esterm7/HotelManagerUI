@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Dialog } from '@angular/cdk/dialog';
@@ -14,11 +14,11 @@ import { Service } from '../../core/services/service';
   styleUrl: './home.css',
 })
 
-export class Home implements OnInit{
+export class Home implements OnInit {
   private dialog = inject(Dialog);
 
 
-  constructor(private router: Router, private route: ActivatedRoute, public auth: AuthService, private service: Service) { }
+  constructor(private router: Router, private route: ActivatedRoute, public auth: AuthService, private service: Service, private cdr: ChangeDetectorRef) { }
   dropdownOpen = signal(false);
 
   livelloPermessi!: string | null;
@@ -40,8 +40,8 @@ export class Home implements OnInit{
 
     ref.closed.subscribe(result => {
       console.log('Login chiuso, risultato:', result);
-      window.location.reload();
-      
+      this.cdr.detectChanges();
+
     });
   }
 
@@ -56,7 +56,7 @@ export class Home implements OnInit{
   vaiAListaUtenti() {
     this.router.navigate(['/utenti-list'])
   };
-  
+
   vaiAListaPrenotazioni() {
     this.router.navigate(['/prenotazioni-list']);
   }
@@ -70,14 +70,14 @@ export class Home implements OnInit{
   };
 
   vaiUpdateUtente() {
-    this.router.navigate(['/utente-update']);
+    this.router.navigate(['/utente-update', this.auth.getCodiceUtente()]);
   };
 
-  ngOnInit(): void {  
-      this.livelloPermessi = this.auth.getLivelloPermessi();
+  ngOnInit(): void {
+    this.livelloPermessi = this.auth.getLivelloPermessi();
   }
 
-  get isAdmin(){
+  get isAdmin() {
     return this.auth.isAdmin();
   }
 
