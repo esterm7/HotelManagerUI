@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component,  OnInit, signal } from '@angular/core';
 import { CameraDto } from '../../DTO/cameraDTO';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Service } from '../../core/services/service';
 import { error } from 'console';
+import { AuthService } from '../../core/services/AuthService';
 
 
 
@@ -17,13 +18,28 @@ import { error } from 'console';
 })
 
 
-export class CameraCreate {
+export class CameraCreate implements OnInit {
+
+   dropdownOpen = signal(false);
 
   cameraDTO!: CameraDto;
 
-  constructor (private router: Router, private cameraService: Service) {
+    livelloPermessi!: string | null;
+
+
+  constructor (private router: Router, private cameraService: Service, public auth: AuthService) {
     this.cameraDTO = new CameraDto();
   }
+
+  openDropdown() {
+    this.dropdownOpen.set(true);
+    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermessi());
+  }
+
+  closeDropdown() {
+    this.dropdownOpen.set(false);
+  }
+  
 
 
   salvaCamera() {
@@ -57,6 +73,24 @@ export class CameraCreate {
    VaiAListaCamere() {
     this.router.navigate(['/camere-list']);
   }
+
+  
+   ngOnInit(): void {  
+      this.livelloPermessi = this.auth.getLivelloPermessi();
+  }
+
+  get isAdmin(){
+    return this.auth.isAdmin();
+  }
+
+  get isGestore() {
+    return this.auth.isGestore();
+  }
+
+  get isUtente() {
+    return this.auth.isUtente();
+  }
+
 }
 
 
