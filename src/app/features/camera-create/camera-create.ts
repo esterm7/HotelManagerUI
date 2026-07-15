@@ -1,4 +1,4 @@
-import { Component,  OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CameraDto } from '../../DTO/cameraDTO';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -11,7 +11,7 @@ import { AuthService } from '../../core/services/AuthService';
 
 @Component({
   selector: 'app-camera-create',
-  standalone:true,
+  standalone: true,
   imports: [FormsModule],
   templateUrl: './camera-create.html',
   styleUrl: './camera-create.css',
@@ -20,14 +20,14 @@ import { AuthService } from '../../core/services/AuthService';
 
 export class CameraCreate implements OnInit {
 
-   dropdownOpen = signal(false);
+  dropdownOpen = signal(false);
 
   cameraDTO!: CameraDto;
 
-    livelloPermessi!: string | null;
+  livelloPermessi!: string | null;
 
 
-  constructor (private router: Router, private cameraService: Service, public auth: AuthService) {
+  constructor(private router: Router, private cameraService: Service, public auth: AuthService) {
     this.cameraDTO = new CameraDto();
   }
 
@@ -39,44 +39,48 @@ export class CameraCreate implements OnInit {
   closeDropdown() {
     this.dropdownOpen.set(false);
   }
-  
+
 
 
   salvaCamera() {
-    console.log (this.cameraDTO);
+    console.log(this.cameraDTO);
     this.cameraDTO.validazioneInput();
     if (this.cameraDTO.postiLettoError || this.cameraDTO.tipologiaError || this.cameraDTO.tariffaError) {
-      console.log('Errore di validazione dei campi');   
+      console.log('Errore di validazione dei campi');
       return;
     }
     this.cameraService.salvaCamera(this.cameraDTO).subscribe({
-      next:response => {
+      next: response => {
         console.log(response);
-        this.cameraDTO.codiceCamera = response as string; 
-      alert('Camera salvata con successo!' + '\nCodice camera: ' + response);
-       this.VaiAListaCamere();
-        },
-        error: ()=> {
-          console.error('Errore durante l\'inserimento della camera');
-        
-          },
-        });
-      };
-    
+        this.cameraDTO.codiceCamera = response as string;
+        alert('Camera salvata con successo!' + '\nCodice camera: ' + response);
+        this.VaiAListaCamere();
+      },
+      error: () => {
+        console.error('Errore durante l\'inserimento della camera');
+
+      },
+    });
+  };
+
 
   resetForm() {
     this.cameraDTO = new CameraDto();
   }
 
-   VaiAListaCamere() {
-    this.router.navigate(['/camere-list']);
-  }
-  
-   ngOnInit(): void {  
-      this.livelloPermessi = this.auth.getLivelloPermessi();
+  VaiAHome() {
+    this.router.navigate(['/home']);
   }
 
-  get isAdmin(){
+  VaiAListaCamere() {
+    this.router.navigate(['/camere-list']);
+  }
+
+  ngOnInit(): void {
+    this.livelloPermessi = this.auth.getLivelloPermessi();
+  }
+
+  get isAdmin() {
     return this.auth.isAdmin();
   }
 
