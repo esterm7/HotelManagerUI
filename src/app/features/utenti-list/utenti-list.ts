@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { UtenteDto } from '../../DTO/utenteDTO';
 import { Service } from '../../core/services/service';
+import { AuthService } from '../../core/services/AuthService';
 
 @Component({
   selector: 'app-utenti-list',
@@ -12,11 +13,14 @@ import { Service } from '../../core/services/service';
 })
 export class UtentiList {
   utenti: UtenteDto[] = [];
-  constructor(private router: Router, private utenteService: Service, private route: ActivatedRoute) { }
+  constructor(private router: Router, private utenteService: Service, private route: ActivatedRoute, public auth: AuthService) { }
 
+dropdownOpen = signal(false);
+    livelloPermessi!: string | null;
 
   ngOnInit() {
     this.utenti = this.route.snapshot.data['utenti'];
+     this.livelloPermessi = this.auth.getLivelloPermessi();
   };
 
   VaiAHome() {
