@@ -15,13 +15,22 @@ export class UtentiList implements OnInit {
   utenti: UtenteDto[] = [];
   constructor(private router: Router, private utenteService: Service, private route: ActivatedRoute, private cdr: ChangeDetectorRef, public auth: AuthService) { }
 
-dropdownOpen = signal(false);
-    livelloPermessi!: string | null;
+  dropdownOpen = signal(false);
+  livelloPermessi!: string | null;
 
   ngOnInit() {
     this.utenti = this.route.snapshot.data['utenti'];
-     this.livelloPermessi = this.auth.getLivelloPermessi();
+    this.livelloPermessi = this.auth.getLivelloPermessi();
   };
+
+  openDropdown() {
+    this.dropdownOpen.set(true);
+    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermessi());
+  }
+
+  closeDropdown() {
+    this.dropdownOpen.set(false);
+  }
 
   VaiAHome() {
     this.router.navigate(['/home']);
@@ -42,7 +51,7 @@ dropdownOpen = signal(false);
         error: (err) => {
           console.log(err);
           console.error('Errore durante l\'eliminazione dell\'utente: ', err.error);
-          alert('Errore durante l\'eliminazione dell\'utente: \n'+ err.error)
+          alert('Errore durante l\'eliminazione dell\'utente: \n' + err.error)
         }
       });
     }
@@ -58,4 +67,15 @@ dropdownOpen = signal(false);
     1: 'Admin'
   };
 
+  get isAdmin() {
+    return this.auth.isAdmin();
+  }
+
+  get isGestore() {
+    return this.auth.isGestore();
+  }
+
+  get isUtente() {
+    return this.auth.isUtente();
+  }
 }

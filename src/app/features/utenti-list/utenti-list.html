@@ -1,7 +1,28 @@
-
-@if (auth.isLoggedIn()){
-<head> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbarNavDropdown">
+
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">HOMEPAGE @if (isGestore){ • GESTORE} @if(isAdmin){ •
+                Admin} </a>
+        </li>
+        @if (auth.isLoggedIn()) {
+        <li class="nav-item dropdown" (mouseenter)="openDropdown()" (mouseleave)="closeDropdown()">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ auth.currentUser()}}
+            </a>
+            <ul class="dropdown-menu" [class.show]="dropdownOpen()">
+                <li><a class="dropdown-item" (click)="auth.logout()">Logout</a></li>
+            </ul>
+        </li>
+        }
+    </ul>
+</nav>
+
+
 <div style="width: 100%; margin-left: 20px;">
     <table class="table table table-hover ">
         <thead>
@@ -13,7 +34,7 @@
                 <th scope="col">AZIONI</th>
             </tr>
         </thead>
-        <tbody class = " margin-left: 5px; table-group-divider">
+        <tbody class=" margin-left: 5px; table-group-divider">
             @for (utente of utenti; track utente.codiceUtente) {
             <tr>
                 <td>{{utente.codiceUtente}}</td>
@@ -21,8 +42,10 @@
                 <td>{{utente.cognome}}</td>
                 <td>{{permissionLabels[utente.livelloPermessi]}}</td>
                 <td>
-                    <button class="btn btn-primary btn-sm me-2" (click)="vaiUpdateUtente(utente)"> <i class="bi bi-pencil-square"></i>  </button>
-                    <button class="btn btn-danger btn-sm" (click)="deleteUtente(utente)"><i class="bi bi-trash"></i></button>
+                    <button class="btn btn-primary btn-sm me-2" (click)="vaiUpdateUtente(utente)"> <i
+                            class="bi bi-pencil-square"></i> </button>
+                    <button class="btn btn-danger btn-sm" (click)="deleteUtente(utente)"><i
+                            class="bi bi-trash"></i></button>
                 </td>
                 <td> </td>
             </tr>
@@ -31,17 +54,12 @@
     </table>
 </div>
 
-  <div class="d-flex justify-content-md-center gap-3 mb-4 mt-5">
-<button
-    class="btn btn-danger me-2" (click)="VaiAHome()">
-    <i class="bi bi-house"></i>
-</button>
- <button class="btn btn-primary" (click)="vaiAlCreaUtente()">
-                        Aggiungi un utente
-                    </button>
+<div class="d-flex justify-content-md-center gap-3 mb-4 mt-5">
+    <button class="btn btn-danger me-2" (click)="VaiAHome()">
+        <i class="bi bi-house"></i>
+    </button>
+    <button class="btn btn-primary" (click)="vaiAlCreaUtente()">
+        Aggiungi un utente
+    </button>
 
-  </div>
-} @else {
-    <p>NO</p>
-}
-
+</div>
