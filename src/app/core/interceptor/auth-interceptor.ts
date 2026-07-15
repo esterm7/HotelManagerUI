@@ -1,7 +1,6 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 
 import { inject } from '@angular/core';
-
 import { AuthService } from '../services/AuthService';
 import { AlertService } from '../services/AlertService';
 import { catchError, throwError } from 'rxjs';
@@ -42,10 +41,14 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
       if (error.status === 403 && !skipAlert) {
         alertService.show('Non hai i permessi per eseguire questa operazione.');
+        router.navigate(['/home']);
+
       }
 
       if (error.status === 500 && !skipAlert) {
         alertService.show('Pagina non raggiungibile');
+        router.navigate(['/home']);
+
       }
 
 
