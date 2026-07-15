@@ -68,7 +68,7 @@ export class AuthService {
     }
 
     login(authDTO: AuthDto): Observable<any> {
-        return this.http.post('/api/auth/login', authDTO, { context: new HttpContext().set(SKIP_GLOBAL_ERROR_ALERT, true)})
+        return this.http.post('/api/auth/login', authDTO, { context: new HttpContext().set(SKIP_GLOBAL_ERROR_ALERT, true) })
             .pipe(tap((res: any) => {
                 // console.log('dentro pipe: ' + res.token);
                 if (typeof localStorage !== 'undefined') {
@@ -84,7 +84,7 @@ export class AuthService {
             localStorage.removeItem(this.TOKEN_KEY);
         }
         this._currentUser.set(null);
-        this.router.navigate(['/login']);
+        this.router.navigate(['/home']);
     }
 
     getToken(): string | null {

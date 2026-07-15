@@ -55,6 +55,10 @@ export class UtentiList implements OnInit {
         }
       });
     }
+    if (utente.codiceUtente === String(this.auth.currentUser())) {
+      console.log('cancellazione del proprio utente - logout -> home')
+      this.auth.logout();
+    }
   };
 
   vaiAlCreaUtente() {
