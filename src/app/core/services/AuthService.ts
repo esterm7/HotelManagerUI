@@ -70,7 +70,7 @@ export class AuthService {
     login(authDTO: AuthDto): Observable<any> {
         return this.http.post('/api/auth/login', authDTO, { context: new HttpContext().set(SKIP_GLOBAL_ERROR_ALERT, true)})
             .pipe(tap((res: any) => {
-                console.log('dentro pipe: ' + res.token);
+                // console.log('dentro pipe: ' + res.token);
                 if (typeof localStorage !== 'undefined') {
                     localStorage.setItem(this.TOKEN_KEY, res.token);
                 }
