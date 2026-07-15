@@ -40,12 +40,14 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       }
 
       if (error.status === 403 && !skipAlert) {
+        console.log('Non hai i permessi per eseguire questa operazione.');
         alertService.show('Non hai i permessi per eseguire questa operazione.');
         router.navigate(['/home']);
 
       }
 
       if (error.status === 500 && !skipAlert) {
+        console.log('Pagina non raggiungibile');
         alertService.show('Pagina non raggiungibile');
         router.navigate(['/home']);
 
