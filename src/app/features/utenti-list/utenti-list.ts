@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, signal } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { UtenteDto } from '../../DTO/utenteDTO';
@@ -11,9 +11,9 @@ import { AuthService } from '../../core/services/AuthService';
   templateUrl: './utenti-list.html',
   styleUrl: './utenti-list.css',
 })
-export class UtentiList {
+export class UtentiList implements OnInit {
   utenti: UtenteDto[] = [];
-  constructor(private router: Router, private utenteService: Service, private route: ActivatedRoute, public auth: AuthService) { }
+  constructor(private router: Router, private utenteService: Service, private route: ActivatedRoute, private cdr: ChangeDetectorRef, public auth: AuthService) { }
 
 dropdownOpen = signal(false);
     livelloPermessi!: string | null;
@@ -36,12 +36,13 @@ dropdownOpen = signal(false);
       this.utenteService.deleteUtente(utente.codiceUtente).subscribe({
         next: (response) => {
           console.log(response);
+          this.cdr.detectChanges();
           alert(`Utente ${utente.nome} ${utente.cognome} ${utente.codiceUtente} eliminato con successo!`);
-          window.location.reload();
         },
         error: (err) => {
           console.log(err);
           console.error('Errore durante l\'eliminazione dell\'utente: ', err.error);
+          alert('Errore durante l\'eliminazione dell\'utente: \n'+ err.error)
         }
       });
     }

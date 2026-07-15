@@ -28,7 +28,6 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(authReq).pipe(
     catchError((error: HttpErrorResponse) => {
-      // TODO: se l'errore viene gestito da un altra parte questo non deve subentrare
 
       const skipAlert = req.context.get(SKIP_GLOBAL_ERROR_ALERT);
 

@@ -94,7 +94,6 @@ export class PrenotazioneCreate {
       const dataFine = new Date(this.prenotazioneDTO.dataFine);
       const differenzaGiorni = (dataFine.getTime() - dataInizio.getTime()) / (1000 * 60 * 60 * 24);
       this.prenotazioneDTO.costoComplessivo = differenzaGiorni * this.costoCamera;
-
     }
   }
 
