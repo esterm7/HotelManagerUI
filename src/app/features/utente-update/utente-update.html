@@ -34,16 +34,16 @@
             </div>
 
             <div class="input-group input-group-sm mb-4">
-                <input name="password" type="password" class="form-control" placeholder="Password"
-                    (blur)="utenteDTO.passwordUtenteValidate()">
-                @if (!!utenteDTO.passwordError) {
-                <p style="color:red" class="invalid-feedback d-block">{{utenteDTO.passwordError}}</p>
+                <input name="password" type="password" [(ngModel)]="password" class="form-control" placeholder="Password"
+                    (blur)="verificaPassword()">
+                @if (passwordError) {
+                <p style="color:red" class="invalid-feedback d-block">{{passwordError}}</p>
                 }
             </div>
             <div class="input-group input-group-sm mb-4">
                 <input name="confermaPassword" [(ngModel)]="confermaPassword" type="password" class="form-control"
                     placeholder="Conferma Password">
-                @if (!!confermaPassword && confermaPassword !== utenteDTO.password) {
+                @if (confermaPassword && password !== confermaPassword) {
                 <p style="color:red" class="invalid-feedback d-block">Le password non coincidono</p>
                 }
             </div>

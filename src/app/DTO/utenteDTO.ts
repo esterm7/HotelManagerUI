@@ -63,6 +63,13 @@ export class UtenteDto {
             this.password = this.password.trim();
         }
     }
+    passwordValidate(password: string): boolean | string {
+        if (!password || password.trim() === '' || password.trim().length < 6) {
+            return 'Password troppo corta';
+        } else {
+            return false;
+        }
+    }
 
     nomeUtenteValidate() {
         if (!this.nome || this.nome.trim() === '' || this.nome.trim().length > 50) {
