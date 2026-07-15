@@ -11,11 +11,16 @@ import { UtenteLogin } from './features/utente-login/utente-login';
 import { authGuard } from './core/guards/auth-guard';
 import { PrenotazioneCreate } from './features/prenotazione-create/prenotazione-create';
 import { PrenotazioneList } from './features/prenotazione-list/prenotazione-list';
+import { ErrorGeneric } from './features/error-generic/error-generic';
 
 export const routes: Routes = [
   {
     path: 'home',
     component: Home,
+  },
+  {
+    path: 'errore',
+    component: ErrorGeneric,
   },
   {
     path: '',
