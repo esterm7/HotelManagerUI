@@ -5,6 +5,8 @@ import { Service } from '../../core/services/service';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/services/AuthService';
 import { Location } from '@angular/common';
+import { CameraDto } from '../../DTO/cameraDTO';
+import { UtenteDto } from '../../DTO/utenteDTO';
 
 
 @Component({
@@ -15,7 +17,10 @@ import { Location } from '@angular/common';
 })
 export class PrenotazioneUpdate implements OnInit{
 
-prenotazioneDTO! : PrenotazioneDTO;
+
+  prenotazioneDTO! : PrenotazioneDTO;
+
+  costoCamera!: number;
 
 constructor(private router: Router, private prenotazioneService: Service, private route: ActivatedRoute, public auth: AuthService, private cdr: ChangeDetectorRef, private location: Location) {
   }
@@ -38,7 +43,7 @@ constructor(private router: Router, private prenotazioneService: Service, privat
       });
     };
   
-    updateUtente() {
+    updatePrenotazione() {
       this.prenotazioneDTO.inputValidate();
       if (this.prenotazioneDTO.dataPrenotazioneError || this.prenotazioneDTO.dataInizioError|| this.prenotazioneDTO.dataFineError) {
         console.log('Errore di validazione dei campi');
@@ -61,6 +66,56 @@ constructor(private router: Router, private prenotazioneService: Service, privat
         }
       });
     };
+
+     codiceCameraValidate() {
+        if (!this.prenotazioneDTO.codiceCamera || this.prenotazioneDTO.codiceCamera.trim() === '') {
+          this.prenotazioneDTO.codiceCameraError = 'Codice camera non valido';
+          return;
+        }
+    
+        this.prenotazioneService.getCameraByCode(this.prenotazioneDTO.codiceCamera).subscribe({
+          next: (response) => {
+            this.prenotazioneDTO.codiceCameraError = false;
+            this.prenotazioneDTO.codiceCamera = Object.assign(new CameraDto(), response).codiceCamera;
+            this.costoCamera = Object.assign(new CameraDto(), response).tariffa;
+            console.log('Camera caricata:', this.prenotazioneDTO.codiceCamera);
+            this.cdr?.detectChanges();
+          },
+          error: (err) => {
+            this.prenotazioneDTO.codiceCameraError = 'Codice camera non trovato'
+            console.error('Errore: ', err);
+          }
+        });
+      }
+
+        codiceUtenteValidate () {
+          if (!this.prenotazioneDTO.codiceUtente || this.prenotazioneDTO.codiceUtente.trim() === '') {
+            this.prenotazioneDTO.codiceUtenteError = 'Codice utente non valido';
+            return;
+          }
+      
+          this.prenotazioneService.getUtenteByCode(this.prenotazioneDTO.codiceUtente).subscribe({
+            next: (response) => {
+              this.prenotazioneDTO.codiceUtenteError = false;
+              this.prenotazioneDTO.codiceUtente = Object.assign(new UtenteDto(), response).codiceUtente;
+                this.cdr?.detectChanges();
+            },
+            error:(err) => {
+              this.prenotazioneDTO.codiceUtenteError = 'Codice utente non trovato'
+              console.error('Errore:', err);
+            }
+          })
+      
+        };
+
+         resetForm() {
+    this.prenotazioneDTO.codiceCamera = '';
+    this.prenotazioneDTO.dataInizio = null;
+    this.prenotazioneDTO.dataFine = null;
+
+  }
+
+    
   
   
     VaiAHome() {
@@ -75,6 +130,8 @@ constructor(private router: Router, private prenotazioneService: Service, privat
     VaiAPaginaPrecedente() {
       this.location.back();
     }
+
+
   }
   
   
