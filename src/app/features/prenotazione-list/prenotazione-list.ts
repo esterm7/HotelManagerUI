@@ -66,6 +66,10 @@ export class PrenotazioneList implements OnInit {
     this.router.navigate(['/prenotazione-create']);
   };
 
+  vaiUpdatePrenotazione(prenotazione: PrenotazioneDTO) {
+    this.router.navigate(['prenotazione-update', prenotazione.codicePrenotazione]);
+  }
+
   get isAdmin() {
     return this.auth.isAdmin();
   }
@@ -77,5 +81,8 @@ export class PrenotazioneList implements OnInit {
   get isUtente() {
     return this.auth.isUtente();
   }
+
+
+
 }
 
