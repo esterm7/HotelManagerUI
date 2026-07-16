@@ -44,9 +44,16 @@ export class UtentiList implements OnInit {
     if (confirm(`Sei sicuro di voler eliminare l'utente ${utente.nome} ${utente.cognome} ${utente.codiceUtente}?`)) {
       this.utenteService.deleteUtente(utente.codiceUtente).subscribe({
         next: (response) => {
-          console.log(response);
-          this.cdr.detectChanges();
+
+          
+
           alert(`Utente ${utente.nome} ${utente.cognome} ${utente.codiceUtente} eliminato con successo!`);
+
+          if (utente.codiceUtente === this.auth.currentUser()) {
+            console.log('cancellazione del proprio utente - logout -> home')
+            this.auth.logout();
+          }
+          window.location.reload();
         },
         error: (err) => {
           console.log(err);
@@ -55,11 +62,13 @@ export class UtentiList implements OnInit {
         }
       });
     }
+
   };
 
   vaiAlCreaUtente() {
     this.router.navigate(['/utente-create']);
   };
+
 
   permissionLabels: Record<number, string> = {
     3: 'Utente',
