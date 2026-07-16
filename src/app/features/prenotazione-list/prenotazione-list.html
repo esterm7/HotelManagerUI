@@ -23,12 +23,13 @@
 </nav>
 
 <div style="width: 100%; margin-left: 20px;">
-    <table class="table table-striped table-hover table-sm ">
+    <table class="table table table-hover ">
         <thead>
             <tr>
                 <th scope="col-sm-5">Codice Prenotazione</th>
                 <th scope="col">Data inzio</th>
                 <th scope="col">Data fine</th>
+                <th scope = "col">Camera</th>
                 <th scope="col">Importo totale</th>
                 <th scope="col">AZIONI</th>
 
@@ -40,11 +41,14 @@
                 <td>{{prenotazione.codicePrenotazione}}</td>
                 <td>{{prenotazione.dataInizio}}</td>
                 <td>{{prenotazione.dataFine}}</td>
+                <td>{{prenotazione.codiceCamera}}</td>
                 <td>€{{prenotazione.costoComplessivo}} </td>
                 <td>
+                    @if (isGestore) {
                     <button class="btn btn-primary btn-sm me-2" (click)="vaiAllUpdatePrenotazione(prenotazione)"><i
                             class="bi bi-pencil-square"></i>
                     </button>
+                }
                     <button class="btn btn-danger btn-sm" (click)="deletePrenotazione(prenotazione)"><i
                             class="bi bi-trash"></i></button>
                 </td>

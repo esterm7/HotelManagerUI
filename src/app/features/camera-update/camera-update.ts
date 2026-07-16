@@ -6,6 +6,8 @@ import { Service } from '../../core/services/service';
 import { ActivatedRoute } from '@angular/router'
 import { AuthService } from '../../core/services/AuthService';
 import { Location } from '@angular/common';
+import { TipoCamera } from '../../core/enums/tipologia-camera-enum';
+
 
 //deve prendere il codice della stanza 
 @Component({
@@ -20,6 +22,9 @@ export class CameraUpdate implements OnInit {
 
   cameraDTO!: CameraDto;
 
+  tipologie = Object.values(TipoCamera);
+
+  
   constructor(private router: Router, private cameraService: Service, private route: ActivatedRoute, public auth: AuthService, private cdr: ChangeDetectorRef, private location: Location) {
   }
 
