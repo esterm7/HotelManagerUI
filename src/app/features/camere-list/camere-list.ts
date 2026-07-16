@@ -16,9 +16,9 @@ import { AuthService } from '../../core/services/AuthService';
 
 export class CamereList implements OnInit {
 
-  
-   dropdownOpen = signal(false);
-    livelloPermessi!: string | null;
+
+  dropdownOpen = signal(false);
+  livelloPermessi!: string | null;
 
 
 
@@ -40,7 +40,7 @@ export class CamereList implements OnInit {
     this.dropdownOpen.set(false);
   }
 
-  
+
 
   vaiAllUpdateCamera(camera: CameraDto) {
     this.router.navigate(['/camera-update', camera.codiceCamera]);
@@ -63,11 +63,11 @@ export class CamereList implements OnInit {
     }
   }
 
- vaiAlCreaCamera() {
+  vaiAlCreaCamera() {
     this.router.navigate(['/camera-create']);
   };
 
-   get isAdmin(){
+  get isAdmin() {
     return this.auth.isAdmin();
   }
 
@@ -78,4 +78,7 @@ export class CamereList implements OnInit {
   get isUtente() {
     return this.auth.isUtente();
   }
+
+  const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+  const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 }

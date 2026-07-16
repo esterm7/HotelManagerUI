@@ -23,10 +23,11 @@
 
 <div class="container  d-flex justify-content-center flex-column vh-100" style="font-family:'Roboto', sans-serif">
 
-    <h1 class="row justify-content-md-center mb-5"> CREA CAMERA </h1>
 
     <div class="row justify-content-md-center">
         <form #form="ngForm" class="col-5 border p-3 rounded">
+    <h1 class="row justify-content-md-center mb-5"> CREA CAMERA </h1>
+
 
             <div class="input-group mb-4">
 
@@ -49,20 +50,17 @@
                 }
             </div>
 
+        
             <div class="input-group mb-4">
-                <select id="tipologia" name="tipologia" aria-label="Tipologia" aria-describedby="addon-wrapping"
-                    [(ngModel)]="cameraDTO.tipologia" #tipologia="ngModel" placeholder="Tipologia" class="form-control"
-                    required>
-                    <option [value]="null" selected disabled>Tipologia</option>
-                    <option value="1">1 - singola</option>
-                    <option value="2">2 - doppia </option>
-                    <option value="3">3 - suite</option>
+                <select id="tipologia" class="form-select" [(ngModel)]="cameraDTO.tipologia" name="tipologia">
+                    <option [ngValue]="null" disabled selected>Seleziona tipologia camera</option>
+                    @for (tipo of tipologie; track tipo) {
+                    <option [ngValue]="tipo">{{ tipo }}</option>
+                    }
                 </select>
-
                 @if (!!this.cameraDTO.tipologiaError) {
                 <p style="color:red" class="invalid-feedback d-block">{{cameraDTO.tipologiaError}}</p>
                 }
-
             </div>
 
 

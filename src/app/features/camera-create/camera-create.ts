@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { Service } from '../../core/services/service';
 import { error } from 'console';
 import { AuthService } from '../../core/services/AuthService';
+import { TipoCamera } from '../../core/enums/tipologia-camera-enum';
+
 
 
 
@@ -25,6 +27,9 @@ export class CameraCreate implements OnInit {
   cameraDTO!: CameraDto;
 
   livelloPermessi!: string | null;
+  
+  tipologie = Object.values(TipoCamera);
+
 
 
   constructor(private router: Router, private cameraService: Service, public auth: AuthService) {
