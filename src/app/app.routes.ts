@@ -12,6 +12,7 @@ import { authGuard } from './core/guards/auth-guard';
 import { PrenotazioneCreate } from './features/prenotazione-create/prenotazione-create';
 import { PrenotazioneList } from './features/prenotazione-list/prenotazione-list';
 import { ErrorGeneric } from './features/error-generic/error-generic';
+import { PrenotazioneUpdate } from './features/prenotazione-update/prenotazione-update';
 
 export const routes: Routes = [
   {
@@ -60,6 +61,10 @@ export const routes: Routes = [
     path: 'camera-update/:codiceCamera',
     component: CameraUpdate
   },
+   {
+    path:'prenotazione-update/:codicePrenotazione',
+    component: PrenotazioneUpdate
+  },
   {
     path: 'prenotazioni-list',
     component: PrenotazioneList,
@@ -69,11 +74,11 @@ export const routes: Routes = [
     path: 'prenotazione-create',
     component: PrenotazioneCreate
   },
+
   {
     path: '**',
     redirectTo: 'home'
   }
-
 
 ];
 
