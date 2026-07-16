@@ -5,8 +5,13 @@ import { CameraDto } from '../../DTO/cameraDTO';
 import { Observable } from 'rxjs';
 import { PrenotazioneDTO } from '../../DTO/prenotazioneDTO';
 
+import { HttpContext } from '@angular/common/http';
+import { SKIP_GLOBAL_ERROR_ALERT } from '../../core/tokens/http-context.tokens';
+
 @Injectable({ providedIn: 'root' })
 export class Service {
+
+  
 
   private baseUrlUtente = '/api/utente';
   private baseUrlCamera = '/api/camera';
@@ -44,6 +49,10 @@ export class Service {
 
   getUtenteByCode(code: string) {
     return this.http.get<UtenteDto>(`${this.baseUrlUtente}/${code}`);
+  }
+
+  existUtenteByCode(code: string) {
+    return this.http.get<UtenteDto>(`${this.baseUrlUtente}/exist/${code}`, { context: new HttpContext().set(SKIP_GLOBAL_ERROR_ALERT, true) });
   }
 
   getAllUtenti() {
