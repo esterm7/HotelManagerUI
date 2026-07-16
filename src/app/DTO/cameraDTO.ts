@@ -1,12 +1,14 @@
-
+import { TipoCamera } from "../core/enums/tipologia-camera-enum";
 
 export class CameraDto {
    
 
     postiLetto: number | null = null;
     postiLettoError!: boolean | string;
-    tipologia: number |null = null;
+
+    tipologia: TipoCamera |null = null;
     tipologiaError!: boolean | string;
+
     tariffa!: number;
     tariffaError!: boolean | string;
 
