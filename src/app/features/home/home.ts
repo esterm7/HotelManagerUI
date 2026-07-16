@@ -40,6 +40,7 @@ export class Home implements OnInit {
 
     ref.closed.subscribe(result => {
       console.log('Login chiuso, risultato:', result);
+      this.dropdownOpen.set(false);
       this.cdr.detectChanges();
 
     });
