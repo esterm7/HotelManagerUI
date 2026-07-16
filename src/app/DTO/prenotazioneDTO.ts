@@ -1,8 +1,4 @@
-import { Data } from "@angular/router";
-import { AuthService } from "../core/services/AuthService";
-import { Service } from "../core/services/service";
-import { CameraDto } from "./cameraDTO";
-import { ChangeDetectorRef } from "@angular/core";
+import { TipoCamera } from '../core/enums/tipologia-camera-enum';
 
 export class PrenotazioneDTO {
     codicePrenotazione!: string;
@@ -20,11 +16,14 @@ export class PrenotazioneDTO {
     codiceUtente!: string | null;
     codiceUtenteError!: boolean | string;
 
-    codiceCamera!: string;
+    codiceCamera!: string | null;
     codiceCameraError!: boolean | string;
 
     costoComplessivo!: number;
     costoComplessivoError!: boolean | string;
+
+    tipologiaCamera!: TipoCamera | null;
+    tipologiaCameraError!: boolean | string;
 
     constructor() { }
 
@@ -33,10 +32,12 @@ export class PrenotazioneDTO {
         this.dataPrenotazioneError = false;
         this.dataInizioError = false;
         this.dataFineError = false;
+        this.tipologiaCameraError = false
 
         this.dataPrenotazioneValidate();
         this.dataInizioValidate();
         this.dataFineValidate();
+        this.tipologiaCameraValidate();
     }
 
     dataPrenotazioneValidate() {
@@ -52,27 +53,30 @@ export class PrenotazioneDTO {
             this.dataFineError = 'Data prenotazione non valida';
         } else if (!this.dataInizio || this.dataInizio < this.dataPrenotazione) {
             this.dataInizioError = 'Data inizio non valida';
-        } else if (this.dataFine) {
-            if (this.dataInizio > this.dataFine) {
-                this.dataInizioError = 'l\'inizio della prenotazione non può essere dopo la fine';
-            }
+        } else if (this.dataFine && this.dataInizio > this.dataFine) {
+            this.dataInizioError = 'l\'inizio della prenotazione non può essere dopo la fine';
         } else {
             this.dataInizioError = false;
         }
     }
 
     dataFineValidate() {
-        if (this.dataFine === null) {
+        if (!this.dataFine) {
             this.dataFineError = 'Data fine non valida';
-        } else if (this.dataInizio) {
-            if (this.dataFine < this.dataInizio) {
-                this.dataFineError = 'il termine della prenotazione non può essere prima dell\'inizio'
-            }
+        } else if (this.dataInizio && this.dataFine < this.dataInizio) {
+            this.dataFineError = 'il termine della prenotazione non può essere prima dell\'inizio'
         } else {
             this.dataFineError = false;
         }
     }
 
+    tipologiaCameraValidate() {
+        if (!this.tipologiaCamera) {
+            this.tipologiaCameraError = 'Tipologia camera non valida';
+        } else {
+            this.tipologiaCameraError = false;
+        }
+    }
 
 }
 

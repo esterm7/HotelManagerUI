@@ -1,13 +1,15 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, inject, Component, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { Service } from '../../core/services/service';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/services/AuthService';
 import { Location } from '@angular/common';
+import { Dialog } from '@angular/cdk/dialog';
 import { PrenotazioneDTO } from '../../DTO/prenotazioneDTO';
-import { CameraDto } from '../../DTO/cameraDTO';  
+import { CameraDto } from '../../DTO/cameraDTO';
 import { UtenteDto } from '../../DTO/utenteDTO';
 import { TipoCamera } from '../../core/enums/tipologia-camera-enum';
+import { CamereLibere } from '../camere-libere/camere-libere';
 
 @Component({
   selector: 'app-prenotazione-create',
@@ -16,19 +18,44 @@ import { TipoCamera } from '../../core/enums/tipologia-camera-enum';
   styleUrl: './prenotazione-create.css',
 })
 export class PrenotazioneCreate {
+  private dialog = inject(Dialog);
 
   prenotazioneDTO!: PrenotazioneDTO;
-  costoCamera!: number;
+  costoCamera!: number | null;
 
-  tipologie = Object.values(TipoCamera); 
-  tipologiaSelezionata: TipoCamera | null = null;
+  tipologie = Object.values(TipoCamera);
 
-    livelloPermessi!: string | null;
+  livelloPermessi!: string | null;
 
   constructor(private router: Router, private service: Service, private location: Location, public auth: AuthService, private cdr: ChangeDetectorRef) {
     this.prenotazioneDTO = new PrenotazioneDTO();
     this.prenotazioneDTO.dataPrenotazione = new Date();
+    this.prenotazioneDTO.tipologiaCamera = null;
     this.prenotazioneDTO.codiceUtente = auth.getCodiceUtente();
+  }
+
+  apriSelezioneCamera() {
+    this.prenotazioneDTO.inputValidate();
+    if (this.prenotazioneDTO.dataInizioError || this.prenotazioneDTO.dataFineError || this.prenotazioneDTO.tipologiaCameraError) {
+      alert('Campi necessari per la selezione della camera non validi');
+      return;
+    }
+    const ref = this.dialog.open<CameraDto | null>(CamereLibere, {
+      data: {
+        prenotazioneTemp: this.prenotazioneDTO,
+      }
+    });
+
+    ref.closed.subscribe(result => {
+      if (result) {
+        console.log('Camera scelta:', result.codiceCamera);
+        this.prenotazioneDTO.codiceCamera = result.codiceCamera;
+        this.costoCamera = result.tariffa;
+      }
+      console.log('Login chiuso, risultato:', result);
+      this.calcoloCostoComplessivo();
+      this.cdr.detectChanges();
+    });
   }
 
   salvaPrenotazione() {
@@ -68,9 +95,16 @@ export class PrenotazioneCreate {
   }
 
   resetForm() {
-    this.prenotazioneDTO.codiceCamera = '';
     this.prenotazioneDTO.dataInizio = null;
     this.prenotazioneDTO.dataFine = null;
+    this.prenotazioneDTO.tipologiaCamera = null;
+    this.prenotazioneDTO.codiceCamera = null;
+    this.costoCamera = null;
+
+    this.prenotazioneDTO.dataInizioError = false;
+    this.prenotazioneDTO.dataFineError = false;
+    this.prenotazioneDTO.tipologiaCameraError = false;
+    this.prenotazioneDTO.codiceCameraError = false;
 
   }
 
@@ -96,11 +130,10 @@ export class PrenotazioneCreate {
   }
 
   ngOnInit() {
-
     this.livelloPermessi = this.auth.getLivelloPermessi();
   }
 
-  codiceUtenteValidate () {
+  codiceUtenteValidate() {
     if (!this.prenotazioneDTO.codiceUtente || this.prenotazioneDTO.codiceUtente.trim() === '') {
       this.prenotazioneDTO.codiceUtenteError = 'Codice utente non valido';
       return;
@@ -111,7 +144,7 @@ export class PrenotazioneCreate {
         this.prenotazioneDTO.codiceUtenteError = false;
         this.prenotazioneDTO.codiceUtente = Object.assign(new UtenteDto(), response).codiceUtente;
       },
-      error:(err) => {
+      error: (err) => {
         this.prenotazioneDTO.codiceUtenteError = 'Codice utente non trovato'
         console.error('Errore:', err);
       }
@@ -119,10 +152,8 @@ export class PrenotazioneCreate {
 
   };
 
-
-
   calcoloCostoComplessivo() {
-    if (this.prenotazioneDTO.dataInizio && this.prenotazioneDTO.dataFine) {
+    if (this.prenotazioneDTO.dataInizio && this.prenotazioneDTO.dataFine && this.costoCamera) {
       const dataInizio = new Date(this.prenotazioneDTO.dataInizio);
       const dataFine = new Date(this.prenotazioneDTO.dataFine);
       const differenzaGiorni = (dataFine.getTime() - dataInizio.getTime()) / (1000 * 60 * 60 * 24);
@@ -130,8 +161,8 @@ export class PrenotazioneCreate {
     }
   }
 
-  
-   get isAdmin(){
+
+  get isAdmin() {
     return this.auth.isAdmin();
   }
 
@@ -143,5 +174,5 @@ export class PrenotazioneCreate {
     return this.auth.isUtente();
   }
 
-  
+
 }

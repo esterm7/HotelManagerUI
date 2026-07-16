@@ -28,15 +28,18 @@
             </div>
 
             <div class="input-group mb-4">
-                <select id="tipologia" class="form-select" [(ngModel)]="tipologiaSelezionata" name="tipologia">
+                <select id="tipologia" class="form-select" [(ngModel)]="prenotazioneDTO.tipologiaCamera" (blur)="this.prenotazioneDTO.tipologiaCameraValidate()" name="tipologia">
                     <option [ngValue]="null" disabled selected>Seleziona tipologia camera</option>
                     @for (tipo of tipologie; track tipo) {
                     <option [ngValue]="tipo">{{ tipo }}</option>
                     }
                 </select>
+                @if (!!this.prenotazioneDTO.tipologiaCameraError) {
+                <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.tipologiaCameraError}}</p>
+                }
             </div>
             <div class="input-group mb-4">
-                <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-search"></i></button>
+                <button type="submit" class="btn btn-primary btn-sm" (click)="apriSelezioneCamera()"><i class="bi bi-search"></i></button>
             </div>
 
             <div class="input-group mb-4">
