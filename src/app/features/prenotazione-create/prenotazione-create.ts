@@ -5,7 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/services/AuthService';
 import { Location } from '@angular/common';
 import { PrenotazioneDTO } from '../../DTO/prenotazioneDTO';
-import { CameraDto } from '../../DTO/cameraDTO';
+import { CameraDto } from '../../DTO/cameraDTO';  
+import { UtenteDto } from '../../DTO/utenteDTO';
+import { TipoCamera } from '../../core/enums/tipologia-camera-enum';
 
 @Component({
   selector: 'app-prenotazione-create',
@@ -17,6 +19,11 @@ export class PrenotazioneCreate {
 
   prenotazioneDTO!: PrenotazioneDTO;
   costoCamera!: number;
+
+  tipologie = Object.values(TipoCamera); 
+  tipologiaSelezionata: TipoCamera | null = null;
+
+    livelloPermessi!: string | null;
 
   constructor(private router: Router, private service: Service, private location: Location, public auth: AuthService, private cdr: ChangeDetectorRef) {
     this.prenotazioneDTO = new PrenotazioneDTO();
@@ -88,6 +95,32 @@ export class PrenotazioneCreate {
     });
   }
 
+  ngOnInit() {
+
+    this.livelloPermessi = this.auth.getLivelloPermessi();
+  }
+
+  codiceUtenteValidate () {
+    if (!this.prenotazioneDTO.codiceUtente || this.prenotazioneDTO.codiceUtente.trim() === '') {
+      this.prenotazioneDTO.codiceUtenteError = 'Codice utente non valido';
+      return;
+    }
+
+    this.service.getUtenteByCode(this.prenotazioneDTO.codiceUtente).subscribe({
+      next: (response) => {
+        this.prenotazioneDTO.codiceUtenteError = false;
+        this.prenotazioneDTO.codiceUtente = Object.assign(new UtenteDto(), response).codiceUtente;
+      },
+      error:(err) => {
+        this.prenotazioneDTO.codiceUtenteError = 'Codice utente non trovato'
+        console.error('Errore:', err);
+      }
+    })
+
+  };
+
+
+
   calcoloCostoComplessivo() {
     if (this.prenotazioneDTO.dataInizio && this.prenotazioneDTO.dataFine) {
       const dataInizio = new Date(this.prenotazioneDTO.dataInizio);
@@ -97,4 +130,18 @@ export class PrenotazioneCreate {
     }
   }
 
+  
+   get isAdmin(){
+    return this.auth.isAdmin();
+  }
+
+  get isGestore() {
+    return this.auth.isGestore();
+  }
+
+  get isUtente() {
+    return this.auth.isUtente();
+  }
+
+  
 }
