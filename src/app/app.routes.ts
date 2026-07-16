@@ -12,6 +12,7 @@ import { authGuard } from './core/guards/auth-guard';
 import { PrenotazioneCreate } from './features/prenotazione-create/prenotazione-create';
 import { PrenotazioneList } from './features/prenotazione-list/prenotazione-list';
 import { ErrorGeneric } from './features/error-generic/error-generic';
+import { CamereLibere } from './features/camere-libere/camere-libere';
 import { PrenotazioneUpdate } from './features/prenotazione-update/prenotazione-update';
 
 export const routes: Routes = [
@@ -31,12 +32,14 @@ export const routes: Routes = [
   {
     path: 'utenti-list',
     component: UtentiList,
-    resolve: { utenti: utenteListResolve }
+    resolve: { utenti: utenteListResolve },
+    canActivate: [authGuard]
 
   },
   {
     path: 'utente-create',
-    component: UtenteCreate
+    component: UtenteCreate,
+    canActivate: [authGuard]
   },
   {
 
@@ -55,14 +58,16 @@ export const routes: Routes = [
   },
   {
     path: 'camera-create',
-    component: CameraCreate
+    component: CameraCreate,
+    canActivate: [authGuard]
   },
   {
     path: 'camera-update/:codiceCamera',
-    component: CameraUpdate
+    component: CameraUpdate,
+    canActivate: [authGuard]
   },
-   {
-    path:'prenotazione-update/:codicePrenotazione',
+  {
+    path: 'prenotazione-update/:codicePrenotazione',
     component: PrenotazioneUpdate
   },
   {
@@ -74,7 +79,10 @@ export const routes: Routes = [
     path: 'prenotazione-create',
     component: PrenotazioneCreate
   },
-
+  {
+    path: 'camere-libere',
+    component: CamereLibere
+  },
   {
     path: '**',
     redirectTo: 'home'
