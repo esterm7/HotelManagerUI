@@ -139,7 +139,7 @@ export class PrenotazioneCreate {
       return;
     }
 
-    this.service.getUtenteByCode(this.prenotazioneDTO.codiceUtente).subscribe({
+    this.service.existUtenteByCode(this.prenotazioneDTO.codiceUtente).subscribe({
       next: (response) => {
         this.prenotazioneDTO.codiceUtenteError = false;
         this.prenotazioneDTO.codiceUtente = Object.assign(new UtenteDto(), response).codiceUtente;
@@ -147,6 +147,7 @@ export class PrenotazioneCreate {
       error: (err) => {
         this.prenotazioneDTO.codiceUtenteError = 'Codice utente non trovato'
         console.error('Errore:', err);
+        this.cdr?.detectChanges();
       }
     })
 
