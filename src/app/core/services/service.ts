@@ -52,7 +52,7 @@ export class Service {
   }
 
   existUtenteByCode(code: string) {
-    return this.http.get<UtenteDto>(`${this.baseUrlUtente}/exist/${code}`, { context: new HttpContext().set(SKIP_GLOBAL_ERROR_ALERT, true) });
+    return this.http.get(`${this.baseUrlUtente}/exist/${code}`, { context: new HttpContext().set(SKIP_GLOBAL_ERROR_ALERT, true) });
   }
 
   getAllUtenti() {
