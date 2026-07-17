@@ -84,14 +84,14 @@ export class UtenteUpdate implements OnInit {
     this.location.back();
   }
 
-  verificaPassword(){
+  verificaPassword() {
     this.passwordError = this.utenteDTO.passwordValidate(this.password);
-    if(this.password !== this.confermaPassword){
+    if (this.password !== this.confermaPassword) {
       this.confermaPasswordError = 'Le password non coincidono';
     } else this.confermaPasswordError = false
   }
 
-openDropdown() {
+  openDropdown() {
     this.dropdownOpen.set(true);
     // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermessi());
   }
@@ -100,7 +100,7 @@ openDropdown() {
     this.dropdownOpen.set(false);
   }
 
-  get isAdmin(){
+  get isAdmin() {
     return this.auth.isAdmin();
   }
 

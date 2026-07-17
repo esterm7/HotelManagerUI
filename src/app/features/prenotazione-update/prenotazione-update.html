@@ -1,25 +1,50 @@
-<div class="container container d-flex justify-content-center flex-column min-vh-100">
+<nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbarNavDropdown">
+
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">HOMEPAGE @if (this.auth.isGestore()){ • GESTORE}
+                @if(this.auth.isAdmin()){ •
+                Admin} </a>
+        </li>
+        @if (auth.isLoggedIn()) {
+        <li class="nav-item dropdown" (mouseenter)="openDropdown()" (mouseleave)="closeDropdown()">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                {{ auth.currentUser()}}
+            </a>
+            <ul class="dropdown-menu" [class.show]="dropdownOpen()">
+                <li><a class="dropdown-item" (click)="auth.logout()">Logout</a></li>
+            </ul>
+        </li>
+        }
+    </ul>
+</nav>
+
+<div class="container d-flex justify-content-center flex-column min-vh-100">
+
     <h1 class=" display-1 row justify-content-md-center mb-5"> PRENOTA </h1>
+
+    @if(this.prenotazioneDTO){
     <div class="row justify-content-md-center">
-        
 
-        <form class="col-6" #form="ngForm">
+
+        <form class="col-6 border p-3 rounded" #form="ngForm">
             <div class="input-group mb-4">
 
-            <div class="input-group mb-4">
-                <input name="codiceUtente" [(ngModel)]="prenotazioneDTO.codiceUtente" type="text" class="form-control"
-                    placeholder="Codice Utente" (blur)="this.codiceUtenteValidate()" disabled>
-                @if (!!this.prenotazioneDTO.codiceUtenteError) {
-                <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.codiceUtenteError}}</p>
-                }
+                <div class="input-group mb-4">
+                    <input name="codiceUtente" [(ngModel)]="prenotazioneDTO.codiceUtente" type="text"
+                        class="form-control" placeholder="Codice Utente" (blur)="this.codiceUtenteValidate()" disabled>
+                    @if (!!this.prenotazioneDTO.codiceUtenteError) {
+                    <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.codiceUtenteError}}</p>
+                    }
                 </div>
 
                 <div class="input-group mb-4">
-                <input name="codiceCamera" [(ngModel)]="prenotazioneDTO.codiceCamera" type="text" class="form-control"
-                    placeholder="Codice Camera" (blur)="this.codiceCameraValidate()">
-                @if (!!this.prenotazioneDTO.codiceCameraError) {
-                <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.codiceCameraError}}</p>
-                }
+                    <input name="codiceCamera" [(ngModel)]="prenotazioneDTO.codiceCamera" type="text"
+                        class="form-control" placeholder="Codice Camera" (blur)="this.codiceCameraValidate()">
+                    @if (!!this.prenotazioneDTO.codiceCameraError) {
+                    <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.codiceCameraError}}</p>
+                    }
 
                 </div>
 
@@ -53,19 +78,20 @@
                 </div>
 
                 <div class="d-flex justify-content-md-center gap-3 mb-4 mt-5">
-                    <button type="submit" (click)="updatePrenotazione()" class="btn btn-primary btn-sm">Crea</button>
-                    <button type="button" (click)="resetForm()" class="btn btn-primary btn-sm">Reset</button>
+                    <button type="submit" (click)="updatePrenotazione()"
+                        class="btn btn-primary btn-sm">Aggiorna</button>
 
                     <button type="button" (click)="VaiAPaginaPrecedente()" class="btn btn-danger btn-sm">
                         Indietro
                     </button>
-
-
-
                 </div>
-                </div>
+            </div>
         </form>
-        
 
     </div>
+
+    } @else {
+    <p class="row justify-content-md-center">Caricamento prenotazione...</p>
+    }
+
 </div>
