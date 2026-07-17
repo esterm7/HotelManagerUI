@@ -52,7 +52,7 @@
 
             <div class="input-group mb-4">
                 <input name="codiceCamera" [(ngModel)]="prenotazioneDTO.codiceCamera" type="text" class="form-control"
-                    placeholder="Codice Camera" (blur)="this.codiceCameraValidate()" disabled>
+                    placeholder="Codice Camera" (blur)="this.codiceCameraValidate()" [disabled] = "isUtente">
                 @if (!!this.prenotazioneDTO.codiceCameraError) {
                 <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.codiceCameraError}}</p>
                 }
