@@ -30,9 +30,6 @@ export class CameraCreate implements OnInit {
   
   tipologie = Object.values(TipoCamera);
 
-
-
-  tipologie = Object.values(TipoCamera); 
     tipologiaSelezionata: TipoCamera | null = null;
   
 
