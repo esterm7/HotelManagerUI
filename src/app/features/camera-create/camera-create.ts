@@ -3,9 +3,9 @@ import { CameraDto } from '../../DTO/cameraDTO';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Service } from '../../core/services/service';
-import { error } from 'console';
 import { AuthService } from '../../core/services/AuthService';
 import { TipoCamera } from '../../core/enums/tipologia-camera-enum';
+import { Location } from '@angular/common';
 
 
 
@@ -32,7 +32,7 @@ export class CameraCreate implements OnInit {
 
   tipologiaSelezionata: TipoCamera | null = null;
 
-  constructor(private router: Router, private cameraService: Service, public auth: AuthService) {
+  constructor(private router: Router, private cameraService: Service, public auth: AuthService, private location: Location) {
     this.cameraDTO = new CameraDto();
   }
 
@@ -72,6 +72,10 @@ export class CameraCreate implements OnInit {
   resetForm() {
     this.cameraDTO = new CameraDto();
   }
+
+  VaiAPaginaPrecedente() {
+      this.location.back();
+    }
 
   VaiAHome() {
     this.router.navigate(['/home']);
