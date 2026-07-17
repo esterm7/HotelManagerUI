@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, signal } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UtenteDto } from '../../DTO/utenteDTO';
 import { Service } from '../../core/services/service';
@@ -13,6 +13,8 @@ import { Location } from '@angular/common';
   styleUrl: './utente-update.css',
 })
 export class UtenteUpdate implements OnInit {
+
+  dropdownOpen = signal(false);
 
   utenteDTO!: UtenteDto;
 
@@ -87,6 +89,27 @@ export class UtenteUpdate implements OnInit {
     if(this.password !== this.confermaPassword){
       this.confermaPasswordError = 'Le password non coincidono';
     } else this.confermaPasswordError = false
+  }
+
+openDropdown() {
+    this.dropdownOpen.set(true);
+    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermessi());
+  }
+
+  closeDropdown() {
+    this.dropdownOpen.set(false);
+  }
+
+  get isAdmin(){
+    return this.auth.isAdmin();
+  }
+
+  get isGestore() {
+    return this.auth.isGestore();
+  }
+
+  get isUtente() {
+    return this.auth.isUtente();
   }
 }
 
