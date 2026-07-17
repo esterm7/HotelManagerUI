@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { CameraDto } from '../../DTO/cameraDTO';
 import { Service } from '../../core/services/service';
 import { AuthService } from '../../core/services/AuthService';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
   selector: 'app-camere-list',
-  imports: [CommonModule],
+  imports: [CommonModule, NgbPopoverModule],
   templateUrl: './camere-list.html',
   styleUrl: './camere-list.css',
 })
@@ -79,6 +80,5 @@ export class CamereList implements OnInit {
     return this.auth.isUtente();
   }
 
-  const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
-  const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+
 }
