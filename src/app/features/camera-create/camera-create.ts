@@ -27,14 +27,10 @@ export class CameraCreate implements OnInit {
   cameraDTO!: CameraDto;
 
   livelloPermessi!: string | null;
-  
+
   tipologie = Object.values(TipoCamera);
 
-
-
-  tipologie = Object.values(TipoCamera); 
-    tipologiaSelezionata: TipoCamera | null = null;
-  
+  tipologiaSelezionata: TipoCamera | null = null;
 
   constructor(private router: Router, private cameraService: Service, public auth: AuthService) {
     this.cameraDTO = new CameraDto();
