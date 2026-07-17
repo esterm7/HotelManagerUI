@@ -51,6 +51,8 @@
             </div>
 
         
+
+        
             <div class="input-group mb-4">
                 <select id="tipologia" class="form-select" [(ngModel)]="cameraDTO.tipologia" name="tipologia">
                     <option [ngValue]="null" disabled selected>Seleziona tipologia camera</option>
@@ -58,6 +60,8 @@
                     <option [ngValue]="tipo">{{ tipo }}</option>
                     }
                 </select>
+    
+
                 @if (!!this.cameraDTO.tipologiaError) {
                 <p style="color:red" class="invalid-feedback d-block">{{cameraDTO.tipologiaError}}</p>
                 }
