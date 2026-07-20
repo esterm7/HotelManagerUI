@@ -15,6 +15,8 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class UtenteUpdate implements OnInit {
 
+  adulto = new Date().toISOString().split('T')[0];
+
   dropdownOpen = signal(false);
 
   utenteDTO!: UtenteDto;
@@ -25,6 +27,9 @@ export class UtenteUpdate implements OnInit {
   confermaPasswordError!: boolean | string;
 
   constructor(private router: Router, private utenteService: Service, private route: ActivatedRoute, public auth: AuthService, private cdr: ChangeDetectorRef, private location: Location) {
+     const date = new Date();
+    date.setFullYear(date.getFullYear() - 18);
+    this.adulto = date.toISOString().split('T')[0];
   }
 
   ngOnInit() {
