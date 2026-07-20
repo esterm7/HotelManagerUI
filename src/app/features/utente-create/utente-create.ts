@@ -20,6 +20,7 @@ import { AuthService } from '../../core/services/AuthService';
 
 export class UtenteCreate implements OnInit {
   
+  adulto = new Date().toISOString().split('T')[0];
   
   dropdownOpen = signal(false);
 
@@ -61,13 +62,17 @@ export class UtenteCreate implements OnInit {
   confermaPasswordError!: boolean | string;
 
   constructor(private router: Router, private utenteService: Service, private location: Location, public auth: AuthService) {
+    const date = new Date();
+    date.setFullYear(date.getFullYear() - 18);
+    this.adulto = date.toISOString().split('T')[0];
+
     this.utenteDTO = new UtenteDto();
     this.utenteDTO.livelloPermessi = 3; // Imposta il valore predefinito a 3 (Utente) 
   }
 
   salvaUtente() {
     this.utenteDTO.inputValidate();
-    if (this.utenteDTO.nomeError || this.utenteDTO.cognomeError || this.utenteDTO.dataNascitaError || this.utenteDTO.codiceFiscaleError || this.utenteDTO.livelloPermessiError) {
+    if (this.utenteDTO.nomeError || this.utenteDTO.cognomeError || this.utenteDTO.dataNascitaError || this.utenteDTO.codiceFiscaleError || this.utenteDTO.livelloPermessiError || this.utenteDTO.passwordError || this.confermaPasswordError) {
       console.log('Errore di validazione dei campi');
       return;
     }
@@ -94,6 +99,13 @@ export class UtenteCreate implements OnInit {
   VaiAPaginaPrecedente() {
     this.location.back();
   }
+
+  verificaPassword() {
+    if (this.utenteDTO.password && (this.utenteDTO.password !== this.confermaPassword)) {
+      this.confermaPasswordError = 'Le password non coincidono';
+    } else this.confermaPasswordError = false
+  }
+
 
   resetForm() {
     this.utenteDTO.nome = '';
