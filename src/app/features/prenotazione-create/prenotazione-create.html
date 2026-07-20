@@ -62,13 +62,15 @@
                         class="bi bi-search"></i></button>
             </div>
 
+            @if(isGestore) {
             <div class="input-group mb-4">
                 <input name="codiceUtente" [(ngModel)]="prenotazioneDTO.codiceUtente" type="text" class="form-control"
-                    placeholder="Codice Utente" (blur)="this.codiceUtenteValidate()" [disabled]="isUtente">
+                    placeholder="Codice Utente" (blur)="this.codiceUtenteValidate()" >
                 @if (!!this.prenotazioneDTO.codiceUtenteError) {
                 <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.codiceUtenteError}}</p>
                 }
             </div>
+        }
 
             <div class="input-group mb-4">
                 <input name="codiceCamera" [(ngModel)]="prenotazioneDTO.codiceCamera" type="text" class="form-control"

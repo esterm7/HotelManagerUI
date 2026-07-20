@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { UtenteDto } from '../../DTO/utenteDTO';
 import { Service } from '../../core/services/service';
 import { AuthService } from '../../core/services/AuthService';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-utenti-list',
-  imports: [CommonModule],
+  imports: [CommonModule, NgbPopoverModule ],
   templateUrl: './utenti-list.html',
   styleUrl: './utenti-list.css',
 })

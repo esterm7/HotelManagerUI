@@ -6,6 +6,8 @@ import { Service } from '../../core/services/service';
 import { AuthService } from '../../core/services/AuthService';
 import { TipoCamera } from '../../core/enums/tipologia-camera-enum';
 import { Location } from '@angular/common';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 
@@ -14,7 +16,7 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'app-camera-create',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, NgbPopoverModule],
   templateUrl: './camera-create.html',
   styleUrl: './camera-create.css',
 })

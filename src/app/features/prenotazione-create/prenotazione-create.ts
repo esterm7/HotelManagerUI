@@ -10,10 +10,12 @@ import { CameraDto } from '../../DTO/cameraDTO';
 import { UtenteDto } from '../../DTO/utenteDTO';
 import { TipoCamera } from '../../core/enums/tipologia-camera-enum';
 import { CamereLibere } from '../camere-libere/camere-libere';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-prenotazione-create',
-  imports: [FormsModule],
+  imports: [FormsModule, NgbPopoverModule ],
   templateUrl: './prenotazione-create.html',
   styleUrl: './prenotazione-create.css',
 })
