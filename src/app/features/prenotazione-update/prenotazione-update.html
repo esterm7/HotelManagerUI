@@ -52,7 +52,7 @@
 
                 <div class="input-group mb-4">
                     <label class="input-group-text">Inizio prenotazione</label>
-                    <input name="dataInizio" [(ngModel)]="prenotazioneDTO.dataInizio" type="date" class="form-control"
+                    <input name="dataInizio" [(ngModel)]="prenotazioneDTO.dataInizio" [min]="today" type="date" class="form-control"
                         (blur)="prenotazioneDTO.dataInizioValidate()">
                     @if (!!this.prenotazioneDTO.dataInizioError) {
                     <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.dataInizioError}}</p>
@@ -61,8 +61,8 @@
 
                 <div class="input-group mb-4">
                     <label class="input-group-text">Fine prenotazione</label>
-                    <input name="dataFine" [(ngModel)]="prenotazioneDTO.dataFine" type="date" class="form-control"
-                        (blur)="prenotazioneDTO.dataFineValidate()">
+                    <input name="dataFine" [(ngModel)]="prenotazioneDTO.dataFine" [min]="this.prenotazioneDTO.dataFine" type="date" class="form-control"
+                        (blur)="prenotazioneDTO.dataFineValidate(); prenotazioneDTO.dataInizioValidate()">
                     @if (!!this.prenotazioneDTO.dataFineError) {
                     <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.dataFineError}}</p>
                     }

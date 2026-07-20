@@ -18,6 +18,7 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class PrenotazioneUpdate implements OnInit {
 
+  today = new Date().toISOString().split('T')[0];
 
   prenotazioneDTO!: PrenotazioneDTO;
 
