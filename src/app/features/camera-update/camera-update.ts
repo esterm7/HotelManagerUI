@@ -7,12 +7,14 @@ import { ActivatedRoute } from '@angular/router'
 import { AuthService } from '../../core/services/AuthService';
 import { Location } from '@angular/common';
 import { TipoCamera } from '../../core/enums/tipologia-camera-enum';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 //deve prendere il codice della stanza 
 @Component({
   selector: 'app-camera-update',
-  imports: [FormsModule],
+  imports: [FormsModule,NgbPopoverModule ],
   templateUrl: './camera-update.html',
   styleUrl: './camera-update.css',
 })
