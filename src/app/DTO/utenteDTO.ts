@@ -33,6 +33,7 @@ export class UtenteDto {
         this.dataNascitaError = false;
         this.codiceFiscaleError = false;
         this.livelloPermessiError = false;
+        this.passwordError = false;
 
         // this.codiceUtenteValidate();
         this.nomeUtenteValidate();
