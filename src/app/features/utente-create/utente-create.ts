@@ -5,10 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { Service } from '../../core/services/service';
 import { Location } from '@angular/common';
 import { AuthService } from '../../core/services/AuthService';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-utente-create',
-  imports: [FormsModule],
+  imports: [FormsModule, NgbPopoverModule ],
   templateUrl: './utente-create.html',
   styleUrl: './utente-create.css',
 })
