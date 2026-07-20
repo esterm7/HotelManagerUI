@@ -1,18 +1,37 @@
-<head> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-</head>
+<nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbarNavDropdown">
+
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">HOMEPAGE @if (this.auth.isGestore()){ • GESTORE}
+                @if(this.auth.isAdmin()){ •
+                Admin} </a>
+        </li>
+        @if (auth.isLoggedIn()) {
+        <li class="nav-item dropdown" (mouseenter)="openDropdown()" (mouseleave)="closeDropdown()">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ auth.currentUser()}}
+            </a>
+            <ul class="dropdown-menu" [class.show]="dropdownOpen()">
+                <li><a class="dropdown-item" (click)="auth.logout()">Logout</a></li>
+            </ul>
+        </li>
+        }
+    </ul>
+</nav>
+
 
 <div class="container d-flex justify-content-center flex-column min-vh-100" style="font-family:'Roboto', sans-serif">
 
+    <h1 class="row justify-content-md-center mb-5"> MODIFICA CAMERA </h1>
 
+    @if (cameraDTO) {
     <div class="row justify-content-md-center">
-        @if (cameraDTO) {
 
         <form #form="ngForm" class="col-6 border p-3 rounded">
-    <h1 class="row justify-content-md-center mb-5"> MODIFICA CAMERA </h1>
 
             <div class="input-group mb-4">
 
-        
+
                 <select class="form-select" aria-label="Default select example" id="numero" name="numero"
                     [(ngModel)]="cameraDTO.postiLetto" class="form-control">
 
@@ -33,7 +52,7 @@
                 }
             </div>
 
-     <div class="input-group mb-4">
+            <div class="input-group mb-4">
                 <select id="tipologia" class="form-select" [(ngModel)]="cameraDTO.tipologia" name="tipologia">
                     <option [ngValue]="null" disabled selected>Seleziona tipologia camera</option>
                     @for (tipo of tipologie; track tipo) {
@@ -44,8 +63,6 @@
                 <p style="color:red" class="invalid-feedback d-block">{{cameraDTO.tipologiaError}}</p>
                 }
             </div>
-
-
 
             <div class="input-group mb-4">
                 <span class="input-group-text fs-5" id="inputGroupPrepend">€</span>
@@ -59,25 +76,18 @@
 
             </div>
 
-
-
             <div class="d-flex justify-content-md-center gap-3 mb-4 mt-5">
-
                 <button type="submit" (click)="updateCamera()" class="btn btn-primary btn-sm">Aggiorna</button>
-                
+                <button type="button" (click)="VaiAPaginaPrecedente()" class="btn btn-danger btn-sm">
+                    <i class="bi bi-reply"></i>
+                </button>
             </div>
 
-             <button type="button" (click)="VaiAPaginaPrecedente()" class="btn btn-danger btn-bg">
-               <i class="bi bi-reply"></i>
-                </button>
-
-
-
         </form>
-        } @else {
-        <p class="row justify-content-md-center">Caricamento camera...</p>
-        }
     </div>
+    } @else {
+    <p class="row justify-content-md-center">Caricamento camera...</p>
+    }
 
 
 
