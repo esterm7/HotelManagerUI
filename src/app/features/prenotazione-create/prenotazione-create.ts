@@ -20,6 +20,8 @@ import { CamereLibere } from '../camere-libere/camere-libere';
 export class PrenotazioneCreate {
   private dialog = inject(Dialog);
 
+  today = new Date().toISOString().split('T')[0];
+
   prenotazioneDTO!: PrenotazioneDTO;
   costoCamera!: number | null;
 
