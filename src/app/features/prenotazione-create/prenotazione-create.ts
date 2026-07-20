@@ -36,6 +36,17 @@ export class PrenotazioneCreate {
     this.prenotazioneDTO.codiceUtente = auth.getCodiceUtente();
   }
 
+  dropdownOpen = signal(false);
+
+  openDropdown() {
+    this.dropdownOpen.set(true);
+    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermessi());
+  }
+
+  closeDropdown() {
+    this.dropdownOpen.set(false);
+  }
+
   apriSelezioneCamera() {
     this.prenotazioneDTO.inputValidate();
     if (this.prenotazioneDTO.dataInizioError || this.prenotazioneDTO.dataFineError || this.prenotazioneDTO.tipologiaCameraError) {
@@ -144,7 +155,6 @@ export class PrenotazioneCreate {
     this.service.existUtenteByCode(this.prenotazioneDTO.codiceUtente).subscribe({
       next: (response) => {
         this.prenotazioneDTO.codiceUtenteError = false;
-        this.prenotazioneDTO.codiceUtente = Object.assign(new UtenteDto(), response).codiceUtente;
       },
       error: (err) => {
         this.prenotazioneDTO.codiceUtenteError = 'Codice utente non trovato'
