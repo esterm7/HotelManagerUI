@@ -7,11 +7,12 @@ import { AuthService } from '../../core/services/AuthService';
 import { Location } from '@angular/common';
 import { CameraDto } from '../../DTO/cameraDTO';
 import { UtenteDto } from '../../DTO/utenteDTO';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
   selector: 'app-prenotazione-update',
-  imports: [FormsModule],
+  imports: [FormsModule, NgbPopoverModule ],
   templateUrl: './prenotazione-update.html',
   styleUrl: './prenotazione-update.css',
 })
@@ -108,13 +109,7 @@ constructor(private router: Router, private prenotazioneService: Service, privat
       
         };
 
-         resetForm() {
-    this.prenotazioneDTO.codiceCamera = '';
-    this.prenotazioneDTO.dataInizio = null;
-    this.prenotazioneDTO.dataFine = null;
-
-  }
-
+    
     
   
   
