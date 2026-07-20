@@ -15,7 +15,7 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-prenotazione-create',
-  imports: [FormsModule, NgbPopoverModule ],
+  imports: [FormsModule, NgbPopoverModule],
   templateUrl: './prenotazione-create.html',
   styleUrl: './prenotazione-create.css',
 })
@@ -95,9 +95,11 @@ export class PrenotazioneCreate {
       },
       error: (err) => {
         console.log(err);
-        this.prenotazioneDTO.codiceCameraError = err.error;
-        alert(err.error);
-        console.error('Errore durante il salvataggio della prenotazione: ', err.error);
+        if (err.status == 400) {
+          alert('Esiste già una prenotazione in atto per le date selezionate')
+        }
+        this.prenotazioneDTO.codiceCameraError = err;
+        console.error('Errore durante il salvataggio della prenotazione: ', err);
       },
       complete: () => {
         console.log('Richiesta completata');
