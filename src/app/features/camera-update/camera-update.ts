@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, signal } from '@angular/core';
 import { CameraDto } from '../../DTO/cameraDTO';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -26,8 +26,19 @@ export class CameraUpdate implements OnInit {
 
   tipologie = Object.values(TipoCamera);
 
-  
+
   constructor(private router: Router, private cameraService: Service, private route: ActivatedRoute, public auth: AuthService, private cdr: ChangeDetectorRef, private location: Location) {
+  }
+
+  dropdownOpen = signal(false);
+
+  openDropdown() {
+    this.dropdownOpen.set(true);
+    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermessi());
+  }
+
+  closeDropdown() {
+    this.dropdownOpen.set(false);
   }
 
   ngOnInit() {
@@ -75,5 +86,7 @@ export class CameraUpdate implements OnInit {
   VaiAPaginaPrecedente() {
     this.location.back();
   }
+
+
 
 }
