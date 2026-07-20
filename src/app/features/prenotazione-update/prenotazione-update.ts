@@ -5,6 +5,8 @@ import { Service } from '../../core/services/service';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/services/AuthService';
 import { Location } from '@angular/common';
+import { Dialog } from '@angular/cdk/dialog';
+
 import { CameraDto } from '../../DTO/cameraDTO';
 import { UtenteDto } from '../../DTO/utenteDTO';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
@@ -18,10 +20,11 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class PrenotazioneUpdate implements OnInit {
 
+  // private dialog = inject(Dialog);
 
   prenotazioneDTO!: PrenotazioneDTO;
 
-  costoCamera!: number;
+  costoCamera!: number | null;
 
   constructor(private router: Router, private prenotazioneService: Service, private route: ActivatedRoute, public auth: AuthService, private cdr: ChangeDetectorRef, private location: Location) {
   }
