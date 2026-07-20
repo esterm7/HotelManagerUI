@@ -5,10 +5,11 @@ import { Service } from '../../core/services/service';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/services/AuthService';
 import { Location } from '@angular/common';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-utente-update',
-  imports: [FormsModule],
+  imports: [FormsModule, NgbPopoverModule ],
   templateUrl: './utente-update.html',
   styleUrl: './utente-update.css',
 })
