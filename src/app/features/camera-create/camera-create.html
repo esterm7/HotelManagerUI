@@ -1,5 +1,3 @@
-@if (this.auth.isGestore()){
-
 <nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbarNavDropdown">
 
     <ul class="navbar-nav">
@@ -21,12 +19,14 @@
 </nav>
 
 
+@if (this.auth.isGestore()){
+
 <div class="container  d-flex justify-content-center flex-column vh-100" style="font-family:'Roboto', sans-serif">
 
+    <h1 class="row justify-content-md-center mb-5"> CREA CAMERA </h1>
 
     <div class="row justify-content-md-center">
-        <form #form="ngForm" class="col-5 border p-3 rounded">
-    <h1 class="row justify-content-md-center mb-5"> CREA CAMERA </h1>
+        <form #form="ngForm" class="col-6 border p-3 rounded">
 
 
             <div class="input-group mb-4">
@@ -50,9 +50,9 @@
                 }
             </div>
 
-        
 
-        
+
+
             <div class="input-group mb-4">
                 <select id="tipologia" class="form-select" [(ngModel)]="cameraDTO.tipologia" name="tipologia">
                     <option [ngValue]="null" disabled selected>Seleziona tipologia camera</option>
@@ -60,7 +60,7 @@
                     <option [ngValue]="tipo">{{ tipo }}</option>
                     }
                 </select>
-    
+
 
                 @if (!!this.cameraDTO.tipologiaError) {
                 <p style="color:red" class="invalid-feedback d-block">{{cameraDTO.tipologiaError}}</p>
@@ -100,23 +100,23 @@
 </div>
 } @else {
 
-  <div class="container vh-100 d-flex justify-content-center align-items-center">
+<div class="container vh-100 d-flex justify-content-center align-items-center">
     <div class="card shadow text-center p-4" style="max-width: 500px;">
-      <div class="card-body">
+        <div class="card-body">
 
-        <h1 class="display-1 text-danger">⚠️</h1>
+            <h1 class="display-1 text-danger">⚠️</h1>
 
-        <h2 class="card-title mb-3">Si è verificato un errore</h2>
+            <h2 class="card-title mb-3">Si è verificato un errore</h2>
 
-        <p class="card-text text-muted">
-          Non hai i permessi per accedere a questa pagina.<br>Torna alla pagina principale.
-        </p>
-        <button class="btn btn-danger mt-3" (click)="VaiAHome()">
-          Torna alla Home
-        </button>
+            <p class="card-text text-muted">
+                Non hai i permessi per accedere a questa pagina.<br>Torna alla pagina principale.
+            </p>
+            <button class="btn btn-danger mt-3" (click)="VaiAHome()">
+                Torna alla Home
+            </button>
 
-      </div>
+        </div>
     </div>
-  </div>
+</div>
 
 }
