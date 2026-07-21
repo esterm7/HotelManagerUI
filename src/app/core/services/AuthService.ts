@@ -53,12 +53,12 @@ export class AuthService {
         return null;
     }
 
-    getLivelloPermessi(): LivelloPermesso | null {
+    getLivelloPermesso(): LivelloPermesso | null {
         const token = this.getToken();
         if (!token) return null;
 
         if (this.isTokenValid(token)) {
-            return this.decodeToken(token).livelloPermessi
+            return this.decodeToken(token).livelloPermesso
         }
         return null;
     }
@@ -104,17 +104,17 @@ export class AuthService {
 
 
     isAdmin(): boolean {
-        return this.getLivelloPermessi() === LivelloPermesso.ADMIN;
+        return this.getLivelloPermesso() === 'ROLE_' + LivelloPermesso.ADMIN;
     }
 
 
     isGestore(): boolean {
-        return this.getLivelloPermessi() ===LivelloPermesso.GESTORE;
+        return this.getLivelloPermesso() === 'ROLE_' + LivelloPermesso.GESTORE;
     }
 
 
     isUtente(): boolean {
-        return this.getLivelloPermessi() === LivelloPermesso.UTENTE;
+        return this.getLivelloPermesso() === 'ROLE_' + LivelloPermesso.UTENTE;
     }
 
 }
