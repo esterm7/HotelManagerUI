@@ -1,0 +1,25 @@
+<form class="col-6 border p-3 rounded" (ngSubmit)="submit.emit()">
+
+    <ng-content></ng-content>
+
+    <div class="d-flex justify-content-md-center gap-3 mb-4 mt-5">
+
+        <button type="submit" class="btn btn-primary btn-sm">
+            {{ submitLabel() }}
+        </button>
+
+        @if (showReset()) {
+        <button type="button" class="btn btn-primary btn-sm" (click)="reset.emit()">
+            Reset
+        </button>
+        }
+
+        @if (showBack()) {
+        <button type="button" class="btn btn-danger btn-sm" (click)="back.emit()">
+            Indietro
+        </button>
+        }
+
+    </div>
+
+</form>
