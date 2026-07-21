@@ -19,8 +19,8 @@ export class UtenteDto {
     password!: string;
     passwordError!: boolean | string;
 
-    livelloPermessi!: LivelloPermesso;
-    livelloPermessiError!: boolean | string;
+    livelloPermesso!: LivelloPermesso;
+    livelloPermessoError!: boolean | string;
 
     constructor() {
     }

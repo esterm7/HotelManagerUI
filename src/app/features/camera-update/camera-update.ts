@@ -34,7 +34,7 @@ export class CameraUpdate implements OnInit {
 
   openDropdown() {
     this.dropdownOpen.set(true);
-    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermessi());
+    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermesso());
   }
 
   closeDropdown() {

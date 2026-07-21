@@ -28,7 +28,7 @@ export class CameraCreate implements OnInit {
 
   cameraDTO!: CameraDto;
 
-  livelloPermessi!: string | null;
+  livelloPermesso!: string | null;
 
   tipologie = Object.values(TipoCamera);
 
@@ -40,7 +40,7 @@ export class CameraCreate implements OnInit {
 
   openDropdown() {
     this.dropdownOpen.set(true);
-    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermessi());
+    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermesso());
   }
 
   closeDropdown() {
@@ -88,7 +88,7 @@ export class CameraCreate implements OnInit {
   }
 
   ngOnInit(): void {
-    this.livelloPermessi = this.auth.getLivelloPermessi();
+    this.livelloPermesso = this.auth.getLivelloPermesso();
   }
 
   get isAdmin() {
@@ -104,8 +104,3 @@ export class CameraCreate implements OnInit {
   }
 
 }
-
-
-
-
-//creare dto, creare costruttore che istantzia il dto (cel componente es camera-create), 

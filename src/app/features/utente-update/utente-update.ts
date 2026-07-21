@@ -38,7 +38,7 @@ export class UtenteUpdate implements OnInit {
       next: (response) => {
         this.utenteDTO = Object.assign(new UtenteDto(), response);
         console.log('Utente caricato:', this.utenteDTO);
-        // console.log(this.auth.currentUser + '\n' +this.auth.getLivelloPermessi())
+        // console.log(this.auth.currentUser + '\n' +this.auth.getLivelloPermesso())
         this.cdr.detectChanges();
 
       },
@@ -52,7 +52,7 @@ export class UtenteUpdate implements OnInit {
   updateUtente() {
     this.utenteDTO.inputValidate();
     this.verificaPassword()
-    if (this.utenteDTO.nomeError || this.utenteDTO.cognomeError || this.utenteDTO.dataNascitaError || this.utenteDTO.codiceFiscaleError || this.passwordError || this.confermaPasswordError || this.utenteDTO.livelloPermessiError) {
+    if (this.utenteDTO.nomeError || this.utenteDTO.cognomeError || this.utenteDTO.dataNascitaError || this.utenteDTO.codiceFiscaleError || this.passwordError || this.confermaPasswordError || this.utenteDTO.livelloPermessoError) {
       console.log('Errore di validazione dei campi');
       alert('Ci sono errori sui valori inseriti')
       return;
@@ -99,7 +99,7 @@ export class UtenteUpdate implements OnInit {
 
   openDropdown() {
     this.dropdownOpen.set(true);
-    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermessi());
+    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermesso());
   }
 
   closeDropdown() {

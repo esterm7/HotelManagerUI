@@ -74,13 +74,13 @@
             @if (auth.isAdmin()){
             <div class="input-group input-group-sm mb-4">
                 <label class="input-group-text">Livello Permessi</label>
-                <select name="livelloPermessi" [(ngModel)]="utenteDTO.livelloPermessi" class="form-select">
+                <select name="livelloPermesso" [(ngModel)]="utenteDTO.livelloPermesso" class="form-select">
                     <option value="UTENTE">Utente</option>
                     <option value="GESTORE">Gestore</option>
                     <option value="ADMIN">Admin</option>
                 </select>
 
-                <app-form-error [error]="utenteDTO.livelloPermessiError" />
+                <app-form-error [error]="utenteDTO.livelloPermessoError" />
             </div>
             }
 

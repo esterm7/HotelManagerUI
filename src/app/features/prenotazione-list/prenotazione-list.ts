@@ -15,7 +15,7 @@ export class PrenotazioneList implements OnInit {
 
 
   dropdownOpen = signal(false);
-  livelloPermessi!: string | null;
+  livelloPermesso!: string | null;
 
 
   constructor(private router: Router, private route: ActivatedRoute, private service: Service, public auth: AuthService) { }
@@ -24,13 +24,13 @@ export class PrenotazioneList implements OnInit {
   ngOnInit() {
     this.prenotazioni = this.route.snapshot.data['prenotazioni'];
     console.log('Prenotazioni:', this.prenotazioni);
-    this.livelloPermessi = this.auth.getLivelloPermessi();
+    this.livelloPermesso = this.auth.getLivelloPermesso();
 
   }
 
   openDropdown() {
     this.dropdownOpen.set(true);
-    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermessi());
+    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermesso());
   }
 
   closeDropdown() {

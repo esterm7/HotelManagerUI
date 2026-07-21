@@ -19,7 +19,7 @@ export class CamereList implements OnInit {
 
 
   dropdownOpen = signal(false);
-  livelloPermessi!: string | null;
+  livelloPermesso!: string | null;
 
 
 
@@ -29,12 +29,12 @@ export class CamereList implements OnInit {
   ngOnInit() {
     this.camere = this.route.snapshot.data['camere'];
     console.log('Camere:', this.camere);
-    this.livelloPermessi = this.auth.getLivelloPermessi();
+    this.livelloPermesso = this.auth.getLivelloPermesso();
   }
 
   openDropdown() {
     this.dropdownOpen.set(true);
-    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermessi());
+    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermesso());
   }
 
   closeDropdown() {

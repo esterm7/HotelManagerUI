@@ -28,7 +28,7 @@ export class PrenotazioneCreate {
 
   tipologie = Object.values(TipoCamera);
 
-  livelloPermessi!: string | null;
+  livelloPermesso!: string | null;
 
   constructor(private router: Router, private service: Service, private location: Location, public auth: AuthService, private cdr: ChangeDetectorRef) {
     this.prenotazioneDTO = new PrenotazioneDTO();
@@ -41,7 +41,7 @@ export class PrenotazioneCreate {
 
   openDropdown() {
     this.dropdownOpen.set(true);
-    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermessi());
+    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermesso());
   }
 
   closeDropdown() {
@@ -146,7 +146,7 @@ export class PrenotazioneCreate {
   }
 
   ngOnInit() {
-    this.livelloPermessi = this.auth.getLivelloPermessi();
+    this.livelloPermesso = this.auth.getLivelloPermesso();
   }
 
   codiceUtenteValidate() {

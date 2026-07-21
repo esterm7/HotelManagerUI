@@ -21,11 +21,11 @@ export class Home implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, public auth: AuthService, private service: Service, private cdr: ChangeDetectorRef) { }
   dropdownOpen = signal(false);
 
-  livelloPermessi!: string | null;
+  livelloPermesso!: string | null;
 
   openDropdown() {
     this.dropdownOpen.set(true);
-    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermessi());
+    console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermesso());
   }
 
   closeDropdown() {
@@ -75,7 +75,7 @@ export class Home implements OnInit {
   };
 
   ngOnInit(): void {
-    this.livelloPermessi = this.auth.getLivelloPermessi();
+    this.livelloPermesso = this.auth.getLivelloPermesso();
   }
 
 }

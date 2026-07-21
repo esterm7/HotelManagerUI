@@ -18,16 +18,16 @@ export class UtentiList implements OnInit {
   constructor(private router: Router, private utenteService: Service, private route: ActivatedRoute, private cdr: ChangeDetectorRef, public auth: AuthService) { }
 
   dropdownOpen = signal(false);
-  livelloPermessi!: LivelloPermesso | null;
+  livelloPermesso!: LivelloPermesso | null;
 
   ngOnInit() {
     this.utenti = this.route.snapshot.data['utenti'];
-    this.livelloPermessi = this.auth.getLivelloPermessi() ;
+    this.livelloPermesso = this.auth.getLivelloPermesso() ;
   };
 
   openDropdown() {
     this.dropdownOpen.set(true);
-    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermessi());
+    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermesso());
   }
 
   closeDropdown() {

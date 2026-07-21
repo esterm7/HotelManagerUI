@@ -30,12 +30,12 @@ export class UtenteCreate implements OnInit {
 
   utenteDTO!: UtenteDto;
 
-  livelloPermessi!: string | null;
+  livelloPermesso!: string | null;
 
 
   openDropdown() {
     this.dropdownOpen.set(true);
-    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermessi());
+    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermesso());
   }
 
   closeDropdown() {
@@ -44,7 +44,7 @@ export class UtenteCreate implements OnInit {
 
 
   ngOnInit(): void {
-    this.livelloPermessi = this.auth.getLivelloPermessi();
+    this.livelloPermesso = this.auth.getLivelloPermesso();
   }
 
   confermaPassword!: string;
@@ -56,12 +56,12 @@ export class UtenteCreate implements OnInit {
     this.adulto = date.toISOString().split('T')[0];
 
     this.utenteDTO = new UtenteDto();
-    this.utenteDTO.livelloPermessi = LivelloPermesso.UTENTE; // Imposta il valore predefinito a 3 (Utente) 
+    this.utenteDTO.livelloPermesso = LivelloPermesso.UTENTE; // Imposta il valore predefinito a 3 (Utente) 
   }
 
   salvaUtente() {
     this.utenteDTO.inputValidate();
-    if (this.utenteDTO.nomeError || this.utenteDTO.cognomeError || this.utenteDTO.dataNascitaError || this.utenteDTO.codiceFiscaleError || this.utenteDTO.livelloPermessiError || this.utenteDTO.passwordError || this.confermaPasswordError) {
+    if (this.utenteDTO.nomeError || this.utenteDTO.cognomeError || this.utenteDTO.dataNascitaError || this.utenteDTO.codiceFiscaleError || this.utenteDTO.livelloPermessoError || this.utenteDTO.passwordError || this.confermaPasswordError) {
       console.log('Errore di validazione dei campi');
       return;
     }
@@ -101,7 +101,7 @@ export class UtenteCreate implements OnInit {
     this.utenteDTO.cognome = '';
     this.utenteDTO.dataNascita = null;
     this.utenteDTO.codiceFiscale = '';
-    this.utenteDTO.livelloPermessi = LivelloPermesso.UTENTE; // Imposta il valore predefinito a 1 (Utente)
+    this.utenteDTO.livelloPermesso = LivelloPermesso.UTENTE; // Imposta il valore predefinito a 1 (Utente)
     this.utenteDTO.codiceUtente = '';
 
     //resetto gli errori
@@ -110,7 +110,7 @@ export class UtenteCreate implements OnInit {
     this.utenteDTO.cognomeError = false;
     this.utenteDTO.dataNascitaError = false;
     this.utenteDTO.codiceFiscaleError = false;
-    this.utenteDTO.livelloPermessiError = false;
+    this.utenteDTO.livelloPermessoError = false;
   }
 
 }
