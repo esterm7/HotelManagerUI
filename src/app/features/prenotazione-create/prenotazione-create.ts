@@ -7,7 +7,6 @@ import { Location } from '@angular/common';
 import { Dialog } from '@angular/cdk/dialog';
 import { PrenotazioneDTO } from '../../DTO/prenotazioneDTO';
 import { CameraDto } from '../../DTO/cameraDTO';
-import { UtenteDto } from '../../DTO/utenteDTO';
 import { TipoCamera } from '../../core/enums/tipologia-camera-enum';
 import { CamereLibere } from '../camere-libere/camere-libere';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';

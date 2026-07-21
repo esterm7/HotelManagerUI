@@ -8,8 +8,7 @@
         </li>
         @if (auth.isLoggedIn()) {
         <li class="nav-item dropdown" (mouseenter)="openDropdown()" (mouseleave)="closeDropdown()">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ auth.currentUser()}}
             </a>
             <ul class="dropdown-menu" [class.show]="dropdownOpen()">
@@ -24,14 +23,14 @@
 
     <h1 class=" display-1 row justify-content-md-center mb-5"> PRENOTA </h1>
 
-    @if(this.prenotazioneDTO){
+
     <div class="row justify-content-md-center">
 
 
         <form class="col-6 border p-3 rounded" #form="ngForm">
             <div class="input-group mb-4">
 
-                <div class="input-group mb-4">
+                <!-- <div class="input-group mb-4">
                     <input name="codiceUtente" [(ngModel)]="prenotazioneDTO.codiceUtente" type="text"
                         class="form-control" placeholder="Codice Utente" (blur)="this.codiceUtenteValidate()" disabled>
                     @if (!!this.prenotazioneDTO.codiceUtenteError) {
@@ -46,29 +45,44 @@
                     <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.codiceCameraError}}</p>
                     }
 
-                </div>
+                </div> -->
 
 
-
-                <div class="input-group mb-4">
-                    <label class="input-group-text">Inizio prenotazione</label>
-                    <input name="dataInizio" [(ngModel)]="prenotazioneDTO.dataInizio" [min]="today" type="date" class="form-control"
-                        (blur)="prenotazioneDTO.dataInizioValidate()">
+                    <label class="input-group-text">Data check-in</label>
+                    <input name="dataInizio" [(ngModel)]="prenotazioneDTO.dataInizio" [min]="today" type="date"
+                        class="form-control" (blur)="prenotazioneDTO.dataInizioValidate()">
                     @if (!!this.prenotazioneDTO.dataInizioError) {
                     <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.dataInizioError}}</p>
                     }
                 </div>
 
                 <div class="input-group mb-4">
-                    <label class="input-group-text">Fine prenotazione</label>
-                    <input name="dataFine" [(ngModel)]="prenotazioneDTO.dataFine" [min]="this.prenotazioneDTO.dataFine" type="date" class="form-control"
+                    <label class="input-group-text">Data check-out</label>
+                    <input name="dataFine" [(ngModel)]="prenotazioneDTO.dataFine" [min]="this.prenotazioneDTO.dataFine"
+                        type="date" class="form-control"
                         (blur)="prenotazioneDTO.dataFineValidate(); prenotazioneDTO.dataInizioValidate()">
                     @if (!!this.prenotazioneDTO.dataFineError) {
                     <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.dataFineError}}</p>
                     }
                 </div>
+                <div class="input-group mb-4">
+                <select id="tipologia" class="form-select" [(ngModel)]="prenotazioneDTO.tipologiaCamera"
+                    (blur)="this.prenotazioneDTO.tipologiaCameraValidate()" name="tipologia">
+                    <option [ngValue]="null" disabled selected>Seleziona tipologia camera</option>
+                    @for (tipo of tipologie; track tipo) {
+                    <option [ngValue]="tipo">{{ tipo }}</option>
+                    }
+                </select>
+                @if (!!this.prenotazioneDTO.tipologiaCameraError) {
+                <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.tipologiaCameraError}}</p>
+                }
+            </div>
+                <div class="input-group mb-4">
+                    <button type="submit" class="btn btn-primary btn-sm" (click)="apriSelezioneCamera()"><i
+                            class="bi bi-search"></i></button>
+                </div>
 
-                
+
                 <div class="input-group mb-4">
                     <span class="input-group-text fs-5" id="inputGroupPrepend">€</span>
                     <input name="nome" [(ngModel)]="prenotazioneDTO.costoComplessivo" type="text" class="form-control"
@@ -86,13 +100,4 @@
                         Indietro
                     </button>
                 </div>
-            </div>
-        </form>
-
-    </div>
-
-    } @else {
-    <p class="row justify-content-md-center">Caricamento prenotazione...</p>
-    }
-
-</div>
+            </form>
