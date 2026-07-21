@@ -176,19 +176,5 @@ export class PrenotazioneCreate {
       this.prenotazioneDTO.costoComplessivo = differenzaGiorni * this.costoCamera;
     }
   }
-
-
-  get isAdmin() {
-    return this.auth.isAdmin();
-  }
-
-  get isGestore() {
-    return this.auth.isGestore();
-  }
-
-  get isUtente() {
-    return this.auth.isUtente();
-  }
-
-
+  
 }

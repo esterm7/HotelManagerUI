@@ -91,16 +91,4 @@ export class CameraCreate implements OnInit {
     this.livelloPermesso = this.auth.getLivelloPermesso();
   }
 
-  get isAdmin() {
-    return this.auth.isAdmin();
-  }
-
-  get isGestore() {
-    return this.auth.isGestore();
-  }
-
-  get isUtente() {
-    return this.auth.isUtente();
-  }
-
 }

@@ -106,16 +106,5 @@ export class UtenteUpdate implements OnInit {
     this.dropdownOpen.set(false);
   }
 
-  get isAdmin() {
-    return this.auth.isAdmin();
-  }
-
-  get isGestore() {
-    return this.auth.isGestore();
-  }
-
-  get isUtente() {
-    return this.auth.isUtente();
-  }
 }
 

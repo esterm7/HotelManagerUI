@@ -2,7 +2,7 @@
 
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">HOMEPAGE @if (isGestore){ • GESTORE} @if(isAdmin){ •
+            <a class="nav-link active" aria-current="page" href="#">HOMEPAGE @if (auth.isGestore()){ • GESTORE} @if(auth.isAdmin()){ •
                 Admin} </a>
         </li>
         @if (auth.isLoggedIn()) {
@@ -62,7 +62,7 @@
                         class="bi bi-search"></i></button>
             </div>
 
-            @if(isGestore) {
+            @if(auth.isGestore()) {
             <div class="input-group mb-4">
                 <input name="codiceUtente" [(ngModel)]="prenotazioneDTO.codiceUtente" type="text" class="form-control"
                     placeholder="Codice Utente" (blur)="this.codiceUtenteValidate()" >
@@ -74,7 +74,7 @@
 
             <div class="input-group mb-4">
                 <input name="codiceCamera" [(ngModel)]="prenotazioneDTO.codiceCamera" type="text" class="form-control"
-                    placeholder="Codice Camera" (blur)="this.codiceCameraValidate()" [disabled]="isUtente">
+                    placeholder="Codice Camera" (blur)="this.codiceCameraValidate()" [disabled]="auth.isUtente()">
                 @if (!!this.prenotazioneDTO.codiceCameraError) {
                 <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.codiceCameraError}}</p>
                 }

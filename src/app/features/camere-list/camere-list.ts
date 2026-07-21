@@ -68,17 +68,4 @@ export class CamereList implements OnInit {
     this.router.navigate(['/camera-create']);
   };
 
-  get isAdmin() {
-    return this.auth.isAdmin();
-  }
-
-  get isGestore() {
-    return this.auth.isGestore();
-  }
-
-  get isUtente() {
-    return this.auth.isUtente();
-  }
-
-
 }
