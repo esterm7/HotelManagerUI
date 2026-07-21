@@ -13,11 +13,6 @@ constructor(private router: Router){
 
 }
 
-
-
-
-
-
   VaiAHome() {
     this.router.navigate(['/home']);
   }
