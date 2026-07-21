@@ -17,11 +17,6 @@ import { LivelloPermesso } from '../../core/enums/livello-permessi';
   styleUrl: './utente-create.css',
 })
 
-
-//fare i controlli di validazione dei campi,
-// se non sono validi non fare il submit del form, altrimenti fare il submit 
-// e stampare in console i dati della camera da salvare
-
 export class UtenteCreate implements OnInit {
 
   adulto = new Date().toISOString().split('T')[0];
