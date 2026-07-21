@@ -1,3 +1,5 @@
+import { LivelloPermesso } from "../core/enums/livello-permessi";
+
 export class UtenteDto {
     codiceUtente!: string;
     codiceUtenteError!: boolean | string;
@@ -17,7 +19,7 @@ export class UtenteDto {
     password!: string;
     passwordError!: boolean | string;
 
-    livelloPermessi!: number;
+    livelloPermessi!: LivelloPermesso;
     livelloPermessiError!: boolean | string;
 
     constructor() {
@@ -32,7 +34,6 @@ export class UtenteDto {
         this.cognomeError = false;
         this.dataNascitaError = false;
         this.codiceFiscaleError = false;
-        this.livelloPermessiError = false;
         this.passwordError = false;
 
         // this.codiceUtenteValidate();
@@ -40,7 +41,6 @@ export class UtenteDto {
         this.cognomeUtenteValidate();
         this.dataNascitaUtenteValidate();
         this.codiceFiscaleUtenteValidate('');
-        this.livelloPermessiUtenteValidate();
         this.passwordUtenteValidate()
     }
 
@@ -106,12 +106,5 @@ export class UtenteDto {
             this.codiceFiscale = this.codiceFiscale.trim();
         }
     }
-    livelloPermessiUtenteValidate() {
-        if (this.livelloPermessi == null || isNaN(Number(this.livelloPermessi))) {
-            this.livelloPermessiError = true;
-        } else {
-            this.livelloPermessiError = false;
-            this.livelloPermessi = Number(this.livelloPermessi);
-        }
-    }
+  
 }
