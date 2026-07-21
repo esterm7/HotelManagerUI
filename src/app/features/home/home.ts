@@ -78,18 +78,4 @@ export class Home implements OnInit {
     this.livelloPermessi = this.auth.getLivelloPermessi();
   }
 
-
-  get isAdmin() {
-    return this.auth.isAdmin();
-  }
-
-  get isGestore() {
-    return this.auth.isGestore();
-  }
-
-  get isUtente() {
-    return this.auth.isUtente();
-  }
-
-
 }
