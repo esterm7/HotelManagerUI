@@ -31,7 +31,7 @@
             <div class="input-group input-group-sm mb-4">
                 <input name="nome" [(ngModel)]="utenteDTO.nome" type="text" class="form-control" placeholder="Nome"
                     (blur)="utenteDTO.nomeUtenteValidate()">
-                    
+
                 <app-form-error [error]="utenteDTO.nomeError" />
             </div>
 
@@ -75,9 +75,9 @@
             <div class="input-group input-group-sm mb-4">
                 <label class="input-group-text">Livello Permessi</label>
                 <select name="livelloPermessi" [(ngModel)]="utenteDTO.livelloPermessi" class="form-select">
-                    <option value="3">Utente</option>
-                    <option value="2">Gestore</option>
-                    <option value="1">Admin</option>
+                    <option value="UTENTE">Utente</option>
+                    <option value="GESTORE">Gestore</option>
+                    <option value="ADMIN">Admin</option>
                 </select>
 
                 <app-form-error [error]="utenteDTO.livelloPermessiError" />

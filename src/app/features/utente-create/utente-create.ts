@@ -8,6 +8,7 @@ import { AuthService } from '../../core/services/AuthService';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormLayout } from '../form-layout/form-layout';
 import { FormError } from '../form-error/form-error';
+import { LivelloPermesso } from '../../core/enums/livello-permessi';
 
 @Component({
   selector: 'app-utente-create',
@@ -55,7 +56,7 @@ export class UtenteCreate implements OnInit {
     this.adulto = date.toISOString().split('T')[0];
 
     this.utenteDTO = new UtenteDto();
-    this.utenteDTO.livelloPermessi = 3; // Imposta il valore predefinito a 3 (Utente) 
+    this.utenteDTO.livelloPermessi = LivelloPermesso.UTENTE; // Imposta il valore predefinito a 3 (Utente) 
   }
 
   salvaUtente() {
@@ -100,7 +101,7 @@ export class UtenteCreate implements OnInit {
     this.utenteDTO.cognome = '';
     this.utenteDTO.dataNascita = null;
     this.utenteDTO.codiceFiscale = '';
-    this.utenteDTO.livelloPermessi = 1; // Imposta il valore predefinito a 1 (Utente)
+    this.utenteDTO.livelloPermessi = LivelloPermesso.UTENTE; // Imposta il valore predefinito a 1 (Utente)
     this.utenteDTO.codiceUtente = '';
 
     //resetto gli errori
