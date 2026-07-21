@@ -1,8 +1,10 @@
+<!-- utente-create.html -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbarNavDropdown">
 
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">HOMEPAGE @if (isGestore){ • GESTORE} @if(isAdmin){ •
+            <a class="nav-link active" aria-current="page" href="#">HOMEPAGE @if (this.auth.isGestore()){ • GESTORE}
+                @if(this.auth.isAdmin()){ •
                 Admin} </a>
         </li>
         @if (auth.isLoggedIn()) {
@@ -18,60 +20,55 @@
     </ul>
 </nav>
 
-
-<div class=" container d-flex justify-content-center flex-column min-vh-100">
+<div class="container d-flex justify-content-center flex-column min-vh-100">
 
     <h1 class="row justify-content-md-center mb-5"> CREA UTENTE </h1>
 
     <div class="row justify-content-md-center">
-        <form class="col-6 border p-3 rounded">
-            <div class="input-group input-group-sm mb-4">
+        <app-form-layout submitLabel="Crea" (submit)="salvaUtente()" (reset)="resetForm()"
+            (back)="VaiAPaginaPrecedente()">
 
+            <div class="input-group input-group-sm mb-4">
                 <input name="nome" [(ngModel)]="utenteDTO.nome" type="text" class="form-control" placeholder="Nome"
                     (blur)="utenteDTO.nomeUtenteValidate()">
-                @if (!!this.utenteDTO.nomeError) {
-                <p style="color:red" class="invalid-feedback d-block">{{utenteDTO.nomeError}}</p>
-                }
+                    
+                <app-form-error [error]="utenteDTO.nomeError" />
             </div>
-            <div class="input-group input-group-sm mb-4">
 
+            <div class="input-group input-group-sm mb-4">
                 <input name="cognome" [(ngModel)]="utenteDTO.cognome" type="text" class="form-control"
                     placeholder="Cognome" (blur)="utenteDTO.cognomeUtenteValidate()">
-                @if (!!this.utenteDTO.cognomeError) {
-                <p style="color:red" class="invalid-feedback d-block">{{utenteDTO.cognomeError}}</p>
-                }
+
+                <app-form-error [error]="utenteDTO.cognomeError" />
             </div>
+
             <div class="input-group input-group-sm mb-4">
                 <label class="input-group-text">Data di Nascita</label>
-                <input name="dataNascita" [(ngModel)]="utenteDTO.dataNascita" [max]="adulto" type="date" class="form-control"
-                    (blur)="utenteDTO.dataNascitaUtenteValidate()">
-                @if (!!this.utenteDTO.dataNascitaError) {
-                <p style="color:red" class="invalid-feedback d-block">{{utenteDTO.dataNascitaError}}</p>
-                }
+                <input name="dataNascita" [(ngModel)]="utenteDTO.dataNascita" [max]="adulto" type="date"
+                    class="form-control" (blur)="utenteDTO.dataNascitaUtenteValidate()">
+
+                <app-form-error [error]="utenteDTO.dataNascitaError" />
             </div>
 
             <div class="input-group input-group-sm mb-4">
                 <input name="codiceFiscale" [(ngModel)]="utenteDTO.codiceFiscale" type="text" class="form-control"
                     placeholder="Codice Fiscale" (blur)="utenteDTO.codiceFiscaleUtenteValidate('')">
-                @if (!!this.utenteDTO.codiceFiscaleError) {
-                <p style="color:red" class="invalid-feedback d-block">{{utenteDTO.codiceFiscaleError}}</p>
-                }
-            </div>
 
+                <app-form-error [error]="utenteDTO.codiceFiscaleError" />
+            </div>
 
             <div class="input-group input-group-sm mb-4">
                 <input name="password" [(ngModel)]="utenteDTO.password" type="password" class="form-control"
                     placeholder="Password" (blur)="utenteDTO.passwordUtenteValidate()">
-                @if (!!this.utenteDTO.passwordError) {
-                <p style="color:red" class="invalid-feedback d-block">{{utenteDTO.passwordError}}</p>
-                }
+
+                <app-form-error [error]="utenteDTO.passwordError" />
             </div>
+
             <div class="input-group input-group-sm mb-4">
                 <input name="confermaPassword" [(ngModel)]="confermaPassword" type="password" class="form-control"
                     placeholder="Conferma Password" (blur)="verificaPassword()">
-                @if (!!this.confermaPasswordError) {
-                <p style="color:red" class="invalid-feedback d-block">{{this.confermaPasswordError}}</p>
-                }
+
+                <app-form-error [error]="confermaPasswordError" />
             </div>
 
             @if (auth.getLivelloPermessi() === 'ROLE_1'){
@@ -82,23 +79,12 @@
                     <option value="2">Gestore</option>
                     <option value="1">Admin</option>
                 </select>
-                @if (!!this.utenteDTO.livelloPermessiError) {
-                <p style="color:red" class="invalid-feedback d-block">{{utenteDTO.livelloPermessiError}}</p>
-                }
+
+                <app-form-error [error]="utenteDTO.livelloPermessiError" />
             </div>
             }
-            <div class="d-flex justify-content-md-center gap-3 mb-4 mt-5">
-                <button type="submit" (click)="salvaUtente()" class="btn btn-primary btn-sm">Crea</button>
-                <button type="button" (click)="resetForm()" class="btn btn-primary btn-sm">Reset</button>
 
-                <button type="button" (click)="VaiAPaginaPrecedente()" class="btn btn-danger btn-sm">
-                    Indietro
-                </button>
+        </app-form-layout>
 
-
-
-            </div>
-
-        </form>
     </div>
 </div>

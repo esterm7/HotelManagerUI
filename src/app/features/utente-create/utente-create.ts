@@ -6,10 +6,12 @@ import { Service } from '../../core/services/service';
 import { Location } from '@angular/common';
 import { AuthService } from '../../core/services/AuthService';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormLayout } from '../form-layout/form-layout';
+import { FormError } from '../form-error/form-error';
 
 @Component({
   selector: 'app-utente-create',
-  imports: [FormsModule, NgbPopoverModule ],
+  imports: [FormsModule, NgbPopoverModule, FormLayout, FormError],
   templateUrl: './utente-create.html',
   styleUrl: './utente-create.css',
 })
@@ -20,15 +22,15 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 // e stampare in console i dati della camera da salvare
 
 export class UtenteCreate implements OnInit {
-  
+
   adulto = new Date().toISOString().split('T')[0];
-  
+
   dropdownOpen = signal(false);
 
   utenteDTO!: UtenteDto;
 
   livelloPermessi!: string | null;
-  
+
 
   openDropdown() {
     this.dropdownOpen.set(true);
@@ -40,24 +42,9 @@ export class UtenteCreate implements OnInit {
   }
 
 
-   ngOnInit(): void {  
-      this.livelloPermessi = this.auth.getLivelloPermessi();
+  ngOnInit(): void {
+    this.livelloPermessi = this.auth.getLivelloPermessi();
   }
-
-  get isAdmin(){
-    return this.auth.isAdmin();
-  }
-
-  get isGestore() {
-    return this.auth.isGestore();
-  }
-
-  get isUtente() {
-    return this.auth.isUtente();
-  }
-
-
-  
 
   confermaPassword!: string;
   confermaPasswordError!: boolean | string;
@@ -124,5 +111,5 @@ export class UtenteCreate implements OnInit {
     this.utenteDTO.codiceFiscaleError = false;
     this.utenteDTO.livelloPermessiError = false;
   }
-  
+
 }
