@@ -44,7 +44,7 @@
             </div>
             <div class="input-group input-group-sm mb-4">
                 <label class="input-group-text">Data di Nascita</label>
-                <input name="dataNascita" [(ngModel)]="utenteDTO.dataNascita" type="date" class="form-control"
+                <input name="dataNascita" [(ngModel)]="utenteDTO.dataNascita" [max]="adulto" type="date" class="form-control"
                     (blur)="utenteDTO.dataNascitaUtenteValidate()">
                 @if (!!this.utenteDTO.dataNascitaError) {
                 <p style="color:red" class="invalid-feedback d-block">{{utenteDTO.dataNascitaError}}</p>
