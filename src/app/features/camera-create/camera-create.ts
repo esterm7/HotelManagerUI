@@ -76,8 +76,8 @@ export class CameraCreate implements OnInit {
   }
 
   VaiAPaginaPrecedente() {
-      this.location.back();
-    }
+    this.location.back();
+  }
 
   VaiAHome() {
     this.router.navigate(['/home']);

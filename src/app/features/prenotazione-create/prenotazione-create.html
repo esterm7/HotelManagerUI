@@ -2,7 +2,8 @@
 
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">HOMEPAGE @if (auth.isGestore()){ • GESTORE} @if(auth.isAdmin()){ •
+            <a class="nav-link active" aria-current="page" href="#">HOMEPAGE @if (auth.isGestore()){ • GESTORE}
+                @if(auth.isAdmin()){ •
                 Admin} </a>
         </li>
         @if (auth.isLoggedIn()) {
@@ -29,18 +30,18 @@
 
             <div class="input-group mb-4">
                 <label class="input-group-text">Data check-in</label>
-                <input name="dataInizio" [(ngModel)]="prenotazioneDTO.dataInizio" [min]="today" type="date" class="form-control"
-                    (blur)="prenotazioneDTO.dataInizioValidate()">
-                @if (!!this.prenotazioneDTO.dataInizioError) {
+                <input name="dataInizio" [(ngModel)]="prenotazioneDTO.dataInizio" [min]="today" type="date"
+                    class="form-control" (blur)="prenotazioneDTO.dataInizioValidate()">
+                @if ( this.prenotazioneDTO.dataInizioError) {
                 <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.dataInizioError}}</p>
                 }
             </div>
 
             <div class="input-group mb-4">
                 <label class="input-group-text">Data check-out</label>
-                <input name="dataFine" [(ngModel)]="prenotazioneDTO.dataFine" [min]="this.prenotazioneDTO.dataInizio" type="date" class="form-control"
-                    (blur)="prenotazioneDTO.dataFineValidate()">
-                @if (!!this.prenotazioneDTO.dataFineError) {
+                <input name="dataFine" [(ngModel)]="prenotazioneDTO.dataFine" [min]="this.prenotazioneDTO.dataInizio"
+                    type="date" class="form-control" (blur)="prenotazioneDTO.dataFineValidate()">
+                @if ( this.prenotazioneDTO.dataFineError) {
                 <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.dataFineError}}</p>
                 }
             </div>
@@ -53,7 +54,7 @@
                     <option [ngValue]="tipo">{{ tipo }}</option>
                     }
                 </select>
-                @if (!!this.prenotazioneDTO.tipologiaCameraError) {
+                @if ( this.prenotazioneDTO.tipologiaCameraError) {
                 <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.tipologiaCameraError}}</p>
                 }
             </div>
@@ -65,17 +66,17 @@
             @if(auth.isGestore()) {
             <div class="input-group mb-4">
                 <input name="codiceUtente" [(ngModel)]="prenotazioneDTO.codiceUtente" type="text" class="form-control"
-                    placeholder="Codice Utente" (blur)="this.codiceUtenteValidate()" >
-                @if (!!this.prenotazioneDTO.codiceUtenteError) {
+                    placeholder="Codice Utente" (blur)="this.codiceUtenteValidate()">
+                @if ( this.prenotazioneDTO.codiceUtenteError) {
                 <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.codiceUtenteError}}</p>
                 }
             </div>
-        }
+            }
 
             <div class="input-group mb-4">
                 <input name="codiceCamera" [(ngModel)]="prenotazioneDTO.codiceCamera" type="text" class="form-control"
                     placeholder="Codice Camera" (blur)="this.codiceCameraValidate()" [disabled]="auth.isUtente()">
-                @if (!!this.prenotazioneDTO.codiceCameraError) {
+                @if ( this.prenotazioneDTO.codiceCameraError) {
                 <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.codiceCameraError}}</p>
                 }
 
@@ -85,7 +86,7 @@
                 <span class="input-group-text fs-5" id="inputGroupPrepend">€</span>
                 <input name="nome" [(ngModel)]="prenotazioneDTO.costoComplessivo" type="text" class="form-control"
                     placeholder="0.00" disabled>
-                @if (!!this.prenotazioneDTO.costoComplessivoError) {
+                @if ( this.prenotazioneDTO.costoComplessivoError) {
                 <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.costoComplessivoError}}</p>
                 }
             </div>

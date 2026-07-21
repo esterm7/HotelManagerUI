@@ -2,7 +2,8 @@
 
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">HOMEPAGE @if (auth.isGestore()){ • GESTORE} @if(auth.isAdmin()){ •
+            <a class="nav-link active" aria-current="page" href="#">HOMEPAGE @if (auth.isGestore()){ • GESTORE}
+                @if(auth.isAdmin()){ •
                 Admin} </a>
         </li>
         @if (auth.isLoggedIn()) {
@@ -45,7 +46,7 @@
 
                 </select>
 
-                @if (!!this.cameraDTO.postiLettoError) {
+                @if ( this.cameraDTO.postiLettoError) {
                 <p style="color:red" class="invalid-feedback d-block">{{cameraDTO.postiLettoError}}</p>
                 }
             </div>
@@ -62,7 +63,7 @@
                 </select>
 
 
-                @if (!!this.cameraDTO.tipologiaError) {
+                @if ( this.cameraDTO.tipologiaError) {
                 <p style="color:red" class="invalid-feedback d-block">{{cameraDTO.tipologiaError}}</p>
                 }
             </div>
@@ -74,7 +75,7 @@
                     [(ngModel)]="cameraDTO.tariffa" #tariffa="ngModel" placeholder="Tariffa">
 
 
-                @if (!!this.cameraDTO.tariffaError) {
+                @if ( this.cameraDTO.tariffaError) {
                 <p style="color:red" class="invalid-feedback d-block">{{cameraDTO.tariffaError}}</p>
                 }
 

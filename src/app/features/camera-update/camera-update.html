@@ -47,7 +47,7 @@
 
                 </select>
 
-                @if (!!this.cameraDTO.postiLettoError) {
+                @if ( this.cameraDTO.postiLettoError) {
                 <p style="color:red" class="invalid-feedback d-block">{{cameraDTO.postiLettoError}}</p>
                 }
             </div>
@@ -59,7 +59,7 @@
                     <option [ngValue]="tipo">{{ tipo }}</option>
                     }
                 </select>
-                @if (!!this.cameraDTO.tipologiaError) {
+                @if ( this.cameraDTO.tipologiaError) {
                 <p style="color:red" class="invalid-feedback d-block">{{cameraDTO.tipologiaError}}</p>
                 }
             </div>
@@ -70,7 +70,7 @@
                     [(ngModel)]="cameraDTO.tariffa" #tariffa="ngModel" placeholder="Tariffa">
 
 
-                @if (!!this.cameraDTO.tariffaError) {
+                @if ( this.cameraDTO.tariffaError) {
                 <p style="color:red" class="invalid-feedback d-block">{{cameraDTO.tariffaError}}</p>
                 }
 

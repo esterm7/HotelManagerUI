@@ -2,7 +2,8 @@
 
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">HOMEPAGE @if (auth.isGestore()){ • GESTORE} @if(auth.isAdmin()){ •
+            <a class="nav-link active" aria-current="page" href="#">HOMEPAGE @if (auth.isGestore()){ • GESTORE}
+                @if(auth.isAdmin()){ •
                 Admin} </a>
         </li>
         @if (auth.isLoggedIn()) {
@@ -30,7 +31,7 @@
 
                 <input name="nome" [(ngModel)]="utenteDTO.nome" type="text" class="form-control" placeholder="Nome"
                     (blur)="utenteDTO.nomeUtenteValidate()">
-                @if (!!this.utenteDTO.nomeError) {
+                @if ( this.utenteDTO.nomeError) {
                 <p style="color:red" class="invalid-feedback d-block">{{utenteDTO.nomeError}}</p>
                 }
             </div>
@@ -38,15 +39,15 @@
 
                 <input name="cognome" [(ngModel)]="utenteDTO.cognome" type="text" class="form-control"
                     placeholder="Cognome" (blur)="utenteDTO.cognomeUtenteValidate()">
-                @if (!!this.utenteDTO.cognomeError) {
+                @if ( this.utenteDTO.cognomeError) {
                 <p style="color:red" class="invalid-feedback d-block">{{utenteDTO.cognomeError}}</p>
                 }
             </div>
             <div class="input-group input-group-sm mb-4">
                 <label class="input-group-text">Data di Nascita</label>
-                <input name="dataNascita" [(ngModel)]="utenteDTO.dataNascita" [max]="adulto" type="date" class="form-control"
-                    (blur)="utenteDTO.dataNascitaUtenteValidate()">
-                @if (!!this.utenteDTO.dataNascitaError) {
+                <input name="dataNascita" [(ngModel)]="utenteDTO.dataNascita" [max]="adulto" type="date"
+                    class="form-control" (blur)="utenteDTO.dataNascitaUtenteValidate()">
+                @if ( this.utenteDTO.dataNascitaError) {
                 <p style="color:red" class="invalid-feedback d-block">{{utenteDTO.dataNascitaError}}</p>
                 }
             </div>
@@ -54,7 +55,7 @@
             <div class="input-group input-group-sm mb-4">
                 <input name="codiceFiscale" [(ngModel)]="utenteDTO.codiceFiscale" type="text" class="form-control"
                     placeholder="Codice Fiscale" (blur)="utenteDTO.codiceFiscaleUtenteValidate('')">
-                @if (!!this.utenteDTO.codiceFiscaleError) {
+                @if ( this.utenteDTO.codiceFiscaleError) {
                 <p style="color:red" class="invalid-feedback d-block">{{utenteDTO.codiceFiscaleError}}</p>
                 }
             </div>
@@ -83,7 +84,7 @@
                     <option value="2">Gestore</option>
                     <option value="1">Admin</option>
                 </select>
-                @if (!!this.utenteDTO.livelloPermessoError) {
+                @if ( this.utenteDTO.livelloPermessoError) {
                 <p style="color:red" class="invalid-feedback d-block">{{utenteDTO.livelloPermessoError}}</p>
                 }
             </div>

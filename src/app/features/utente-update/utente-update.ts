@@ -9,7 +9,7 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-utente-update',
-  imports: [FormsModule, NgbPopoverModule ],
+  imports: [FormsModule, NgbPopoverModule],
   templateUrl: './utente-update.html',
   styleUrl: './utente-update.css',
 })
@@ -27,7 +27,7 @@ export class UtenteUpdate implements OnInit {
   confermaPasswordError!: boolean | string;
 
   constructor(private router: Router, private utenteService: Service, private route: ActivatedRoute, public auth: AuthService, private cdr: ChangeDetectorRef, private location: Location) {
-     const date = new Date();
+    const date = new Date();
     date.setFullYear(date.getFullYear() - 18);
     this.adulto = date.toISOString().split('T')[0];
   }
