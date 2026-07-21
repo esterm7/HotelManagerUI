@@ -5,6 +5,7 @@ import { UtenteDto } from '../../DTO/utenteDTO';
 import { Service } from '../../core/services/service';
 import { AuthService } from '../../core/services/AuthService';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { LivelloPermesso } from '../../core/enums/livello-permessi';
 
 @Component({
   selector: 'app-utenti-list',
@@ -17,11 +18,11 @@ export class UtentiList implements OnInit {
   constructor(private router: Router, private utenteService: Service, private route: ActivatedRoute, private cdr: ChangeDetectorRef, public auth: AuthService) { }
 
   dropdownOpen = signal(false);
-  livelloPermessi!: string | null;
+  livelloPermessi!: LivelloPermesso | null;
 
   ngOnInit() {
     this.utenti = this.route.snapshot.data['utenti'];
-    this.livelloPermessi = this.auth.getLivelloPermessi();
+    this.livelloPermessi = this.auth.getLivelloPermessi() ;
   };
 
   openDropdown() {
@@ -69,23 +70,4 @@ export class UtentiList implements OnInit {
   vaiAlCreaUtente() {
     this.router.navigate(['/utente-create']);
   };
-
-
-  permissionLabels: Record<number, string> = {
-    3: 'Utente',
-    2: 'Gestore',
-    1: 'Admin'
-  };
-
-  get isAdmin() {
-    return this.auth.isAdmin();
-  }
-
-  get isGestore() {
-    return this.auth.isGestore();
-  }
-
-  get isUtente() {
-    return this.auth.isUtente();
-  }
 }
