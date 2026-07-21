@@ -53,7 +53,7 @@ export class AuthService {
         return null;
     }
 
-    getLivelloPermessi(): string | null {
+    getLivelloPermessi(): LivelloPermesso | null {
         const token = this.getToken();
         if (!token) return null;
 
