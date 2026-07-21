@@ -6,6 +6,7 @@ import { AuthDto } from "../../DTO/authDTO";
 
 import { HttpContext } from '@angular/common/http';
 import { SKIP_GLOBAL_ERROR_ALERT } from '../../core/tokens/http-context.tokens';
+import { LivelloPermesso } from "../enums/livello-permessi";
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -103,17 +104,17 @@ export class AuthService {
 
 
     isAdmin(): boolean {
-        return this.getLivelloPermessi() === 'ROLE_1';
+        return this.getLivelloPermessi() === LivelloPermesso.ADMIN;
     }
 
 
     isGestore(): boolean {
-        return this.getLivelloPermessi() === 'ROLE_2';
+        return this.getLivelloPermessi() ===LivelloPermesso.GESTORE;
     }
 
 
     isUtente(): boolean {
-        return this.getLivelloPermessi() === 'ROLE_3';
+        return this.getLivelloPermessi() === LivelloPermesso.UTENTE;
     }
 
 }
