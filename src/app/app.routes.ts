@@ -39,7 +39,6 @@ export const routes: Routes = [
   {
     path: 'utente-create',
     component: UtenteCreate,
-    canActivate: [authGuard]
   },
   {
 
