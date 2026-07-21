@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, signal } from '@angular/core';
+import { ChangeDetectorRef, inject, Component, OnInit, signal } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PrenotazioneDTO } from '../../DTO/prenotazioneDTO';
 import { Service } from '../../core/services/service';
@@ -6,10 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/services/AuthService';
 import { Location } from '@angular/common';
 import { Dialog } from '@angular/cdk/dialog';
-
+import { CamereLibere } from '../camere-libere/camere-libere';
 import { CameraDto } from '../../DTO/cameraDTO';
 import { UtenteDto } from '../../DTO/utenteDTO';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { TipoCamera } from '../../core/enums/tipologia-camera-enum';
+
 
 
 @Component({
@@ -21,12 +23,22 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 export class PrenotazioneUpdate implements OnInit {
 
   // private dialog = inject(Dialog);
+  today = new Date().toISOString().split('T')[0];
+
+    private dialog = inject(Dialog);
 
   prenotazioneDTO!: PrenotazioneDTO;
 
   costoCamera!: number | null;
 
+    tipologie = Object.values(TipoCamera);
+  
+
   constructor(private router: Router, private prenotazioneService: Service, private route: ActivatedRoute, public auth: AuthService, private cdr: ChangeDetectorRef, private location: Location) {
+       this.prenotazioneDTO = new PrenotazioneDTO();
+    this.prenotazioneDTO.dataPrenotazione = new Date();
+    this.prenotazioneDTO.tipologiaCamera = null;
+    this.prenotazioneDTO.codiceUtente = auth.getCodiceUtente();
   }
 
   dropdownOpen = signal(false);
@@ -38,6 +50,31 @@ export class PrenotazioneUpdate implements OnInit {
 
   closeDropdown() {
     this.dropdownOpen.set(false);
+  }
+
+   apriSelezioneCamera() {
+      this.prenotazioneDTO.inputValidate();
+      if (this.prenotazioneDTO.dataInizioError || this.prenotazioneDTO.dataFineError || this.prenotazioneDTO.tipologiaCameraError) {
+        alert('Campi necessari per la selezione della camera non validi');
+        return;
+      }
+      const ref = this.dialog.open<CameraDto | null>(CamereLibere, {
+        data: {
+          prenotazioneTemp: this.prenotazioneDTO,
+        }
+      });
+
+      
+    ref.closed.subscribe(result => {
+      if (result) {
+        console.log('Camera scelta:', result.codiceCamera);
+        this.prenotazioneDTO.codiceCamera = result.codiceCamera;
+        this.costoCamera = result.tariffa;
+      }
+      console.log('Login chiuso, risultato:', result);
+      this.calcoloCostoComplessivo();
+      this.cdr.detectChanges();
+    });
   }
 
   ngOnInit() {
@@ -72,15 +109,16 @@ export class PrenotazioneUpdate implements OnInit {
       },
       error: (err) => {
         console.log(err);
-        alert(err.error);
-        console.error('Errore durante il salvataggio della prenotazione ', err.error);
+        if (err.status == 400) {
+          alert('Esiste già una prenotazione in atto per le date selezionate')
+        }
+        console.error('Errore durante il salvataggio della prenotazione ', err);
       },
       complete: () => {
         console.log('Richiesta completata');
       }
     });
   };
-
   codiceCameraValidate() {
     if (!this.prenotazioneDTO.codiceCamera || this.prenotazioneDTO.codiceCamera.trim() === '') {
       this.prenotazioneDTO.codiceCameraError = 'Codice camera non valido';
@@ -122,7 +160,17 @@ export class PrenotazioneUpdate implements OnInit {
 
   };
 
-    
+  
+  calcoloCostoComplessivo() {
+    if (this.prenotazioneDTO.dataInizio && this.prenotazioneDTO.dataFine && this.costoCamera) {
+      const dataInizio = new Date(this.prenotazioneDTO.dataInizio);
+      const dataFine = new Date(this.prenotazioneDTO.dataFine);
+      const differenzaGiorni = (dataFine.getTime() - dataInizio.getTime()) / (1000 * 60 * 60 * 24);
+      this.prenotazioneDTO.costoComplessivo = differenzaGiorni * this.costoCamera;
+    }
+  }
+  
+
     
   
   
