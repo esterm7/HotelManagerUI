@@ -75,7 +75,7 @@
                 }
             </div>
 
-            @if (auth.getLivelloPermessi() === 'ROLE_1'){
+            @if (auth.isAdmin()){
             <div class="input-group input-group-sm mb-4">
                 <label class="input-group-text">Livello Permessi</label>
                 <select name="livelloPermessi" [(ngModel)]="utenteDTO.livelloPermessi" class="form-select">
