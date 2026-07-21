@@ -1,4 +1,3 @@
-<!-- utente-create.html -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbarNavDropdown">
 
     <ul class="navbar-nav">
@@ -25,8 +24,8 @@
     <h1 class="row justify-content-md-center mb-5"> CREA UTENTE </h1>
 
     <div class="row justify-content-md-center">
-        <app-form-layout submitLabel="Crea" (submit)="salvaUtente()" (reset)="resetForm()"
-            (back)="VaiAPaginaPrecedente()">
+        <app-form-layout submitLabel="Crea" (formSubmit)="salvaUtente()" (formReset)="resetForm()"
+            (formBack)="VaiAPaginaPrecedente()">
 
             <div class="input-group input-group-sm mb-4">
                 <input name="nome" [(ngModel)]="utenteDTO.nome" type="text" class="form-control" placeholder="Nome"

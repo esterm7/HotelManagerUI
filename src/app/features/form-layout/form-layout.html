@@ -1,4 +1,4 @@
-<form class="col-6 border p-3 rounded" (ngSubmit)="submit.emit()">
+<form class="col-6 border p-3 rounded" (ngSubmit)="formSubmit.emit()">
 
     <ng-content></ng-content>
 
@@ -9,13 +9,13 @@
         </button>
 
         @if (showReset()) {
-        <button type="button" class="btn btn-primary btn-sm" (click)="reset.emit()">
+        <button type="button" class="btn btn-primary btn-sm" (click)="formReset.emit()">
             Reset
         </button>
         }
 
         @if (showBack()) {
-        <button type="button" class="btn btn-danger btn-sm" (click)="back.emit()">
+        <button type="button" class="btn btn-danger btn-sm" (click)="formBack.emit()">
             Indietro
         </button>
         }

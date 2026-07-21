@@ -1,4 +1,3 @@
-// form-layout/form-layout.ts
 import { Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -14,7 +13,7 @@ export class FormLayout {
   showReset = input(true);
   showBack = input(true);
 
-  submit = output<void>();
-  reset = output<void>();
-  back = output<void>();
+  formSubmit = output<void>();
+  formReset = output<void>();
+  formBack = output<void>();
 }
