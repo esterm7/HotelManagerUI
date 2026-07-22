@@ -1,3 +1,4 @@
+<!-- camera-update.html -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbarNavDropdown">
 
     <ul class="navbar-nav">
@@ -19,7 +20,6 @@
     </ul>
 </nav>
 
-
 <div class="container d-flex justify-content-center flex-column min-vh-100" style="font-family:'Roboto', sans-serif">
 
     <h1 class="row justify-content-md-center mb-5"> MODIFICA CAMERA </h1>
@@ -27,14 +27,12 @@
     @if (cameraDTO) {
     <div class="row justify-content-md-center">
 
-        <form #form="ngForm" class="col-6 border p-3 rounded">
+        <app-form-layout submitLabel="Aggiorna" [showReset]="false" (formSubmit)="updateCamera()"
+            (formBack)="VaiAPaginaPrecedente()">
 
             <div class="input-group mb-4">
-
-
                 <select class="form-select" aria-label="Default select example" id="numero" name="numero"
                     [(ngModel)]="cameraDTO.postiLetto" class="form-control">
-
 
                     <option value="" disabled>Posti letto</option>
                     <option value="1">1</option>
@@ -43,13 +41,8 @@
                     <option value="4">4</option>
                     <option value="5">5</option>
                     <option value="6">6</option>
-
-
                 </select>
-
-                @if ( this.cameraDTO.postiLettoError) {
-                <p style="color:red" class="invalid-feedback d-block">{{cameraDTO.postiLettoError}}</p>
-                }
+                <app-form-error [error]="cameraDTO.postiLettoError" />
             </div>
 
             <div class="input-group mb-4">
@@ -59,36 +52,21 @@
                     <option [ngValue]="tipo">{{ tipo }}</option>
                     }
                 </select>
-                @if ( this.cameraDTO.tipologiaError) {
-                <p style="color:red" class="invalid-feedback d-block">{{cameraDTO.tipologiaError}}</p>
-                }
+                <app-form-error [error]="cameraDTO.tipologiaError" />
             </div>
 
             <div class="input-group mb-4">
                 <span class="input-group-text fs-5" id="inputGroupPrepend">€</span>
-                <input type=text name="tariffa" class="form-control" aria-label="Amount (to the nearest dollar)"
+                <input type="text" name="tariffa" class="form-control" aria-label="Amount (to the nearest dollar)"
                     [(ngModel)]="cameraDTO.tariffa" #tariffa="ngModel" placeholder="Tariffa">
-
-
-                @if ( this.cameraDTO.tariffaError) {
-                <p style="color:red" class="invalid-feedback d-block">{{cameraDTO.tariffaError}}</p>
-                }
-
+                <app-form-error [error]="cameraDTO.tariffaError" />
             </div>
 
-            <div class="d-flex justify-content-md-center gap-3 mb-4 mt-5">
-                <button type="submit" (click)="updateCamera()" class="btn btn-primary btn-sm">Aggiorna</button>
-                <button type="button" (click)="VaiAPaginaPrecedente()" class="btn btn-danger btn-sm">
-                    <i class="bi bi-reply"></i>
-                </button>
-            </div>
+        </app-form-layout>
 
-        </form>
     </div>
     } @else {
     <p class="row justify-content-md-center">Caricamento camera...</p>
     }
-
-
 
 </div>
