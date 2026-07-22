@@ -24,43 +24,45 @@
 </nav>
 
 
-<div style="width: 100%; margin-left: 20px;">
-    <table class="table table table-hover ">
+<div class="container-fluid mt-4">
+    <table class="table table-hover align-middle text-center">
         <thead>
             <tr>
-                <th scope="col-sm-5">Codice Prenotazione</th>
-                <th scope="col">Data inzio</th>
-                <th scope="col">Data fine</th>
-                <th scope="col">Camera</th>
-                <th scope="col">Importo totale</th>
-                <th scope="col">AZIONI</th>
-
+                <th class="col-2">N. Prenotazione</th>
+                <th class="col-1">Utente</th>
+                <th class="col-1">Camera</th>
+                <th class="col-2">Data inizio</th>
+                <th class="col-2">Data fine</th>
+                <th class="col-2">Importo totale</th>
+                <th class="col-2 text-end">Azioni</th>
             </tr>
         </thead>
         <tbody>
 
             @for (prenotazione of prenotazioni; track prenotazione.codicePrenotazione) {
             <tr>
-                <td>{{prenotazione.codicePrenotazione}}</td>
-                <td>{{prenotazione.dataInizio}}</td>
-                <td>{{prenotazione.dataFine}}</td>
-                <td>{{prenotazione.codiceCamera}}</td>
-                <td>€{{prenotazione.costoComplessivo}} </td>
-                <td>
-
+                <td>{{ prenotazione.codicePrenotazione }}</td>
+                <td>{{ prenotazione.codiceUtente }}</td>
+                <td>{{ prenotazione.codiceCamera }}</td>
+                <td>{{ prenotazione.dataInizio }}</td>
+                <td>{{ prenotazione.dataFine }}</td>
+                <td>€{{ prenotazione.costoComplessivo }}</td>
+                <td class="text-end">
                     @if (auth.isGestore()) {
-                    <button class="btn btn-primary btn-sm me-2" (click)="vaiAllUpdatePrenotazione(prenotazione)"><i
-                            class="bi bi-pencil-square"></i>
+                    <button class="btn btn-primary btn-sm me-2" (click)="vaiAllUpdatePrenotazione(prenotazione)">
+                        <i class="bi bi-pencil-square"></i>
                     </button>
                     }
-                    <button class="btn btn-danger btn-sm" (click)="deletePrenotazione(prenotazione)"><i
-                            class="bi bi-trash"></i></button>
+                    <button class="btn btn-danger btn-sm" (click)="deletePrenotazione(prenotazione)">
+                        <i class="bi bi-trash"></i>
+                    </button>
                 </td>
-                <td> </td>
             </tr>
             } @empty {
             <tr>
-                <td colspan="6" class="text-center">Non hai ancora effettuato nessuna prenotazione</td>
+                <td colspan="7" class="text-center text-muted py-4">
+                    Non hai ancora effettuato nessuna prenotazione
+                </td>
             </tr>
             }
         </tbody>
