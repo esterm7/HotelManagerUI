@@ -10,10 +10,11 @@ import { TipoCamera } from '../../core/enums/tipologia-camera-enum';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormError } from '../form-error/form-error';
 import { FormLayout } from '../form-layout/form-layout';
+import { NavLayout } from '../../nav-layout/nav-layout';
 
 @Component({
   selector: 'app-camera-update',
-  imports: [FormsModule, NgbPopoverModule, FormError, FormLayout],
+  imports: [FormsModule, NgbPopoverModule, FormError, FormLayout, NavLayout],
   templateUrl: './camera-update.html',
   styleUrl: './camera-update.css',
 })
