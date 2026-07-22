@@ -75,7 +75,8 @@ export const routes: Routes = [
   },
   {
     path: 'prenotazione-create',
-    component: PrenotazioneCreate
+    component: PrenotazioneCreate,
+    canActivate: [authGuard]
   },
   {
     path: 'camere-libere',
