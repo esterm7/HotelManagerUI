@@ -11,12 +11,14 @@ import { CameraDto } from '../../DTO/cameraDTO';
 import { UtenteDto } from '../../DTO/utenteDTO';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { TipoCamera } from '../../core/enums/tipologia-camera-enum';
+import { FormError } from '../form-error/form-error';
+import { FormLayout } from '../form-layout/form-layout';
 
 
 
 @Component({
   selector: 'app-prenotazione-update',
-  imports: [FormsModule, NgbPopoverModule ],
+  imports: [FormsModule, NgbPopoverModule, FormError, FormLayout ],
   templateUrl: './prenotazione-update.html',
   styleUrl: './prenotazione-update.css',
 })

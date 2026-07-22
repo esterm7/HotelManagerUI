@@ -1,3 +1,4 @@
+<!-- prenotazione-update.html -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbarNavDropdown">
 
     <ul class="navbar-nav">
@@ -23,49 +24,32 @@
 
     <h1 class=" display-1 row justify-content-md-center mb-5"> PRENOTA </h1>
 
-
     <div class="row justify-content-md-center">
 
+        <app-form-layout submitLabel="Aggiorna" [showReset]="false" (formSubmit)="updatePrenotazione()"
+            (formBack)="VaiAPaginaPrecedente()">
 
-        <form class="col-6 border p-3 rounded" #form="ngForm">
             <div class="input-group mb-4">
+                <label class="input-group-text">Codice utente</label>
+                <input name="dataInizio" [(ngModel)]="prenotazioneDTO.codiceUtente" class="form-control" disabled>
+            </div>
 
-                <!-- <div class="input-group mb-4">
-                    <input name="codiceUtente" [(ngModel)]="prenotazioneDTO.codiceUtente" type="text"
-                        class="form-control" placeholder="Codice Utente" (blur)="this.codiceUtenteValidate()" disabled>
-                    @if ( this.prenotazioneDTO.codiceUtenteError) {
-                    <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.codiceUtenteError}}</p>
-                    }
-                </div>
+            <div class="input-group mb-4">
+                <label class="input-group-text">Data check-in</label>
+                <input name="dataInizio" [(ngModel)]="prenotazioneDTO.dataInizio" [min]="today" type="date"
+                    class="form-control" (blur)="prenotazioneDTO.dataInizioValidate()">
+                <app-form-error [error]="prenotazioneDTO.dataInizioError" />
+            </div>
 
-                <div class="input-group mb-4">
-                    <input name="codiceCamera" [(ngModel)]="prenotazioneDTO.codiceCamera" type="text"
-                        class="form-control" placeholder="Codice Camera" (blur)="this.codiceCameraValidate()">
-                    @if ( this.prenotazioneDTO.codiceCameraError) {
-                    <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.codiceCameraError}}</p>
-                    }
+            <div class="input-group mb-4">
+                <label class="input-group-text">Data check-out</label>
+                <input name="dataFine" [(ngModel)]="prenotazioneDTO.dataFine" [min]="this.prenotazioneDTO.dataInizio"
+                    type="date" class="form-control"
+                    (blur)="prenotazioneDTO.dataFineValidate(); prenotazioneDTO.dataInizioValidate()">
+                <app-form-error [error]="prenotazioneDTO.dataFineError" />
+            </div>
 
-                </div> -->
-
-
-                    <label class="input-group-text">Data check-in</label>
-                    <input name="dataInizio" [(ngModel)]="prenotazioneDTO.dataInizio" [min]="today" type="date"
-                        class="form-control" (blur)="prenotazioneDTO.dataInizioValidate()">
-                    @if ( this.prenotazioneDTO.dataInizioError) {
-                    <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.dataInizioError}}</p>
-                    }
-                </div>
-
-                <div class="input-group mb-4">
-                    <label class="input-group-text">Data check-out</label>
-                    <input name="dataFine" [(ngModel)]="prenotazioneDTO.dataFine" [min]="this.prenotazioneDTO.dataFine"
-                        type="date" class="form-control"
-                        (blur)="prenotazioneDTO.dataFineValidate(); prenotazioneDTO.dataInizioValidate()">
-                    @if ( this.prenotazioneDTO.dataFineError) {
-                    <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.dataFineError}}</p>
-                    }
-                </div>
-                <div class="input-group mb-4">
+            <div class="input-group mb-4">
                 <select id="tipologia" class="form-select" [(ngModel)]="prenotazioneDTO.tipologiaCamera"
                     (blur)="this.prenotazioneDTO.tipologiaCameraValidate()" name="tipologia">
                     <option [ngValue]="null" disabled selected>Seleziona tipologia camera</option>
@@ -73,31 +57,23 @@
                     <option [ngValue]="tipo">{{ tipo }}</option>
                     }
                 </select>
-                @if ( this.prenotazioneDTO.tipologiaCameraError) {
-                <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.tipologiaCameraError}}</p>
-                }
+                <app-form-error [error]="prenotazioneDTO.tipologiaCameraError" />
             </div>
-                <div class="input-group mb-4">
-                    <button type="submit" class="btn btn-primary btn-sm" (click)="apriSelezioneCamera()"><i
-                            class="bi bi-search"></i></button>
-                </div>
 
+            <div class="input-group mb-4">
+                <button type="button" class="btn btn-primary btn-sm" (click)="apriSelezioneCamera()">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
 
-                <div class="input-group mb-4">
-                    <span class="input-group-text fs-5" id="inputGroupPrepend">€</span>
-                    <input name="nome" [(ngModel)]="prenotazioneDTO.costoComplessivo" type="text" class="form-control"
-                        placeholder="0.00" disabled>
-                    @if ( this.prenotazioneDTO.costoComplessivoError) {
-                    <p style="color:red" class="invalid-feedback d-block">{{prenotazioneDTO.costoComplessivoError}}</p>
-                    }
-                </div>
+            <div class="input-group mb-4">
+                <span class="input-group-text fs-5" id="inputGroupPrepend">€</span>
+                <input name="nome" [(ngModel)]="prenotazioneDTO.costoComplessivo" type="text" class="form-control"
+                    placeholder="0.00" disabled>
+                <app-form-error [error]="prenotazioneDTO.costoComplessivoError" />
+            </div>
 
-                <div class="d-flex justify-content-md-center gap-3 mb-4 mt-5">
-                    <button type="submit" (click)="updatePrenotazione()"
-                        class="btn btn-primary btn-sm">Aggiorna</button>
+        </app-form-layout>
 
-                    <button type="button" (click)="VaiAPaginaPrecedente()" class="btn btn-danger btn-sm">
-                        Indietro
-                    </button>
-                </div>
-            </form>
+    </div>
+</div>
