@@ -8,10 +8,11 @@ import { Location } from '@angular/common';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormError } from '../form-error/form-error';
 import { FormLayout } from '../form-layout/form-layout';
+import { NavLayout } from "../../nav-layout/nav-layout";
 
 @Component({
   selector: 'app-utente-update',
-  imports: [FormsModule, NgbPopoverModule, FormError, FormLayout],
+  imports: [FormsModule, NgbPopoverModule, FormError, FormLayout, NavLayout],
   templateUrl: './utente-update.html',
   styleUrl: './utente-update.css',
 })
@@ -19,7 +20,6 @@ export class UtenteUpdate implements OnInit {
 
   adulto = new Date().toISOString().split('T')[0];
 
-  dropdownOpen = signal(false);
 
   utenteDTO!: UtenteDto;
 
@@ -97,15 +97,6 @@ export class UtenteUpdate implements OnInit {
     if (this.password !== this.confermaPassword) {
       this.confermaPasswordError = 'Le password non coincidono';
     } else this.confermaPasswordError = false
-  }
-
-  openDropdown() {
-    this.dropdownOpen.set(true);
-    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermesso());
-  }
-
-  closeDropdown() {
-    this.dropdownOpen.set(false);
   }
 
 }
