@@ -14,6 +14,7 @@ import { PrenotazioneList } from './features/prenotazione-list/prenotazione-list
 import { ErrorGeneric } from './features/error-generic/error-generic';
 import { CamereLibere } from './features/camere-libere/camere-libere';
 import { PrenotazioneUpdate } from './features/prenotazione-update/prenotazione-update';
+import { gestoreGuard } from './core/guards/gestore-guard';
 
 export const routes: Routes = [
   {
@@ -34,7 +35,7 @@ export const routes: Routes = [
     component: UtentiList,
     resolve: { utenti: utenteListResolve },
     canActivate: [authGuard]
-
+    // si può valutare di fare un guard che gestisca admin e gestore così da avere una migliore pulizia e sicurezza anzichè aspettare il blocco da BE
   },
   {
     path: 'utente-create',
@@ -57,12 +58,12 @@ export const routes: Routes = [
   {
     path: 'camera-create',
     component: CameraCreate,
-    canActivate: [authGuard]
+    canActivate: [gestoreGuard]
   },
   {
     path: 'camera-update/:codiceCamera',
     component: CameraUpdate,
-    canActivate: [authGuard]
+    canActivate: [gestoreGuard]
   },
   {
     path: 'prenotazione-update/:codicePrenotazione',
