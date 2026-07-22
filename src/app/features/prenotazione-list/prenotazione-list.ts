@@ -4,10 +4,12 @@ import { Service } from '../../core/services/service';
 import { PrenotazioneDTO } from '../../DTO/prenotazioneDTO';
 import { AuthService } from '../../core/services/AuthService';
 import { NavLayout } from '../../nav-layout/nav-layout';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-prenotazione-list',
-  imports: [NavLayout],
+  imports: [NavLayout, NgbPopoverModule],
   templateUrl: './prenotazione-list.html',
   styleUrl: './prenotazione-list.css',
 })

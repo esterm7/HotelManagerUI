@@ -25,11 +25,11 @@
                 <td>€{{ prenotazione.costoComplessivo }}</td>
                 <td class="text-end">
                     @if (auth.isGestore()) {
-                    <button class="btn btn-primary btn-sm me-2" (click)="vaiAllUpdatePrenotazione(prenotazione)">
+                    <button class="btn btn-primary btn-sm me-2"  ngbPopover="Modifica"  triggers="hover focus"  (click)="vaiAllUpdatePrenotazione(prenotazione)">
                         <i class="bi bi-pencil-square"></i>
                     </button>
                     }
-                    <button class="btn btn-danger btn-sm" (click)="deletePrenotazione(prenotazione)">
+                    <button class="btn btn-danger btn-sm" ngbPopover="Cancella"  triggers="hover focus" (click)="deletePrenotazione(prenotazione)">
                         <i class="bi bi-trash"></i>
                     </button>
                 </td>
@@ -46,10 +46,10 @@
 </div>
 
 <div class="d-flex justify-content-md-center gap-3 mb-4 mt-5">
-    <button type="button" (click)="VaiAHome()" class="btn btn-danger btn-sm">
-        <i class="bi bi-house"></i>
+    <button type="button" ngbPopover="Torna alla home"  triggers="hover focus" (click)="VaiAHome()" class="btn btn-danger btn-sm">
+        <i class="bi bi-house fs-4"></i>
     </button>
-    <button class="btn btn-primary" (click)="vaiAlCreaPrenotazione()">
-        Inserisci nuova prenotazione
+    <button class="btn btn-primary" ngbPopover="Inserisci una prenotazione"  triggers="hover focus" (click)="vaiAlCreaPrenotazione()">
+     <i class="bi bi-plus-lg fs-4"></i>
     </button>
 </div>
