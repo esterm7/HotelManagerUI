@@ -12,11 +12,12 @@ import { CamereLibere } from '../camere-libere/camere-libere';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormError } from '../form-error/form-error';
 import { FormLayout } from '../form-layout/form-layout';
+import { NavLayout } from '../../nav-layout/nav-layout';
 
 
 @Component({
   selector: 'app-prenotazione-create',
-  imports: [FormsModule, NgbPopoverModule, FormLayout, FormError],
+  imports: [FormsModule, NgbPopoverModule, FormLayout, FormError, NavLayout],
   templateUrl: './prenotazione-create.html',
   styleUrl: './prenotazione-create.css',
 })
