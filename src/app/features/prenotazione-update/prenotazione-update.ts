@@ -13,12 +13,13 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { TipoCamera } from '../../core/enums/tipologia-camera-enum';
 import { FormError } from '../form-error/form-error';
 import { FormLayout } from '../form-layout/form-layout';
+import { NavLayout } from '../../nav-layout/nav-layout';
 
 
 
 @Component({
   selector: 'app-prenotazione-update',
-  imports: [FormsModule, NgbPopoverModule, FormError, FormLayout ],
+  imports: [FormsModule, NgbPopoverModule, FormError, FormLayout, NavLayout ],
   templateUrl: './prenotazione-update.html',
   styleUrl: './prenotazione-update.css',
 })

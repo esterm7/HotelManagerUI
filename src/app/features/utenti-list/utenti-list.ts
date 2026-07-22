@@ -6,10 +6,11 @@ import { Service } from '../../core/services/service';
 import { AuthService } from '../../core/services/AuthService';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { LivelloPermesso } from '../../core/enums/livello-permessi';
+import { NavLayout } from '../../nav-layout/nav-layout';
 
 @Component({
   selector: 'app-utenti-list',
-  imports: [CommonModule, NgbPopoverModule ],
+  imports: [CommonModule, NgbPopoverModule, NavLayout ],
   templateUrl: './utenti-list.html',
   styleUrl: './utenti-list.css',
 })

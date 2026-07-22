@@ -9,10 +9,11 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormLayout } from '../form-layout/form-layout';
 import { FormError } from '../form-error/form-error';
 import { LivelloPermesso } from '../../core/enums/livello-permessi';
+import { NavLayout } from '../../nav-layout/nav-layout';
 
 @Component({
   selector: 'app-utente-create',
-  imports: [FormsModule, NgbPopoverModule, FormLayout, FormError],
+  imports: [FormsModule, NgbPopoverModule, FormLayout, FormError, NavLayout],
   templateUrl: './utente-create.html',
   styleUrl: './utente-create.css',
 })
@@ -21,21 +22,11 @@ export class UtenteCreate implements OnInit {
 
   adulto = new Date().toISOString().split('T')[0];
 
-  dropdownOpen = signal(false);
 
   utenteDTO!: UtenteDto;
 
   livelloPermesso!: string | null;
 
-
-  openDropdown() {
-    this.dropdownOpen.set(true);
-    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermesso());
-  }
-
-  closeDropdown() {
-    this.dropdownOpen.set(false);
-  }
 
 
   ngOnInit(): void {

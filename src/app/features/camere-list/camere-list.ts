@@ -5,11 +5,12 @@ import { CameraDto } from '../../DTO/cameraDTO';
 import { Service } from '../../core/services/service';
 import { AuthService } from '../../core/services/AuthService';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { NavLayout } from '../../nav-layout/nav-layout';
 
 
 @Component({
   selector: 'app-camere-list',
-  imports: [CommonModule, NgbPopoverModule],
+  imports: [CommonModule, NgbPopoverModule, NavLayout],
   templateUrl: './camere-list.html',
   styleUrl: './camere-list.css',
 })
