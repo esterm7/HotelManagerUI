@@ -6,10 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/services/AuthService';
 import { Location } from '@angular/common';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormError } from '../form-error/form-error';
+import { FormLayout } from '../form-layout/form-layout';
 
 @Component({
   selector: 'app-utente-update',
-  imports: [FormsModule, NgbPopoverModule],
+  imports: [FormsModule, NgbPopoverModule, FormError, FormLayout],
   templateUrl: './utente-update.html',
   styleUrl: './utente-update.css',
 })
