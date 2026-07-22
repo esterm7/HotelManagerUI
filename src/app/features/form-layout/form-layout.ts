@@ -1,9 +1,9 @@
 import { Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-form-layout',
-  imports: [FormsModule],
+  imports: [FormsModule, NgbPopover],
   standalone: true,
   templateUrl: './form-layout.html',
   styleUrl: './form-layout.css',
