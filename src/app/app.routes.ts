@@ -44,7 +44,6 @@ export const routes: Routes = [
 
     path: 'utente-login',
     component: UtenteLogin,
-    canActivate: [authGuard]
   },
   {
     path: 'utente-update/:codiceUtente',
