@@ -3,10 +3,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Service } from '../../core/services/service';
 import { PrenotazioneDTO } from '../../DTO/prenotazioneDTO';
 import { AuthService } from '../../core/services/AuthService';
+import { NavLayout } from '../../nav-layout/nav-layout';
 
 @Component({
   selector: 'app-prenotazione-list',
-  imports: [],
+  imports: [NavLayout],
   templateUrl: './prenotazione-list.html',
   styleUrl: './prenotazione-list.css',
 })
