@@ -1,36 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">HOMEPAGE @if (this.auth.isGestore()){ • GESTORE}
-            @if(this.auth.isAdmin()){ •
-            Admin} @if (this.auth.isUtente()){ • UTENTE}</a>
-        </li>
-        @if (!auth.isLoggedIn()) {
-        <li class="nav-item">
-          <a class="nav-link" (click)="openLogin()">Effettua Login</a>
-        </li>
-        }
-        @if (auth.isLoggedIn()) {
-        <li class="nav-item dropdown" (mouseenter)="openDropdown()" (mouseleave)="closeDropdown()">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Benvenuto {{ auth.currentUser()}}
-          </a>
-          <ul class="dropdown-menu" [class.show]="dropdownOpen()">
-            <li><a class="dropdown-item" (click)="vaiUpdateUtente()">Modifica</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" (click)="auth.logout()">Logout</a></li>
-          </ul>
-        </li>
-        }
-      </ul>
-    </div>
-  </div>
-</nav>
+<app-nav-layout></app-nav-layout>
 
 <!-- 
 <div id="myCarousel" class="position-relative carousel slide" style="z-index: 1;" data-bs-ride="true">

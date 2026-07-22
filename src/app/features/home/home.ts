@@ -1,50 +1,26 @@
-import { ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, signal } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Dialog } from '@angular/cdk/dialog';
-import { UtenteLogin } from '../../features/utente-login/utente-login'
 import { AuthService } from '../../core/services/AuthService';
 import { Service } from '../../core/services/service';
+import { NavLayout } from '../../nav-layout/nav-layout';
 
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule],
+  imports: [CommonModule, NavLayout],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 
 export class Home implements OnInit {
-  private dialog = inject(Dialog);
 
 
-  constructor(private router: Router, private route: ActivatedRoute, public auth: AuthService, private service: Service, private cdr: ChangeDetectorRef) { }
+  constructor(private router: Router, private route: ActivatedRoute, public auth: AuthService, private service: Service) { }
   dropdownOpen = signal(false);
 
   livelloPermesso!: string | null;
 
-  openDropdown() {
-    this.dropdownOpen.set(true);
-    console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermesso());
-  }
-
-  closeDropdown() {
-    this.dropdownOpen.set(false);
-  }
-
-
-  openLogin() {
-    const ref = this.dialog.open(UtenteLogin, {
-      panelClass: 'login-dialog-panel'
-    });
-
-    ref.closed.subscribe(result => {
-      console.log('Login chiuso, risultato:', result);
-      this.dropdownOpen.set(false);
-      this.cdr.detectChanges();
-
-    });
-  }
 
   vaiAlCreaUtente() {
     this.router.navigate(['/utente-create']);
