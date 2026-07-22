@@ -1,15 +1,15 @@
-
 <app-nav-layout></app-nav-layout>
 
 <div class="container d-flex justify-content-center flex-column min-vh-100" style="font-family:'Roboto', sans-serif">
 
-    <h1 class="row justify-content-md-center mb-5"> MODIFICA CAMERA </h1>
 
     @if (cameraDTO) {
     <div class="row justify-content-md-center">
 
         <app-form-layout submitLabel="Aggiorna" [showReset]="false" (formSubmit)="updateCamera()"
             (formBack)="VaiAPaginaPrecedente()">
+
+            <h1 class="row justify-content-md-center mb-5"> MODIFICA CAMERA </h1>
 
             <div class="input-group mb-4">
                 <select class="form-select" aria-label="Default select example" id="numero" name="numero"

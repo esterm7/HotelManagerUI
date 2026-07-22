@@ -1,11 +1,12 @@
 <app-nav-layout></app-nav-layout>
 <div class="container d-flex justify-content-center flex-column min-vh-100">
 
-    <h1 class="row justify-content-md-center mb-5"> CREA UTENTE </h1>
 
     <div class="row justify-content-md-center">
         <app-form-layout submitLabel="Crea" (formSubmit)="salvaUtente()" (formReset)="resetForm()"
             (formBack)="VaiAPaginaPrecedente()">
+
+            <h1 class="row justify-content-md-center mb-5"> CREA UTENTE </h1>
 
             <div class="input-group input-group-sm mb-4">
                 <input name="nome" [(ngModel)]="utenteDTO.nome" type="text" class="form-control" placeholder="Nome"
