@@ -23,7 +23,6 @@ import { NavLayout } from '../../nav-layout/nav-layout';
 
 export class CameraCreate implements OnInit {
 
-  dropdownOpen = signal(false);
 
   cameraDTO!: CameraDto;
 
@@ -35,15 +34,6 @@ export class CameraCreate implements OnInit {
 
   constructor(private router: Router, private cameraService: Service, public auth: AuthService, private location: Location) {
     this.cameraDTO = new CameraDto();
-  }
-
-  openDropdown() {
-    this.dropdownOpen.set(true);
-    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermesso());
-  }
-
-  closeDropdown() {
-    this.dropdownOpen.set(false);
   }
 
 

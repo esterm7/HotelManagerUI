@@ -26,14 +26,6 @@ export class UtentiList implements OnInit {
     this.livelloPermesso = this.auth.getLivelloPermesso() ;
   };
 
-  openDropdown() {
-    this.dropdownOpen.set(true);
-    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermesso());
-  }
-
-  closeDropdown() {
-    this.dropdownOpen.set(false);
-  }
 
   VaiAHome() {
     this.router.navigate(['/home']);

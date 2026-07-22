@@ -44,16 +44,6 @@ export class PrenotazioneUpdate implements OnInit {
     this.prenotazioneDTO.codiceUtente = auth.getCodiceUtente();
   }
 
-  dropdownOpen = signal(false);
-
-  openDropdown() {
-    this.dropdownOpen.set(true);
-    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermesso());
-  }
-
-  closeDropdown() {
-    this.dropdownOpen.set(false);
-  }
 
    apriSelezioneCamera() {
       this.prenotazioneDTO.inputValidate();

@@ -16,8 +16,6 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 export class PrenotazioneList implements OnInit {
   prenotazioni: PrenotazioneDTO[] = [];
 
-
-  dropdownOpen = signal(false);
   livelloPermesso!: string | null;
 
 
@@ -31,14 +29,6 @@ export class PrenotazioneList implements OnInit {
 
   }
 
-  openDropdown() {
-    this.dropdownOpen.set(true);
-    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermesso());
-  }
-
-  closeDropdown() {
-    this.dropdownOpen.set(false);
-  }
 
   vaiAllUpdatePrenotazione(prenotazione: PrenotazioneDTO) {
     this.router.navigate(['/prenotazione-update', prenotazione.codicePrenotazione]);

@@ -17,7 +17,7 @@ export class Home implements OnInit {
 
 
   constructor(private router: Router, private route: ActivatedRoute, public auth: AuthService, private service: Service) { }
-  dropdownOpen = signal(false);
+
 
   livelloPermesso!: string | null;
 

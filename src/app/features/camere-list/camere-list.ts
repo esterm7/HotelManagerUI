@@ -18,8 +18,6 @@ import { NavLayout } from '../../nav-layout/nav-layout';
 
 export class CamereList implements OnInit {
 
-
-  dropdownOpen = signal(false);
   livelloPermesso!: string | null;
 
 
@@ -31,15 +29,6 @@ export class CamereList implements OnInit {
     this.camere = this.route.snapshot.data['camere'];
     console.log('Camere:', this.camere);
     this.livelloPermesso = this.auth.getLivelloPermesso();
-  }
-
-  openDropdown() {
-    this.dropdownOpen.set(true);
-    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermesso());
-  }
-
-  closeDropdown() {
-    this.dropdownOpen.set(false);
   }
 
 

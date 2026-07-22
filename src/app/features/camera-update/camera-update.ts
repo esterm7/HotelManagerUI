@@ -29,16 +29,6 @@ export class CameraUpdate implements OnInit {
   constructor(private router: Router, private cameraService: Service, private route: ActivatedRoute, public auth: AuthService, private cdr: ChangeDetectorRef, private location: Location) {
   }
 
-  dropdownOpen = signal(false);
-
-  openDropdown() {
-    this.dropdownOpen.set(true);
-    // console.log(this.auth.currentUser() + '\n'+ this.auth.getLivelloPermesso());
-  }
-
-  closeDropdown() {
-    this.dropdownOpen.set(false);
-  }
 
   ngOnInit() {
     const codice = this.route.snapshot.params['codiceCamera'];
