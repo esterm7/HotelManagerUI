@@ -1,66 +1,28 @@
 <app-nav-layout></app-nav-layout>
 
-<!-- 
-<div id="myCarousel" class="position-relative carousel slide" style="z-index: 1;" data-bs-ride="true">
+<div class="container-fluid position-absolute top-50 start-50 translate-middle" style="z-index: 10;">
 
-  <div class="carousel-inner mh-75">
-    <div class="carousel-item active" data-bs-interval="2000">
-      <img src="https://i.pinimg.com/736x/62/98/a2/6298a2186ad0e6133ceb9c8bd457b175.jpg" class="d-block w-100 h-100"
-        alt="Foto 1">
-    </div>
-    <div class="carousel-item" data-bs-interval="2000">
-      <img src="https://i.pinimg.com/1200x/28/af/b1/28afb1f24d9f50182b17d592e25f72bd.jpg" class="d-block w-100 h-100"
-        alt="Foto 2">
-    </div>
-    <div class="carousel-item" data-bs-interval="2000">
-      <img src="https://i.pinimg.com/1200x/b0/57/75/b05775e934068be0f50b44bbaa789b0a.jpg" class="d-block w-100 h-100"
-        alt="Foto 3">
-    </div>
-    <div class="carousel-item" data-bs-interval="2000">
-      <img src="https://i.pinimg.com/1200x/4d/a3/5c/4da35c0d84177bb057c09599fd2509a3.jpg" class="d-block w-100 h-100"
-        alt="Foto 4">
-    </div>
-  </div>
+  <div class="row justify-content-center g-4 mb-4">
 
-  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </button>
-
-  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </button>
-
-
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></button>
-    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1"></button>
-    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2"></button>
-  </div>
-
-</div> -->
-
-
-<div
-  class="container-fluid position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center"
-  style="z-index: 10; pointer-events: none">
-  <div class="row row-cols-1 w-100 row-cols-md-2 g-4 justify-content-center">
-
-    @if (this.auth.isGestore()){
+    @if (auth.isGestore()) {
     <div class="col-md-3 d-flex">
-      <div class="card text-center w-100 h-100 border-black" style="pointer-events: auto;">
+      <div class="card text-center w-100 h-100 border-black">
         <img src="https://i.pinimg.com/736x/df/e3/bb/dfe3bbbd4ebcfc75605b57a8ebc2776e.jpg"
-          class="card-img-top mx-auto mt-3" style="width: 150px; height: 150px; object-fit: cover;">
+          class="card-img-top mx-auto mt-3"
+          style="width:150px;height:150px;object-fit:cover;"
+          alt="Camera">
+
         <div class="card-body d-flex flex-column">
-          <button type="button" (click)="vaiAlCreaCamera()" class="btn btn-danger w-75 mx-auto">
+          <button type="button" class="btn btn-danger w-75 mx-auto" (click)="vaiAlCreaCamera()">
             Inserisci una nuova camera
           </button>
+
           <a class="icon-link icon-link-hover d-inline-flex mx-auto mt-3"
-            style="--bs-icon-link-transform: translate3d(0, -.125rem, 0); cursor: pointer;" (click)="vaiAListaCamere()">
-            <svg xmlns="http://www.w3.org/2000/svg" class="bi" viewBox="0 0 16 16" aria-hidden="true">
-              <path
-                d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
-              <path
-                d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+            style="cursor:pointer;"
+            (click)="vaiAListaCamere()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="bi" viewBox="0 0 16 16">
+              <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+              <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
             </svg>
             Lista camere
           </a>
@@ -69,22 +31,25 @@
     </div>
     }
 
-    @if (this.auth.isAdmin() || this.auth.isGestore()) {
+    @if (auth.isAdmin() || auth.isGestore()) {
     <div class="col-md-3 d-flex">
-      <div class="card text-center w-100 h-100 border-black" style="pointer-events: auto;">
+      <div class="card text-center w-100 h-100 border-black">
         <img src="https://i.pinimg.com/736x/71/26/7e/71267e196665cb6a2e48310bcf87f2c7.jpg"
-          class="card-img-top mx-auto mt-3" style="width: 150px; height: 150px; object-fit: cover;">
+          class="card-img-top mx-auto mt-3"
+          style="width:150px;height:150px;object-fit:cover;"
+          alt="Utente">
+
         <div class="card-body d-flex flex-column">
-          <button type="button" (click)="vaiAlCreaUtente()" class="btn btn-danger w-75 mx-auto">
+          <button type="button" class="btn btn-danger w-75 mx-auto" (click)="vaiAlCreaUtente()">
             Inserisci un nuovo utente
           </button>
+
           <a class="icon-link icon-link-hover d-inline-flex mx-auto mt-3"
-            style="--bs-icon-link-transform: translate3d(0, -.125rem, 0); cursor: pointer;" (click)="vaiAListaUtenti()">
-            <svg xmlns="http://www.w3.org/2000/svg" class="bi" viewBox="0 0 16 16" aria-hidden="true">
-              <path
-                d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
-              <path
-                d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+            style="cursor:pointer;"
+            (click)="vaiAListaUtenti()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="bi" viewBox="0 0 16 16">
+              <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+              <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
             </svg>
             Lista utenti
           </a>
@@ -95,21 +60,23 @@
 
     @if (auth.isUtente() || auth.isGestore()) {
     <div class="col-md-3 d-flex">
-      <div class="card text-center w-100 h-100 border-black" style="pointer-events: auto;">
+      <div class="card text-center w-100 h-100 border-black">
         <img src="https://i.pinimg.com/1200x/70/4b/80/704b80d62581026f6d132e19aef883b9.jpg"
-          class="card-img-top mx-auto mt-3" style="width: 150px; height: 150px; object-fit: cover;">
+          class="card-img-top mx-auto mt-3"
+          style="width:150px;height:150px;object-fit:cover;"
+          alt="Prenotazione">
+
         <div class="card-body d-flex flex-column">
-          <button type="button" (click)="vaiAlCreaPrenotazione()" class="btn btn-danger w-75 mx-auto">
+          <button type="button" class="btn btn-danger w-75 mx-auto" (click)="vaiAlCreaPrenotazione()">
             Inserisci una prenotazione
           </button>
+
           <a class="icon-link icon-link-hover d-inline-flex mx-auto mt-3"
-            style="--bs-icon-link-transform: translate3d(0, -.125rem, 0); cursor: pointer;"
+            style="cursor:pointer;"
             (click)="vaiAListaPrenotazioni()">
-            <svg xmlns="http://www.w3.org/2000/svg" class="bi" viewBox="0 0 16 16" aria-hidden="true">
-              <path
-                d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
-              <path
-                d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+            <svg xmlns="http://www.w3.org/2000/svg" class="bi" viewBox="0 0 16 16">
+              <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+              <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
             </svg>
             Lista prenotazioni
           </a>
@@ -119,4 +86,72 @@
     }
 
   </div>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+
+      <form class="border rounded p-3">
+        <div class="row align-items-start g-3">
+
+          <div class="col">
+            <div class="input-group">
+              <label class="input-group-text">Arrivo</label>
+              <input
+                name="dataInizio"
+                [(ngModel)]="prenotazioneDTO.dataInizio"
+                [min]="today"
+                type="date"
+                class="form-control"
+                (blur)="prenotazioneDTO.dataInizioValidate()">
+            </div>
+            <app-form-error [error]="prenotazioneDTO.dataInizioError"></app-form-error>
+          </div>
+
+          <div class="col">
+            <div class="input-group">
+              <label class="input-group-text">Partenza</label>
+              <input
+                name="dataFine"
+                [(ngModel)]="prenotazioneDTO.dataFine"
+                [min]="prenotazioneDTO.dataInizio"
+                type="date"
+                class="form-control"
+                (blur)="prenotazioneDTO.dataFineValidate(); prenotazioneDTO.dataInizioValidate()">
+            </div>
+            <app-form-error [error]="prenotazioneDTO.dataFineError"></app-form-error>
+          </div>
+
+          <div class="col">
+            <select
+              id="tipologia"
+              name="tipologia"
+              class="form-select"
+              [(ngModel)]="prenotazioneDTO.tipologiaCamera"
+              (blur)="prenotazioneDTO.tipologiaCameraValidate()">
+
+              <option [ngValue]="null" disabled>Seleziona tipologia camera</option>
+
+              @for (tipo of tipologie; track tipo) {
+                <option [ngValue]="tipo">{{ tipo }}</option>
+              }
+            </select>
+
+            <app-form-error [error]="prenotazioneDTO.tipologiaCameraError"></app-form-error>
+          </div>
+
+          <div class="col-auto d-flex align-items-start">
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="apriSelezioneCamera()">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+
+        </div>
+      </form>
+
+    </div>
+  </div>
+
 </div>
