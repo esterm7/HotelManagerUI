@@ -1,4 +1,5 @@
 import { TipoCamera } from '../core/enums/tipologia-camera-enum';
+import { StatoPrenotazione } from '../core/enums/stato-prenotazione';
 
 export class PrenotazioneDTO {
     codicePrenotazione!: string;
@@ -25,6 +26,11 @@ export class PrenotazioneDTO {
     tipologiaCamera!: TipoCamera | null;
     tipologiaCameraError!: boolean | string;
 
+    statoPrenotazione!: StatoPrenotazione | null;
+    statoPrenotazioneError!: boolean | string;
+
+
+    
     constructor() { }
 
     // vanno sostituiti poi tutti i messaggi d'errore con l'acquisizione dell'errore da backend
@@ -33,11 +39,13 @@ export class PrenotazioneDTO {
         this.dataInizioError = false;
         this.dataFineError = false;
         this.tipologiaCameraError = false
+        this.statoPrenotazioneError = false;
 
         this.dataPrenotazioneValidate();
         this.dataInizioValidate();
         this.dataFineValidate();
         this.tipologiaCameraValidate();
+        this.statoPrenotazioneValidate();
     }
 
     dataPrenotazioneValidate() {
@@ -47,6 +55,8 @@ export class PrenotazioneDTO {
             this.dataPrenotazioneError = false;
         }
     }
+
+
 
     dataInizioValidate() {
         if (!this.dataPrenotazione) {
@@ -75,6 +85,16 @@ export class PrenotazioneDTO {
             this.tipologiaCameraError = 'Tipologia camera non valida';
         } else {
             this.tipologiaCameraError = false;
+        }
+
+
+    }
+
+    statoPrenotazioneValidate() {
+        if (!this.statoPrenotazione) {
+            this.statoPrenotazioneError = 'Stato prenotazione non valido';
+        } else {
+            this.statoPrenotazioneError = false;
         }
     }
 

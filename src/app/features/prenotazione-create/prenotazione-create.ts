@@ -13,6 +13,7 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormError } from '../form-error/form-error';
 import { FormLayout } from '../form-layout/form-layout';
 import { NavLayout } from '../../nav-layout/nav-layout';
+import { StatoPrenotazione } from '../../core/enums/stato-prenotazione';
 
 
 @Component({
@@ -30,6 +31,8 @@ export class PrenotazioneCreate {
   costoCamera!: number | null;
 
   tipologie = Object.values(TipoCamera);
+
+  statoPrenotazione = Object.values(StatoPrenotazione);
 
   livelloPermesso!: string | null;
 
