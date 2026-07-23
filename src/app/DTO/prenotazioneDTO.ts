@@ -22,6 +22,8 @@ export class PrenotazioneDTO {
     costoComplessivo!: number;
     costoComplessivoError!: boolean | string;
 
+    costoCamera!: number | null;
+
     tipologiaCamera!: TipoCamera | null;
     tipologiaCameraError!: boolean | string;
 
@@ -50,7 +52,7 @@ export class PrenotazioneDTO {
 
     dataInizioValidate() {
         if (!this.dataPrenotazione) {
-            this.dataFineError = 'Data prenotazione non valida';
+            this.dataInizioError = 'Data prenotazione non valida';
         } else if (!this.dataInizio || this.dataInizio < this.dataPrenotazione) {
             this.dataInizioError = 'Data inizio non valida';
         } else if (this.dataFine && this.dataInizio > this.dataFine) {

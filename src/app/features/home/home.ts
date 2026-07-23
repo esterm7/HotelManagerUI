@@ -59,6 +59,7 @@ export class Home implements OnInit {
       if (result) {
         console.log('Camera scelta:', result.codiceCamera);
         this.prenotazioneDTO.codiceCamera = result.codiceCamera;
+        this.prenotazioneDTO.costoCamera = result.tariffa;
       }
       this.vaiAPrenota();
       console.log('Login chiuso, risultato:', result);
