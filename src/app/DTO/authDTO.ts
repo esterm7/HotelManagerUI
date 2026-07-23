@@ -6,6 +6,6 @@ export class AuthDto {
 
     password!: string;
 
-    constructor () {}
+    constructor() { }
 
 }

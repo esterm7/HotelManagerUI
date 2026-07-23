@@ -21,6 +21,8 @@ import { NavLayout } from '../../nav-layout/nav-layout';
   templateUrl: './prenotazione-create.html',
   styleUrl: './prenotazione-create.css',
 })
+
+
 export class PrenotazioneCreate {
   private dialog = inject(Dialog);
 
@@ -50,7 +52,6 @@ export class PrenotazioneCreate {
       this.prenotazioneDTO.codiceUtente = this.auth.getCodiceUtente();
     }
   }
-
 
   apriSelezioneCamera() {
     this.prenotazioneDTO.inputValidate();

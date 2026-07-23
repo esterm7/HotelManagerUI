@@ -7,9 +7,11 @@ import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
 import { CameraDto } from '../../DTO/cameraDTO';
 import { PrenotazioneDTO } from '../../DTO/prenotazioneDTO';
 
+
 export interface CamereLibereData {
   prenotazioneTemp: PrenotazioneDTO;
 }
+
 
 @Component({
   selector: 'app-camere-libere',
@@ -50,7 +52,4 @@ export class CamereLibere implements OnInit {
   Annulla() {
     this.dialogRef.close(null);
   }
-
-
-
 }

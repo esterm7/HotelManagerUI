@@ -29,7 +29,6 @@ export class PrenotazioneDTO {
 
     constructor() { }
 
-    // vanno sostituiti poi tutti i messaggi d'errore con l'acquisizione dell'errore da backend
     inputValidate() {
         this.dataPrenotazioneError = false;
         this.dataInizioError = false;

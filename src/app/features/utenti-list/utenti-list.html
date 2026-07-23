@@ -1,6 +1,5 @@
 <app-nav-layout></app-nav-layout>
 
-
 <div style="width: 100%; margin-left: 20px;">
     <table class="table table-hover">
         <thead>
@@ -20,10 +19,10 @@
                 <td>{{utente.cognome}}</td>
                 <td>{{ utente.livelloPermesso }}</td>
                 <td>
-                    <button class="btn btn-primary btn-sm me-2" ngbPopover="Modifica" triggers="hover focus" (click)="vaiUpdateUtente(utente)"> <i
-                            class="bi bi-pencil-square"></i> </button>
-                    <button class="btn btn-danger btn-sm" ngbPopover="Elimina" triggers="hover focus" (click)="deleteUtente(utente)"><i
-                            class="bi bi-trash"></i></button>
+                    <button class="btn btn-primary btn-sm me-2" ngbPopover="Modifica" triggers="hover focus"
+                        (click)="vaiUpdateUtente(utente)"> <i class="bi bi-pencil-square"></i> </button>
+                    <button class="btn btn-danger btn-sm" ngbPopover="Elimina" triggers="hover focus"
+                        (click)="deleteUtente(utente)"><i class="bi bi-trash"></i></button>
                 </td>
                 <td> </td>
             </tr>
@@ -36,8 +35,8 @@
     <button class="btn btn-danger me-2" ngbPopover="Torna alla home" triggers="hover focus" (click)="VaiAHome()">
         <i class="bi bi-house fs-4"></i>
     </button>
-    <button class="btn btn-primary"ngbPopover="Aggiungi un utente" triggers="hover focus" (click)="vaiAlCreaUtente()">
-             <i class="bi bi-plus-lg fs-4"></i>
+    <button class="btn btn-primary" ngbPopover="Aggiungi un utente" triggers="hover focus" (click)="vaiAlCreaUtente()">
+        <i class="bi bi-plus-lg fs-4"></i>
 
     </button>
 

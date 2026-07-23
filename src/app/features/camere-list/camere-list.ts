@@ -20,8 +20,6 @@ export class CamereList implements OnInit {
 
   livelloPermesso!: string | null;
 
-
-
   camere: CameraDto[] = [];
   constructor(private router: Router, private route: ActivatedRoute, private service: Service, public auth: AuthService) { }
 
@@ -30,8 +28,6 @@ export class CamereList implements OnInit {
     console.log('Camere:', this.camere);
     this.livelloPermesso = this.auth.getLivelloPermesso();
   }
-
-
 
   vaiAllUpdateCamera(camera: CameraDto) {
     this.router.navigate(['/camera-update', camera.codiceCamera]);
@@ -57,5 +53,4 @@ export class CamereList implements OnInit {
   vaiAlCreaCamera() {
     this.router.navigate(['/camera-create']);
   };
-
 }

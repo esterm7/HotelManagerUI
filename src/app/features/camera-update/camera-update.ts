@@ -12,6 +12,7 @@ import { FormError } from '../form-error/form-error';
 import { FormLayout } from '../form-layout/form-layout';
 import { NavLayout } from '../../nav-layout/nav-layout';
 
+
 @Component({
   selector: 'app-camera-update',
   imports: [FormsModule, NgbPopoverModule, FormError, FormLayout, NavLayout],
@@ -19,16 +20,15 @@ import { NavLayout } from '../../nav-layout/nav-layout';
   styleUrl: './camera-update.css',
 })
 
+
 export class CameraUpdate implements OnInit {
 
   cameraDTO!: CameraDto;
 
   tipologie = Object.values(TipoCamera);
 
-
   constructor(private router: Router, private cameraService: Service, private route: ActivatedRoute, public auth: AuthService, private cdr: ChangeDetectorRef, private location: Location) {
   }
-
 
   ngOnInit() {
     const codice = this.route.snapshot.params['codiceCamera'];
@@ -75,7 +75,4 @@ export class CameraUpdate implements OnInit {
   VaiAPaginaPrecedente() {
     this.location.back();
   }
-
-
-
 }

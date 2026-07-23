@@ -16,48 +16,46 @@ import { FormLayout } from '../form-layout/form-layout';
 import { NavLayout } from '../../nav-layout/nav-layout';
 
 
-
 @Component({
   selector: 'app-prenotazione-update',
-  imports: [FormsModule, NgbPopoverModule, FormError, FormLayout, NavLayout ],
+  imports: [FormsModule, NgbPopoverModule, FormError, FormLayout, NavLayout],
   templateUrl: './prenotazione-update.html',
   styleUrl: './prenotazione-update.css',
 })
+
+
 export class PrenotazioneUpdate implements OnInit {
 
   // private dialog = inject(Dialog);
   today = new Date().toISOString().split('T')[0];
 
-    private dialog = inject(Dialog);
+  private dialog = inject(Dialog);
 
   prenotazioneDTO!: PrenotazioneDTO;
 
   costoCamera!: number | null;
 
-    tipologie = Object.values(TipoCamera);
-  
+  tipologie = Object.values(TipoCamera);
 
   constructor(private router: Router, private prenotazioneService: Service, private route: ActivatedRoute, public auth: AuthService, private cdr: ChangeDetectorRef, private location: Location) {
-       this.prenotazioneDTO = new PrenotazioneDTO();
+    this.prenotazioneDTO = new PrenotazioneDTO();
     this.prenotazioneDTO.dataPrenotazione = new Date();
     this.prenotazioneDTO.tipologiaCamera = null;
     this.prenotazioneDTO.codiceUtente = auth.getCodiceUtente();
   }
 
-
-   apriSelezioneCamera() {
-      this.prenotazioneDTO.inputValidate();
-      if (this.prenotazioneDTO.dataInizioError || this.prenotazioneDTO.dataFineError || this.prenotazioneDTO.tipologiaCameraError) {
-        alert('Campi necessari per la selezione della camera non validi');
-        return;
+  apriSelezioneCamera() {
+    this.prenotazioneDTO.inputValidate();
+    if (this.prenotazioneDTO.dataInizioError || this.prenotazioneDTO.dataFineError || this.prenotazioneDTO.tipologiaCameraError) {
+      alert('Campi necessari per la selezione della camera non validi');
+      return;
+    }
+    const ref = this.dialog.open<CameraDto | null>(CamereLibere, {
+      data: {
+        prenotazioneTemp: this.prenotazioneDTO,
       }
-      const ref = this.dialog.open<CameraDto | null>(CamereLibere, {
-        data: {
-          prenotazioneTemp: this.prenotazioneDTO,
-        }
-      });
+    });
 
-      
     ref.closed.subscribe(result => {
       if (result) {
         console.log('Camera scelta:', result.codiceCamera);
@@ -112,6 +110,7 @@ export class PrenotazioneUpdate implements OnInit {
       }
     });
   };
+
   codiceCameraValidate() {
     if (!this.prenotazioneDTO.codiceCamera || this.prenotazioneDTO.codiceCamera.trim() === '') {
       this.prenotazioneDTO.codiceCameraError = 'Codice camera non valido';
@@ -153,7 +152,6 @@ export class PrenotazioneUpdate implements OnInit {
 
   };
 
-  
   calcoloCostoComplessivo() {
     if (this.prenotazioneDTO.dataInizio && this.prenotazioneDTO.dataFine && this.costoCamera) {
       const dataInizio = new Date(this.prenotazioneDTO.dataInizio);
@@ -162,25 +160,19 @@ export class PrenotazioneUpdate implements OnInit {
       this.prenotazioneDTO.costoComplessivo = differenzaGiorni * this.costoCamera;
     }
   }
-  
 
-    
-  
-  
-    VaiAHome() {
-      this.router.navigate(['/home']);
-  
-    };
-  
-    VaiAListaPrenotazioni() {
-      this.router.navigate(['/prenotazione-list']);
-    };
-  
-    VaiAPaginaPrecedente() {
-      this.location.back();
-    }
+  VaiAHome() {
+    this.router.navigate(['/home']);
 
+  };
 
+  VaiAListaPrenotazioni() {
+    this.router.navigate(['/prenotazione-list']);
+  };
+
+  VaiAPaginaPrecedente() {
+    this.location.back();
+  }
 }
 
 

@@ -23,7 +23,6 @@ import { NavLayout } from '../../nav-layout/nav-layout';
 
 export class CameraCreate implements OnInit {
 
-
   cameraDTO!: CameraDto;
 
   livelloPermesso!: string | null;
@@ -35,8 +34,6 @@ export class CameraCreate implements OnInit {
   constructor(private router: Router, private cameraService: Service, public auth: AuthService, private location: Location) {
     this.cameraDTO = new CameraDto();
   }
-
-
 
   salvaCamera() {
     console.log(this.cameraDTO);
@@ -79,5 +76,4 @@ export class CameraCreate implements OnInit {
   ngOnInit(): void {
     this.livelloPermesso = this.auth.getLivelloPermesso();
   }
-
 }
