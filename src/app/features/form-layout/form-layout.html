@@ -5,21 +5,22 @@
     <div class="d-flex justify-content-md-center gap-3 mb-4 mt-5">
 
         @if (showBack()) {
-        <button type="button" class="btn btn-danger btn-sm" ngbPopover="Indietro"  triggers="hover focus" (click)="formBack.emit()">
+        <button type="button" class="btn btn-danger btn-sm" ngbPopover="Indietro" triggers="hover focus"
+            (click)="formBack.emit()">
             <i class="bi bi-reply"></i>
         </button>
         }
 
         @if (showReset()) {
-            <button type="button" class="btn btn-primary btn-sm" (click)="formReset.emit()">
-                Reset
-            </button>
+        <button type="button" class="btn btn-primary btn-sm" (click)="formReset.emit()">
+            Reset
+        </button>
         }
 
         <button type="submit" class="btn btn-primary btn-sm">
             {{ submitLabel() }}
         </button>
-        
+
     </div>
 
 </form>

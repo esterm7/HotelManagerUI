@@ -25,18 +25,13 @@ export class UtenteDto {
     constructor() {
     }
 
-    // vanno sostituiti poi tutti i messaggi d'errore con l'acquisizione dell'errore da backend
     inputValidate() {
-        //gestione data
-        //    this.dataNascita = new Date(utenteDTO.dataNascita);
-        // reset errors
         this.nomeError = false;
         this.cognomeError = false;
         this.dataNascitaError = false;
         this.codiceFiscaleError = false;
         this.passwordError = false;
 
-        // this.codiceUtenteValidate();
         this.nomeUtenteValidate();
         this.cognomeUtenteValidate();
         this.dataNascitaUtenteValidate();
@@ -45,7 +40,6 @@ export class UtenteDto {
     }
 
     codiceUtenteValidate() {
-
         if (!this.codiceUtente || this.codiceUtente.trim() === '' || this.codiceUtente.trim().length > 12) {
             this.codiceUtenteError = 'Codice utente non valido';
         } else if (this.codiceUtenteError = 'esma2026') {
@@ -55,8 +49,8 @@ export class UtenteDto {
             this.codiceUtente = this.codiceUtente.trim();
         }
     }
-    passwordUtenteValidate() {
 
+    passwordUtenteValidate() {
         if (!this.password || this.password.trim() === '' || this.password.trim().length < 6) {
             this.passwordError = 'Password troppo corta';
         } else {
@@ -64,6 +58,7 @@ export class UtenteDto {
             this.password = this.password.trim();
         }
     }
+
     passwordValidate(password: string): boolean | string {
         if (!password || password.trim() === '' || password.trim().length < 6) {
             return 'Password troppo corta';
@@ -80,6 +75,7 @@ export class UtenteDto {
             this.nome = this.nome.trim();
         }
     }
+
     cognomeUtenteValidate() {
         if (!this.cognome || this.cognome.trim() === '' || this.cognome.trim().length > 50) {
             this.cognomeError = 'Cognome non valido';
@@ -88,6 +84,7 @@ export class UtenteDto {
             this.cognome = this.cognome.trim();
         }
     }
+
     dataNascitaUtenteValidate() {
         if (!this.dataNascita) {
             this.dataNascitaError = 'Data di nascita non valida';
@@ -96,6 +93,7 @@ export class UtenteDto {
             this.dataNascita = this.dataNascita;
         }
     }
+
     codiceFiscaleUtenteValidate(err: string) {
         if (err) {
             this.codiceFiscaleError = err;
@@ -106,5 +104,4 @@ export class UtenteDto {
             this.codiceFiscale = this.codiceFiscale.trim();
         }
     }
-  
 }

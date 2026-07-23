@@ -22,27 +22,43 @@ import { StatoPrenotazione } from '../../core/enums/stato-prenotazione';
   templateUrl: './prenotazione-create.html',
   styleUrl: './prenotazione-create.css',
 })
+
+
 export class PrenotazioneCreate {
   private dialog = inject(Dialog);
 
   today = new Date().toISOString().split('T')[0];
-
   prenotazioneDTO!: PrenotazioneDTO;
-  costoCamera!: number | null;
-
   tipologie = Object.values(TipoCamera);
+<<<<<<< HEAD
 
   statoPrenotazione = Object.values(StatoPrenotazione);
 
+=======
+>>>>>>> 20d8d7117c0091e81d499843f042390c5b6683c1
   livelloPermesso!: string | null;
 
-  constructor(private router: Router, private service: Service, private location: Location, public auth: AuthService, private cdr: ChangeDetectorRef) {
-    this.prenotazioneDTO = new PrenotazioneDTO();
-    this.prenotazioneDTO.dataPrenotazione = new Date();
-    this.prenotazioneDTO.tipologiaCamera = null;
-    this.prenotazioneDTO.codiceUtente = auth.getCodiceUtente();
-  }
+  constructor(
+    private router: Router,
+    private service: Service,
+    private location: Location,
+    public auth: AuthService,
+    private cdr: ChangeDetectorRef
+  ) {
+    const stato = this.router.currentNavigation()?.extras.state as { prenotazioneTemp?: PrenotazioneDTO };
 
+    if (stato?.prenotazioneTemp) {
+      // arriva da Home con dati già inseriti
+      this.prenotazioneDTO = Object.assign(new PrenotazioneDTO(), stato.prenotazioneTemp);
+      this.calcoloCostoComplessivo();
+    } else {
+      // navigazione diretta alla pagina, nessun dato pregresso
+      this.prenotazioneDTO = new PrenotazioneDTO();
+      this.prenotazioneDTO.dataPrenotazione = new Date();
+      this.prenotazioneDTO.tipologiaCamera = null;
+      this.prenotazioneDTO.codiceUtente = this.auth.getCodiceUtente();
+    }
+  }
 
   apriSelezioneCamera() {
     this.prenotazioneDTO.inputValidate();
@@ -60,7 +76,7 @@ export class PrenotazioneCreate {
       if (result) {
         console.log('Camera scelta:', result.codiceCamera);
         this.prenotazioneDTO.codiceCamera = result.codiceCamera;
-        this.costoCamera = result.tariffa;
+        this.prenotazioneDTO.costoCamera = result.tariffa;
       }
       console.log('Login chiuso, risultato:', result);
       this.calcoloCostoComplessivo();
@@ -111,7 +127,7 @@ export class PrenotazioneCreate {
     this.prenotazioneDTO.dataFine = null;
     this.prenotazioneDTO.tipologiaCamera = null;
     this.prenotazioneDTO.codiceCamera = null;
-    this.costoCamera = null;
+    this.prenotazioneDTO.costoCamera = null;
 
     this.prenotazioneDTO.dataInizioError = false;
     this.prenotazioneDTO.dataFineError = false;
@@ -130,7 +146,7 @@ export class PrenotazioneCreate {
       next: (response) => {
         this.prenotazioneDTO.codiceCameraError = false;
         this.prenotazioneDTO.codiceCamera = Object.assign(new CameraDto(), response).codiceCamera;
-        this.costoCamera = Object.assign(new CameraDto(), response).tariffa;
+        this.prenotazioneDTO.costoCamera = Object.assign(new CameraDto(), response).tariffa;
         console.log('Camera caricata:', this.prenotazioneDTO.codiceCamera);
         this.cdr?.detectChanges();
       },
@@ -165,11 +181,11 @@ export class PrenotazioneCreate {
   };
 
   calcoloCostoComplessivo() {
-    if (this.prenotazioneDTO.dataInizio && this.prenotazioneDTO.dataFine && this.costoCamera) {
+    if (this.prenotazioneDTO.dataInizio && this.prenotazioneDTO.dataFine && this.prenotazioneDTO.costoCamera) {
       const dataInizio = new Date(this.prenotazioneDTO.dataInizio);
       const dataFine = new Date(this.prenotazioneDTO.dataFine);
       const differenzaGiorni = (dataFine.getTime() - dataInizio.getTime()) / (1000 * 60 * 60 * 24);
-      this.prenotazioneDTO.costoComplessivo = differenzaGiorni * this.costoCamera;
+      this.prenotazioneDTO.costoComplessivo = differenzaGiorni * this.prenotazioneDTO.costoCamera;
     }
   }
 

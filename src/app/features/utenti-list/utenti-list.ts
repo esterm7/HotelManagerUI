@@ -8,12 +8,15 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { LivelloPermesso } from '../../core/enums/livello-permessi';
 import { NavLayout } from '../../nav-layout/nav-layout';
 
+
 @Component({
   selector: 'app-utenti-list',
-  imports: [CommonModule, NgbPopoverModule, NavLayout ],
+  imports: [CommonModule, NgbPopoverModule, NavLayout],
   templateUrl: './utenti-list.html',
   styleUrl: './utenti-list.css',
 })
+
+
 export class UtentiList implements OnInit {
   utenti: UtenteDto[] = [];
   constructor(private router: Router, private utenteService: Service, private route: ActivatedRoute, private cdr: ChangeDetectorRef, public auth: AuthService) { }
@@ -23,9 +26,8 @@ export class UtentiList implements OnInit {
 
   ngOnInit() {
     this.utenti = this.route.snapshot.data['utenti'];
-    this.livelloPermesso = this.auth.getLivelloPermesso() ;
+    this.livelloPermesso = this.auth.getLivelloPermesso();
   };
-
 
   VaiAHome() {
     this.router.navigate(['/home']);
@@ -39,8 +41,6 @@ export class UtentiList implements OnInit {
     if (confirm(`Sei sicuro di voler eliminare l'utente ${utente.nome} ${utente.cognome} ${utente.codiceUtente}?`)) {
       this.utenteService.deleteUtente(utente.codiceUtente).subscribe({
         next: (response) => {
-
-          
 
           alert(`Utente ${utente.nome} ${utente.cognome} ${utente.codiceUtente} eliminato con successo!`);
 

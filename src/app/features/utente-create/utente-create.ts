@@ -11,6 +11,7 @@ import { FormError } from '../form-error/form-error';
 import { LivelloPermesso } from '../../core/enums/livello-permessi';
 import { NavLayout } from '../../nav-layout/nav-layout';
 
+
 @Component({
   selector: 'app-utente-create',
   imports: [FormsModule, NgbPopoverModule, FormLayout, FormError, NavLayout],
@@ -18,16 +19,14 @@ import { NavLayout } from '../../nav-layout/nav-layout';
   styleUrl: './utente-create.css',
 })
 
+
 export class UtenteCreate implements OnInit {
 
   adulto = new Date().toISOString().split('T')[0];
 
-
   utenteDTO!: UtenteDto;
 
   livelloPermesso!: string | null;
-
-
 
   ngOnInit(): void {
     this.livelloPermesso = this.auth.getLivelloPermesso();
@@ -70,7 +69,6 @@ export class UtenteCreate implements OnInit {
     });
   };
 
-
   VaiAPaginaPrecedente() {
     this.location.back();
   }
@@ -80,7 +78,6 @@ export class UtenteCreate implements OnInit {
       this.confermaPasswordError = 'Le password non coincidono';
     } else this.confermaPasswordError = false
   }
-
 
   resetForm() {
     this.utenteDTO.nome = '';
@@ -98,5 +95,4 @@ export class UtenteCreate implements OnInit {
     this.utenteDTO.codiceFiscaleError = false;
     this.utenteDTO.livelloPermessoError = false;
   }
-
 }

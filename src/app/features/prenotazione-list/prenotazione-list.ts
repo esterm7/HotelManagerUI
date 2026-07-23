@@ -13,14 +13,14 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './prenotazione-list.html',
   styleUrl: './prenotazione-list.css',
 })
+
+
 export class PrenotazioneList implements OnInit {
   prenotazioni: PrenotazioneDTO[] = [];
 
   livelloPermesso!: string | null;
 
-
   constructor(private router: Router, private route: ActivatedRoute, private service: Service, public auth: AuthService) { }
-
 
   ngOnInit() {
     this.prenotazioni = this.route.snapshot.data['prenotazioni'];
@@ -28,7 +28,6 @@ export class PrenotazioneList implements OnInit {
     this.livelloPermesso = this.auth.getLivelloPermesso();
 
   }
-
 
   vaiAllUpdatePrenotazione(prenotazione: PrenotazioneDTO) {
     this.router.navigate(['/prenotazione-update', prenotazione.codicePrenotazione]);
@@ -62,6 +61,4 @@ export class PrenotazioneList implements OnInit {
   vaiUpdatePrenotazione(prenotazione: PrenotazioneDTO) {
     this.router.navigate(['prenotazione-update', prenotazione.codicePrenotazione]);
   }
-
 }
-

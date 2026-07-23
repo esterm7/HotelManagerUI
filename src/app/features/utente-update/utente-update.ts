@@ -16,10 +16,11 @@ import { NavLayout } from "../../nav-layout/nav-layout";
   templateUrl: './utente-update.html',
   styleUrl: './utente-update.css',
 })
+
+
 export class UtenteUpdate implements OnInit {
 
   adulto = new Date().toISOString().split('T')[0];
-
 
   utenteDTO!: UtenteDto;
 
@@ -77,7 +78,6 @@ export class UtenteUpdate implements OnInit {
       }
     });
   };
-
 
   VaiAHome() {
     this.router.navigate(['/home']);

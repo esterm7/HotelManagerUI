@@ -20,6 +20,7 @@ import { Dialog } from '@angular/cdk/dialog';
   styleUrl: './home.css',
 })
 
+
 export class Home implements OnInit {
   private dialog = inject(Dialog);
 
@@ -35,7 +36,6 @@ export class Home implements OnInit {
   }
 
   livelloPermesso!: string | null;
-
 
   vaiAPrenota() {
     this.router.navigate(['/prenotazione-create'], {
@@ -59,12 +59,12 @@ export class Home implements OnInit {
       if (result) {
         console.log('Camera scelta:', result.codiceCamera);
         this.prenotazioneDTO.codiceCamera = result.codiceCamera;
+        this.prenotazioneDTO.costoCamera = result.tariffa;
       }
       this.vaiAPrenota();
       console.log('Login chiuso, risultato:', result);
     });
   }
-
 
   vaiAlCreaUtente() {
     this.router.navigate(['/utente-create']);
