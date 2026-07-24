@@ -62,7 +62,7 @@ export class PrenotazioneUpdate implements OnInit {
         this.prenotazioneDTO.codiceCamera = result.codiceCamera;
         this.costoCamera = result.tariffa;
       }
-      console.log('Login chiuso, risultato:', result);
+      // console.log('Login chiuso, risultato:', result);
       this.calcoloCostoComplessivo();
       this.cdr.detectChanges();
     });
