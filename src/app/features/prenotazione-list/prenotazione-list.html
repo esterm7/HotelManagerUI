@@ -10,6 +10,7 @@
                 <th class="col-2">Data inizio</th>
                 <th class="col-2">Data fine</th>
                 <th class="col-2">Importo totale</th>
+                <th class = "col-2">Stato prenotazione</th>
                 <th class="col-2 text-end">Azioni</th>
             </tr>
         </thead>
@@ -23,9 +24,10 @@
                 <td>{{ prenotazione.dataInizio }}</td>
                 <td>{{ prenotazione.dataFine }}</td>
                 <td>€{{ prenotazione.costoComplessivo }}</td>
+                <td>{{prenotazione.statoPrenotazione}}</td>
                 <td class="text-end">
                     @if (auth.isGestore()) {
-                    <button class="btn btn-primary btn-sm me-2" ngbPopover="Modifica" triggers="hover focus"
+                    <button class="btn btn-primary btn-sm" ngbPopover="Modifica" triggers="hover focus"
                         (click)="vaiAllUpdatePrenotazione(prenotazione)">
                         <i class="bi bi-pencil-square"></i>
                     </button>

@@ -30,12 +30,9 @@ export class PrenotazioneCreate {
   today = new Date().toISOString().split('T')[0];
   prenotazioneDTO!: PrenotazioneDTO;
   tipologie = Object.values(TipoCamera);
-<<<<<<< HEAD
 
   statoPrenotazione = Object.values(StatoPrenotazione);
 
-=======
->>>>>>> 20d8d7117c0091e81d499843f042390c5b6683c1
   livelloPermesso!: string | null;
 
   constructor(
