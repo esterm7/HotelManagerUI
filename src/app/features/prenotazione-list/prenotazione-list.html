@@ -16,8 +16,8 @@
         </thead>
         <tbody>
 
-            @for (prenotazione of prenotazioni; track prenotazione.codicePrenotazione) {
-            <tr>
+            @for (prenotazione of prenotazioni; track prenotazione.codicePrenotazione)  {
+            <tr (click)="openDetails(prenotazione)" style="cursor: pointer;">
                 <td>{{ prenotazione.codicePrenotazione }}</td>
                 <td>{{ prenotazione.codiceUtente }}</td>
                 <td>{{ prenotazione.codiceCamera }}</td>

@@ -28,18 +28,19 @@ export class NavLayout {
     });
 
     ref.closed.subscribe(result => {
-      console.log('Login chiuso, risultato:', result);
-      this.dropdownOpen.set(false);
+      // console.log('Login chiuso, risultato:', result);
+      // this.dropdownOpen.set(false);
       this.cdr.detectChanges();
 
     });
   }
 
+
   openDropdown() { this.dropdownOpen.set(true); }
   closeDropdown() { this.dropdownOpen.set(false); }
 
   vaiUpdateUtente() {
-    const codice = this.auth.getCodiceUtente(); // sostituisci con il metodo/signal corretto
+    const codice = this.auth.getCodiceUtente(); 
     this.router.navigate(['/utente-update', codice]);
   }
 
