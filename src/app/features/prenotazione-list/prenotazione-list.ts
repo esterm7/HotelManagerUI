@@ -45,30 +45,11 @@ openDetails(prenotazione: PrenotazioneDTO) {
   });
 }
 
-  vaiAllUpdatePrenotazione(prenotazione: PrenotazioneDTO) {
-    this.router.navigate(['/prenotazione-update', prenotazione.codicePrenotazione]);
-  }
 
   VaiAHome() {
     this.router.navigate(['/home']);
   }
 
-  deletePrenotazione(prenotazione: PrenotazioneDTO) {
-    if (confirm(`Sei sicuro di voler eliminare la prenotazione ${prenotazione.codicePrenotazione} ? `)) {
-      this.service.cancellaPrenotazione(prenotazione.codicePrenotazione).subscribe({
-        next: (response) => {
-          console.log(response);
-          alert("Prenotazione eliminata");
-          window.location.reload();
-        },
-        error: (err) => {
-          console.log(err);
-          alert(err.error);
-          console.error('Errore durante la cancellazione della prenotazione: ', err.error);
-        }
-      });
-    }
-  }
 
     checkedIn(prenotazione: PrenotazioneDTO) {
     if (prenotazione.statoCheckin === StatoCheckin.CHECKED_IN) {
