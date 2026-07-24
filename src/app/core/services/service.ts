@@ -86,6 +86,11 @@ export class Service {
   aggiornaPrenotazione(dto: PrenotazioneDTO) {
     return this.http.put(`${this.baseUrlPrenotazione}/${dto.codicePrenotazione}`, dto)
   }
+
+  aggiornaPrenotazioneCheckin(dto: PrenotazioneDTO){
+    return this.http.put(`${this.baseUrlPrenotazione}/checkin/${dto.codicePrenotazione}`, dto)
+  }
+
   getAllCamereLibere(dto: PrenotazioneDTO): Observable<CameraDto[]> {
     return this.http.post<CameraDto[]>(`${this.baseUrlPrenotazione}/camere`, dto)
   }
