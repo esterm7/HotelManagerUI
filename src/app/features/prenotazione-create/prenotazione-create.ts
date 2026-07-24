@@ -28,6 +28,7 @@ export class PrenotazioneCreate {
   private dialog = inject(Dialog);
 
   today = new Date().toISOString().split('T')[0];
+
   prenotazioneDTO!: PrenotazioneDTO;
   tipologie = Object.values(TipoCamera);
 
@@ -176,6 +177,17 @@ export class PrenotazioneCreate {
     })
 
   };
+
+  get dataMinFine(): string {
+    if (!this.prenotazioneDTO?.dataInizio) {
+      return '';
+    }
+
+    const data = new Date(this.prenotazioneDTO.dataInizio);
+    data.setDate(data.getDate() + 1);
+
+    return data.toISOString().split('T')[0];
+  }
 
   calcoloCostoComplessivo() {
     if (this.prenotazioneDTO.dataInizio && this.prenotazioneDTO.dataFine && this.prenotazioneDTO.costoCamera) {

@@ -18,8 +18,8 @@
 
             <div class="input-group mb-4">
                 <label class="input-group-text">Data check-out</label>
-                <input name="dataFine" [(ngModel)]="prenotazioneDTO.dataFine" [min]="this.prenotazioneDTO.dataInizio"
-                    type="date" class="form-control" (blur)="prenotazioneDTO.dataFineValidate()">
+                <input name="dataFine" [(ngModel)]="prenotazioneDTO.dataFine" [min]="dataMinFine" type="date"
+                    class="form-control" (blur)="prenotazioneDTO.dataFineValidate()">
                 <app-form-error [error]="prenotazioneDTO.dataFineError" />
             </div>
 
