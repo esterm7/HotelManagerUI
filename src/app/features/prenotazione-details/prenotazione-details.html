@@ -1,0 +1,30 @@
+<div class="card p-3">
+
+    <h3>Dettagli Prenotazione</h3>
+
+    <p><strong>Codice prenotazione:</strong> {{ prenotazioneDTO.codicePrenotazione }}</p>
+
+    <p><strong>Codice utente:</strong> {{ prenotazioneDTO.codiceUtente }}</p>
+
+    <p><strong>Codice camera:</strong> {{ prenotazioneDTO.codiceCamera }}</p>
+
+    <p><strong>Data prenotazione:</strong> {{ prenotazioneDTO.dataPrenotazione }}</p>
+
+    <p><strong>Check-in:</strong> {{ prenotazioneDTO.dataInizio }}</p>
+
+    <p><strong>Check-out:</strong> {{ prenotazioneDTO.dataFine }}</p>
+
+    <p><strong>Importo totale:</strong> €{{ prenotazioneDTO.costoComplessivo }}</p>
+
+     <p><strong>Stato prenotazione:</strong> {{ prenotazioneDTO.statoPrenotazione }}</p>
+        
+    <button class="btn btn-primary" (click)="chiudi()">
+        Chiudi
+    </button>
+
+    
+
+
+
+</div>
+
