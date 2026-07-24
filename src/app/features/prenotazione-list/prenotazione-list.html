@@ -25,17 +25,22 @@
                 <td>{{ prenotazione.dataFine }}</td>
                 <td>€{{ prenotazione.costoComplessivo }}</td>
                 <td>{{prenotazione.statoPrenotazione}}</td>
-                <td class="text-end">
-                    @if (auth.isGestore()) {
-                    <button class="btn btn-primary btn-sm" ngbPopover="Modifica" triggers="hover focus"
-                        (click)="vaiAllUpdatePrenotazione(prenotazione)">
-                        <i class="bi bi-pencil-square"></i>
-                    </button>
-                    }
-                    <button class="btn btn-danger btn-sm" ngbPopover="Cancella" triggers="hover focus"
-                        (click)="deletePrenotazione(prenotazione)">
-                        <i class="bi bi-trash"></i>
-                    </button>
+              <td class="text-end">
+                    <div class="d-inline-flex flex-column align-items-end">
+ 
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-success btn-sm" ngbPopover="Checkin" triggers="hover focus"
+                                (click)="checkedIn(prenotazione)">
+                                <i class="bi bi-bookmark-check"></i>
+                            </button>
+ 
+                            <button class="btn btn-warning btn-sm" ngbPopover="Checkout" triggers="hover focus"
+                                (click)="checkedOut(prenotazione)">
+                                <i class="bi bi-bookmark-dash"></i>
+                            </button>
+                        </div>
+ 
+                    </div>
                 </td>
             </tr>
             } @empty {

@@ -18,6 +18,20 @@
 
      <p><strong>Stato prenotazione:</strong> {{ prenotazioneDTO.statoPrenotazione }}</p>
         
+     
+                        <div class="d-flex gap-2 mb-2">
+                            @if (auth.isGestore()) {
+                            <button class="btn btn-primary btn-sm" ngbPopover="Modifica" triggers="hover focus"
+                                (click)="vaiAllUpdatePrenotazione(prenotazioneDTO)">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            }
+ 
+                            <button class="btn btn-danger btn-sm" ngbPopover="Cancella" triggers="hover focus"
+                                (click)="deletePrenotazione(prenotazioneDTO)">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
     <button class="btn btn-primary" (click)="chiudi()">
         Chiudi
     </button>
