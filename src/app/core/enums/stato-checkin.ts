@@ -1,7 +1,7 @@
 export enum StatoCheckin {
 
-    PENDING,
-    CHECKED_IN,
-    CHECKED_OUT
+    PENDING = 'PENDING',
+    CHECKED_IN = 'CHECKED_IN',
+    CHECKED_OUT = 'CHECKED_OUT'
 
 }

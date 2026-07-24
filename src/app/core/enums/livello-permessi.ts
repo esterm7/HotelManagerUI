@@ -1,6 +1,3 @@
-
-
-
 export enum LivelloPermesso {
     ADMIN = 'ADMIN',
     GESTORE = 'GESTORE',
