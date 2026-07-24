@@ -1,5 +1,6 @@
 import { TipoCamera } from '../core/enums/tipologia-camera-enum';
 import { StatoPrenotazione } from '../core/enums/stato-prenotazione';
+import { StatoCheckin } from '../core/enums/stato-checkin';
 
 export class PrenotazioneDTO {
     codicePrenotazione!: string;
@@ -31,7 +32,8 @@ export class PrenotazioneDTO {
     statoPrenotazione!: StatoPrenotazione | null;
     statoPrenotazioneError!: boolean | string;
 
-
+    statoCheckin!: StatoCheckin | null;
+    statoCheckinError!: boolean | string;
     
     constructor() { }
 
@@ -87,8 +89,6 @@ export class PrenotazioneDTO {
         } else {
             this.tipologiaCameraError = false;
         }
-
-
     }
 
     statoPrenotazioneValidate() {
