@@ -66,6 +66,17 @@ export class Home implements OnInit {
     });
   }
 
+   get dataMinFine(): string {
+    if (!this.prenotazioneDTO?.dataInizio) {
+      return '';
+    }
+
+    const data = new Date(this.prenotazioneDTO.dataInizio);
+    data.setDate(data.getDate() + 1);
+
+    return data.toISOString().split('T')[0];
+  }
+  
   vaiAlCreaUtente() {
     this.router.navigate(['/utente-create']);
   };

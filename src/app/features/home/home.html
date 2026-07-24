@@ -102,7 +102,7 @@
           <div class="col">
             <div class="input-group">
               <label class="input-group-text">Partenza</label>
-              <input name="dataFine" [(ngModel)]="prenotazioneDTO.dataFine" [min]="prenotazioneDTO.dataInizio"
+              <input name="dataFine" [(ngModel)]="prenotazioneDTO.dataFine" [min]="dataMinFine"
                 type="date" class="form-control"
                 (blur)="prenotazioneDTO.dataFineValidate(); prenotazioneDTO.dataInizioValidate()">
             </div>
