@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+.btn-rosa-antico {
+    background-color: #ca7072;
+    border-color: #b46163;
+    color: white;
+}
+
+.btn-rosa-antico:hover {
+    background-color: #b06f70;
+    border-color: #b06f70;
+    color: white;
+}
+
+.btn-rosa-antico:focus,
+.btn-rosa-antico:active {
+    background-color: #a86566;
+    border-color: #a86566;
+    color: white;
+    box-shadow: 0 0 0 .25rem rgba(192, 128, 129, .25);
+}
