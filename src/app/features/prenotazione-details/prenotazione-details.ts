@@ -6,12 +6,13 @@ import { PrenotazioneDTO } from '../../DTO/prenotazioneDTO';
 import { ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/services/AuthService';
+import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 
 
 
 @Component({
   selector: 'app-prenotazione-details',
-  imports: [FormsModule],
+  imports: [FormsModule, NgbPopover],
   templateUrl: './prenotazione-details.html',
   styleUrl: './prenotazione-details.css',
 })

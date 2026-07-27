@@ -2,13 +2,13 @@
 
 <div class="container d-flex justify-content-center flex-column min-vh-100">
 
-    <h1 class=" display-1 row justify-content-md-center mb-5"> PRENOTA </h1>
 
     <div class="row justify-content-md-center">
 
         <app-form-layout submitLabel="Crea" (formSubmit)="salvaPrenotazione()" (formReset)="resetForm()"
             (formBack)="VaiAPaginaPrecedente()">
 
+<h1 class="row justify-content-md-center mb-5"> Inserisci prenotazione </h1>    
             <div class="input-group mb-4">
                 <label class="input-group-text">Data check-in</label>
                 <input name="dataInizio" [(ngModel)]="prenotazioneDTO.dataInizio" [min]="today" type="date"

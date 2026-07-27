@@ -1,40 +1,36 @@
 <app-nav-layout></app-nav-layout>
 
 <div class="container-fluid mt-4">
-    <table class="table table-hover align-middle text-center">
-        <thead>
+    <table class="table table-hover text-center">
+        <thead class = "sticky-top">
             <tr>
-                <th class="col-2">N. Prenotazione</th>
-                <th class="col-1">Utente</th>
-                <th class="col-1">Camera</th>
-                <th class="col-2">Data inizio</th>
-                <th class="col-2">Data fine</th>
-                <th class="col-2">Importo totale</th>
-                <th class = "col-2">Stato prenotazione</th>
-                <th class="col-2 text-end">Azioni</th>
+                <th class="col-2">N. PRENOTAZIONE</th>
+                <th class="col-1">UTENTE</th>
+                <th class="col-2">DATA INIZIO</th>
+                <th class="col-2">DATA FINE</th>
+                <th class = "col-2">STATO PENOTAZIONE</th>
+                <th class="col-2 text-end">AZIONI</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="table-group-divider">
 
             @for (prenotazione of prenotazioni; track prenotazione.codicePrenotazione)  {
             <tr (click)="openDetails(prenotazione)" style="cursor: pointer;">
                 <td>{{ prenotazione.codicePrenotazione }}</td>
                 <td>{{ prenotazione.codiceUtente }}</td>
-                <td>{{ prenotazione.codiceCamera }}</td>
                 <td>{{ prenotazione.dataInizio }}</td>
                 <td>{{ prenotazione.dataFine }}</td>
-                <td>€{{ prenotazione.costoComplessivo }}</td>
                 <td>{{prenotazione.statoPrenotazione}}</td>
               <td class="text-end">
                     <div class="d-inline-flex flex-column align-items-end">
  
                         <div class="d-flex gap-2">
-                            <button class="btn btn-success btn-sm" ngbPopover="Checkin" triggers="hover focus"
+                            <button class="btn btn-success btn-sm" ngbPopover="Checkin" triggers="hover focus" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover"
                                 (click)="checkedIn(prenotazione)">
                                 <i class="bi bi-bookmark-check"></i>
                             </button>
  
-                            <button class="btn btn-warning btn-sm" ngbPopover="Checkout" triggers="hover focus"
+                            <button class="btn btn-warning btn-sm" ngbPopover="Checkout" triggers="hover focus" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover"
                                 (click)="checkedOut(prenotazione)">
                                 <i class="bi bi-bookmark-dash"></i>
                             </button>
