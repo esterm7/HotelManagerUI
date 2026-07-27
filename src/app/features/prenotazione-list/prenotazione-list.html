@@ -8,36 +8,42 @@
                 <th class="col-1">UTENTE</th>
                 <th class="col-2">DATA INIZIO</th>
                 <th class="col-2">DATA FINE</th>
-                <th class = "col-2">STATO PENOTAZIONE</th>
+                @if(auth.isGestore()){
+                <th class="col-2">STATO PENOTAZIONE</th>
                 <th class="col-2 text-end">AZIONI</th>
+                }
             </tr>
         </thead>
         <tbody class="table-group-divider">
 
-            @for (prenotazione of prenotazioni; track prenotazione.codicePrenotazione)  {
+            @for (prenotazione of prenotazioni; track prenotazione.codicePrenotazione) {
             <tr (click)="openDetails(prenotazione)" style="cursor: pointer;">
                 <td>{{ prenotazione.codicePrenotazione }}</td>
                 <td>{{ prenotazione.codiceUtente }}</td>
                 <td>{{ prenotazione.dataInizio }}</td>
                 <td>{{ prenotazione.dataFine }}</td>
+                <td>€{{ prenotazione.costoComplessivo }}</td>
+                @if(auth.isGestore()){
+
                 <td>{{prenotazione.statoPrenotazione}}</td>
-              <td class="text-end">
+                <td class="text-end">
                     <div class="d-inline-flex flex-column align-items-end">
- 
+
                         <div class="d-flex gap-2">
                             <button class="btn btn-success btn-sm" ngbPopover="Checkin" triggers="hover focus" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover"
                                 (click)="checkedIn(prenotazione)">
                                 <i class="bi bi-bookmark-check"></i>
                             </button>
- 
+
                             <button class="btn btn-warning btn-sm" ngbPopover="Checkout" triggers="hover focus" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover"
                                 (click)="checkedOut(prenotazione)">
                                 <i class="bi bi-bookmark-dash"></i>
                             </button>
                         </div>
- 
+
                     </div>
                 </td>
+                }
             </tr>
             } @empty {
             <tr>
