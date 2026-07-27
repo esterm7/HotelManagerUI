@@ -53,7 +53,7 @@ export class UtenteUpdate implements OnInit {
   };
 
   updateUtente() {
-    this.utenteDTO.inputValidate();
+    this.utenteDTO.updateValidate();
     this.verificaPassword()
     if (this.utenteDTO.nomeError || this.utenteDTO.cognomeError || this.utenteDTO.dataNascitaError || this.utenteDTO.codiceFiscaleError || this.passwordError || this.confermaPasswordError || this.utenteDTO.livelloPermessoError) {
       console.log('Errore di validazione dei campi');
@@ -93,7 +93,8 @@ export class UtenteUpdate implements OnInit {
   }
 
   verificaPassword() {
-    this.passwordError = this.utenteDTO.passwordValidate(this.password);
+    if (this.password)
+      this.passwordError = this.utenteDTO.passwordValidate(this.password);
     if (this.password !== this.confermaPassword) {
       this.confermaPasswordError = 'Le password non coincidono';
     } else this.confermaPasswordError = false

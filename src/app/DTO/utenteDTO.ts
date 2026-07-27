@@ -39,6 +39,18 @@ export class UtenteDto {
         this.passwordUtenteValidate()
     }
 
+      updateValidate() {
+        this.nomeError = false;
+        this.cognomeError = false;
+        this.dataNascitaError = false;
+        this.codiceFiscaleError = false;
+
+        this.nomeUtenteValidate();
+        this.cognomeUtenteValidate();
+        this.dataNascitaUtenteValidate();
+        this.codiceFiscaleUtenteValidate('');
+    }
+
     codiceUtenteValidate() {
         if (!this.codiceUtente || this.codiceUtente.trim() === '' || this.codiceUtente.trim().length > 12) {
             this.codiceUtenteError = 'Codice utente non valido';
