@@ -1,13 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 .btn-rosa-antico {
-    background-color: #ca7072;
-    border-color: #b46163;
+    background-color: #d18081;
+    border-color: #d18081;  
     color: white;
 }
 
 .btn-rosa-antico:hover {
-    background-color: #b06f70;
-    border-color: #b06f70;
+    background-color: #b25d5f;
+    border-color: #b25d5f;
     color: white;
 }
 
