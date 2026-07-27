@@ -1,4 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+:root{
+    --testo-principale: #2e1b19;
+    --rosa-antico:  #d18081;
+       --marrone: #2e1b19;
+    --marrone-hover: #261614;
+    --marrone-active: #1f1211;
+        --testo-chiaro: #fdf3f0;
+}
+
 .btn-rosa-antico {
     background-color: #d18081;
     border-color: #d18081;  
@@ -18,3 +30,103 @@
     color: white;
     box-shadow: 0 0 0 .25rem rgba(192, 128, 129, .25);
 }
+
+a {
+      color: var(--rosa-antico) !important;
+      text-decoration-color: var(--rosa-antico) !important;
+}
+
+a:hover {
+    color:  #b25d5f;
+    text-decoration: none;
+}
+
+.btn-marrone {
+    background-color: var(--marrone);
+    color:    var(--testo-chiaro);
+}
+
+.btn-marrone:hover {
+    background-color: var(--marrone-hover);
+    border-color: var(--marrone-hover);
+    color: white;
+}
+
+
+body {
+    background-color: #fdf3f0 ;
+    color: var(--testo-principale);
+    font-family:'Poppins', sans-serif;
+}
+
+.input-group-text {
+     color: var(--testo-principale);
+
+}
+
+.icon-link {
+    color: var(--testo-chiaro)
+
+}
+
+.btn-elimina {
+    background-color: #A85D5E;
+    color: #FFFFFF;
+}
+
+.btn-elimina:hover {
+    background-color: #8D4748;
+}
+
+.btn-indietro {
+    background-color: #8C8178;
+     color: #FFFFFF;
+
+}
+
+.btn-indietro:hover {
+    background-color:#736860 ;
+}
+
+
+.btn-add {
+    background-color:#5FA16D;
+     color: #FFFFFF;
+}
+
+.btn-add:hover {
+    background-color:#4A8658;
+}
+
+.btn-home {
+    background-color: #C68A52;
+    color: #FFFFFF;
+}
+
+.btn-home:hover {
+    background-color: #A96F3C;
+}
+
+
+.btn-update{
+    background-color: #5B7FA3;
+    color:  #FFFFFF;
+
+
+}
+
+
+.btn-update:hover{
+ background-color: #5B7FA3;
+}
+
+.btn-reset {
+    background-color: #A37B5C;
+color: #FFFFFF;
+}
+
+.btn-reset:hover{
+    background-color: #86624A;
+
+}
+

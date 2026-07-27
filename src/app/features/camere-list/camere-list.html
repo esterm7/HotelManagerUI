@@ -20,9 +20,9 @@
       <td> € {{camera.tariffa}} </td>
       <td>
         <div class=margin-left: 5px;>
-          <button class="btn btn-primary btn-sm me-2" ngbPopover="Modifica" triggers="hover focus"
+          <button class="btn btn-update btn-sm me-2" ngbPopover="Modifica" triggers="hover focus"
             (click)="vaiAllUpdateCamera(camera)"><i class="bi bi-pencil-square"></i> </button>
-          <button class="btn btn-danger btn-sm" ngbPopover="Cancella" triggers="hover focus"
+          <button class="btn btn-elimina btn-sm" ngbPopover="Cancella" triggers="hover focus"
             (click)="deleteCamera(camera)"><i class="bi bi-trash"></i></button>
         </div>
       </td>
@@ -34,10 +34,10 @@
 
 <div class="d-flex justify-content-md-center gap-3 mb-4 mt-5">
   <button type="button" ngbPopover="Torna alla home" triggers="hover focus" (click)="VaiAHome()"
-    class="btn btn-danger btn-sm">
+    class="btn btn-home btn-sm">
     <i class="bi bi-house fs-4"></i>
   </button>
   
-  <button class="btn btn-primary" ngbPopover="Aggiungi una camera" triggers="hover focus" (click)="vaiAlCreaCamera()">
+  <button class="btn btn-add" ngbPopover="Aggiungi una camera" triggers="hover focus" (click)="vaiAlCreaCamera()">
     <i class="bi bi-plus-lg fs-4"></i>
   </button>
