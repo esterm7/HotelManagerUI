@@ -10,13 +10,15 @@
                 <th class="col-2">Data inizio</th>
                 <th class="col-2">Data fine</th>
                 <th class="col-2">Importo totale</th>
-                <th class = "col-2">Stato prenotazione</th>
+                @if(auth.isGestore()){
+                <th class="col-2">Stato prenotazione</th>
                 <th class="col-2 text-end">Azioni</th>
+                }
             </tr>
         </thead>
         <tbody>
 
-            @for (prenotazione of prenotazioni; track prenotazione.codicePrenotazione)  {
+            @for (prenotazione of prenotazioni; track prenotazione.codicePrenotazione) {
             <tr (click)="openDetails(prenotazione)" style="cursor: pointer;">
                 <td>{{ prenotazione.codicePrenotazione }}</td>
                 <td>{{ prenotazione.codiceUtente }}</td>
@@ -24,24 +26,27 @@
                 <td>{{ prenotazione.dataInizio }}</td>
                 <td>{{ prenotazione.dataFine }}</td>
                 <td>€{{ prenotazione.costoComplessivo }}</td>
+                @if(auth.isGestore()){
+
                 <td>{{prenotazione.statoPrenotazione}}</td>
-              <td class="text-end">
+                <td class="text-end">
                     <div class="d-inline-flex flex-column align-items-end">
- 
+
                         <div class="d-flex gap-2">
                             <button class="btn btn-success btn-sm" ngbPopover="Checkin" triggers="hover focus"
                                 (click)="checkedIn(prenotazione)">
                                 <i class="bi bi-bookmark-check"></i>
                             </button>
- 
+
                             <button class="btn btn-warning btn-sm" ngbPopover="Checkout" triggers="hover focus"
                                 (click)="checkedOut(prenotazione)">
                                 <i class="bi bi-bookmark-dash"></i>
                             </button>
                         </div>
- 
+
                     </div>
                 </td>
+                }
             </tr>
             } @empty {
             <tr>
