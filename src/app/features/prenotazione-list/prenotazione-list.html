@@ -2,7 +2,7 @@
 
 <div class="container-fluid mt-4">
     <table class="table table-hover text-center">
-        <thead class = "sticky-top">
+        <thead class = "position-sticky top-0 z-1">
             <tr>
                 <th class="col-2">N. PRENOTAZIONE</th>
                 <th class="col-1">UTENTE</th>
@@ -31,13 +31,13 @@
                     <div class="d-inline-flex flex-column align-items-end">
 
                         <div class="d-flex gap-2">
-                            <button class="btn btn-success btn-sm" ngbPopover="Checkin" triggers="hover focus" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover"
-                                (click)="checkedIn(prenotazione)">
+                            <button class="btn btn-success btn-sm" ngbPopover="Check-In" triggers="hover" placement="left"
+                                (click)="$event.stopPropagation(); checkedIn(prenotazione)">
                                 <i class="bi bi-bookmark-check"></i>
                             </button>
 
-                            <button class="btn btn-warning btn-sm" ngbPopover="Checkout" triggers="hover focus" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover"
-                                (click)="checkedOut(prenotazione)">
+                            <button class="btn btn-warning btn-sm" ngbPopover="Check-Out" triggers="hover" 
+                                (click)=" $event.stopPropagation(); checkedOut(prenotazione)">
                                 <i class="bi bi-bookmark-dash"></i>
                             </button>
                         </div>
