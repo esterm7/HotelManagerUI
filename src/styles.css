@@ -70,46 +70,46 @@ body {
 }
 
 .btn-elimina {
-    background-color: #A85D5E;
+    background-color:#B55A68;
     color: #FFFFFF;
 }
 
 .btn-elimina:hover {
-    background-color: #8D4748;
+    background-color:#9C4856;
 }
 
 .btn-indietro {
-    background-color: #8C8178;
+    background-color:#8C6A63;
      color: #FFFFFF;
 
 }
 
 .btn-indietro:hover {
-    background-color:#736860 ;
+    background-color:#73534D ;
 }
 
 
 .btn-add {
-    background-color:#5FA16D;
+    background-color:#A66C84;
      color: #FFFFFF;
 }
 
 .btn-add:hover {
-    background-color:#4A8658;
+    background-color:#B56779;
 }
 
 .btn-home {
-    background-color: #C68A52;
+    background-color: #B8825A;
     color: #FFFFFF;
 }
 
 .btn-home:hover {
-    background-color: #A96F3C;
+    background-color:#9F6D48;
 }
 
 
 .btn-update{
-    background-color: #5B7FA3;
+    background-color:#A66C84;
     color:  #FFFFFF;
 
 
@@ -117,16 +117,39 @@ body {
 
 
 .btn-update:hover{
- background-color: #5B7FA3;
+ background-color: #915972;
 }
 
 .btn-reset {
-    background-color: #A37B5C;
+    background-color:#9C7A6D;
 color: #FFFFFF;
 }
 
 .btn-reset:hover{
-    background-color: #86624A;
+    background-color: #856458;
 
 }
+
+.btn-checkin {
+    background-color: #C97C8D;
+    color: #fff;
+}
+
+.btn-checkin:hover {
+    background-color:#B56779;
+    border-color:#B56779;
+}
+
+
+.btn-checkout {
+    background-color: #B8825A;
+    border-color: #B8825A;
+    color: #fff;
+}
+
+.btn-checkout:hover {
+    background-color: #9F6D48;
+    border-color: #9F6D48;
+}
+
 
